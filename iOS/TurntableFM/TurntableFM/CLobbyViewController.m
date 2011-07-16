@@ -107,7 +107,6 @@
 	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
 	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
 	NSDictionary *description = [room objectAtIndex:0];
-	NSLog(@"%@", description);
 	cell.textLabel.text = [description objectForKey:@"name"];
 	NSDictionary *metadata = [description objectForKey:@"metadata"];
 	NSDictionary *song = [metadata objectForKey:@"current_song"];
