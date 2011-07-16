@@ -110,23 +110,25 @@ static CTurntableFMModel *gSharedInstance = NULL;
         NULL];
     
     [self.turntableFMSocket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
-        NSLog(@"ROOM REGISTER: %@", inResult);
         self.room = inRoomDescription;
         
-        NSURL *theSongURL = [self URLForSong:[self.room valueForKeyPath:@"metadata.current_song"]];
+        NSDictionary *theSong = [self.room valueForKeyPath:@"metadata.current_song"];
+        NSLog(@"%@", theSong);
+        NSURL *theSongURL = [self URLForSong:theSong];
         
-        
-        NSLog(@"%@", theSongURL);
-        
-//        AVPlayerItem *the
-        
-//        AVPlayer *thePlayer = [[[AVPlayer alloc] initWithPlayerItem:thePlayerItem] autorelease];
-        
-//        NSLog(@"%@", thePlayer);
-        
-//        
-//        self.player = thePlayer;
+        AVPlayerItem *thePlayerItem = [[[AVPlayerItem alloc] initWithURL:theSongURL] autorelease];
 
+        AVPlayer *thePlayer = [[[AVPlayer alloc] initWithPlayerItem:thePlayerItem] autorelease];
+        self.player = thePlayer;
+        
+//        NSTimeInterval theStartTime = [[theSong objectForKey:@"starttime"] doubleValue];
+//        NSTimeInterval theCurrentTime = [[NSDate date] timeIntervalSince1970];
+//        int64_t theOffsetSeconds = floor((theCurrentTime - theStartTime) * 1000.0);
+//        NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
+        
+//        CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
+//        [self.player seekToTime:theOffset];
+        self.player.rate = 1.0;
         
         if (inHandler)
             {

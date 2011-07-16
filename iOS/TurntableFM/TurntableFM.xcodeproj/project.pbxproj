@@ -90,6 +90,7 @@
 		451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D468E13D1340F00530A57 /* CFNetwork.framework */; };
 		451D469513D157EA00530A57 /* CWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D469413D157EA00530A57 /* CWebSocket.m */; };
 		453343E113D24002005AE115 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343E013D24002005AE115 /* AVFoundation.framework */; };
+		453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343EB13D24EE3005AE115 /* CoreMedia.framework */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
 		45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */; };
 		45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */; };
@@ -492,6 +493,7 @@
 		451D469313D157EA00530A57 /* CWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWebSocket.h; sourceTree = "<group>"; };
 		451D469413D157EA00530A57 /* CWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWebSocket.m; sourceTree = "<group>"; };
 		453343E013D24002005AE115 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		453343EB13D24EE3005AE115 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
 		45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSocketIO.h; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */,
 				451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */,
 				451D468D13D133F500530A57 /* MobileCoreServices.framework in Frameworks */,
 				451D468B13D133E200530A57 /* CoreData.framework in Frameworks */,
@@ -768,6 +771,8 @@
 		4506235313D117F800086997 = {
 			isa = PBXGroup;
 			children = (
+				453343EB13D24EE3005AE115 /* CoreMedia.framework */,
+				750344C213D22CF30070495B /* TurntableFMStaticAssets */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
 				4506239013D117F800086997 /* TurntableFMTests */,
