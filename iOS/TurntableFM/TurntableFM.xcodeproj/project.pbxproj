@@ -90,12 +90,19 @@
 		451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D468E13D1340F00530A57 /* CFNetwork.framework */; };
 		451D469513D157EA00530A57 /* CWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D469413D157EA00530A57 /* CWebSocket.m */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
-		97ABD55A13D212010058B68E /* CLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55813D212010058B68E /* CLobbyViewController.m */; };
-		97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD55913D212010058B68E /* CLobbyViewController.xib */; };
 		45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */; };
 		45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */; };
 		45FD2CEB13D2152B00F88C0F /* CMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CE913D2152A00F88C0F /* CMainViewController.m */; };
 		45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */; };
+		750344BC13D2297D0070495B /* CRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750344BA13D2297D0070495B /* CRoomViewController.m */; };
+		750344BD13D2297D0070495B /* CRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750344BB13D2297D0070495B /* CRoomViewController.xib */; };
+		750344C313D22CF30070495B /* TurntableFMStaticAssets in Resources */ = {isa = PBXBuildFile; fileRef = 750344C213D22CF30070495B /* TurntableFMStaticAssets */; };
+		75B86F4313D23095001280FC /* CChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B86F4113D23095001280FC /* CChatViewController.m */; };
+		75B86F4413D23095001280FC /* CChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4213D23095001280FC /* CChatViewController.xib */; };
+		75B86F4913D23124001280FC /* CSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B86F4713D23124001280FC /* CSongViewController.m */; };
+		75B86F4A13D23124001280FC /* CSongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4813D23124001280FC /* CSongViewController.xib */; };
+		97ABD55A13D212010058B68E /* CLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55813D212010058B68E /* CLobbyViewController.m */; };
+		97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD55913D212010058B68E /* CLobbyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,9 +273,6 @@
 		451D469413D157EA00530A57 /* CWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWebSocket.m; sourceTree = "<group>"; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
-		97ABD55713D212010058B68E /* CLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyViewController.h; sourceTree = "<group>"; };
-		97ABD55813D212010058B68E /* CLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyViewController.m; sourceTree = "<group>"; };
-		97ABD55913D212010058B68E /* CLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyViewController.xib; sourceTree = "<group>"; };
 		45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSocketIO.h; sourceTree = "<group>"; };
 		45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSocketIO.m; sourceTree = "<group>"; };
 		45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMSocket.h; sourceTree = "<group>"; };
@@ -277,6 +281,19 @@
 		45FD2CE913D2152A00F88C0F /* CMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMainViewController.m; sourceTree = "<group>"; };
 		45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMModel.h; sourceTree = "<group>"; };
 		45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTurntableFMModel.m; sourceTree = "<group>"; };
+		750344B913D2297D0070495B /* CRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoomViewController.h; sourceTree = "<group>"; };
+		750344BA13D2297D0070495B /* CRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoomViewController.m; sourceTree = "<group>"; };
+		750344BB13D2297D0070495B /* CRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CRoomViewController.xib; sourceTree = "<group>"; };
+		750344C213D22CF30070495B /* TurntableFMStaticAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TurntableFMStaticAssets; sourceTree = "<group>"; };
+		75B86F4013D23095001280FC /* CChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CChatViewController.h; sourceTree = "<group>"; };
+		75B86F4113D23095001280FC /* CChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CChatViewController.m; sourceTree = "<group>"; };
+		75B86F4213D23095001280FC /* CChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CChatViewController.xib; sourceTree = "<group>"; };
+		75B86F4613D23124001280FC /* CSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSongViewController.h; sourceTree = "<group>"; };
+		75B86F4713D23124001280FC /* CSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSongViewController.m; sourceTree = "<group>"; };
+		75B86F4813D23124001280FC /* CSongViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSongViewController.xib; sourceTree = "<group>"; };
+		97ABD55713D212010058B68E /* CLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyViewController.h; sourceTree = "<group>"; };
+		97ABD55813D212010058B68E /* CLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyViewController.m; sourceTree = "<group>"; };
+		97ABD55913D212010058B68E /* CLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +327,7 @@
 		4506235313D117F800086997 = {
 			isa = PBXGroup;
 			children = (
+				750344C213D22CF30070495B /* TurntableFMStaticAssets */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
 				4506239013D117F800086997 /* TurntableFMTests */,
@@ -362,6 +380,15 @@
 				97ABD55913D212010058B68E /* CLobbyViewController.xib */,
 				45FD2CE813D2152A00F88C0F /* CMainViewController.h */,
 				45FD2CE913D2152A00F88C0F /* CMainViewController.m */,
+				750344B913D2297D0070495B /* CRoomViewController.h */,
+				750344BA13D2297D0070495B /* CRoomViewController.m */,
+				750344BB13D2297D0070495B /* CRoomViewController.xib */,
+				75B86F4013D23095001280FC /* CChatViewController.h */,
+				75B86F4113D23095001280FC /* CChatViewController.m */,
+				75B86F4213D23095001280FC /* CChatViewController.xib */,
+				75B86F4613D23124001280FC /* CSongViewController.h */,
+				75B86F4713D23124001280FC /* CSongViewController.m */,
+				75B86F4813D23124001280FC /* CSongViewController.xib */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -755,6 +782,10 @@
 				450623B313D11B1E00086997 /* MainWindow_iPad.xib in Resources */,
 				451D458F13D11F8900530A57 /* FBDialog.bundle in Resources */,
 				97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */,
+				750344BD13D2297D0070495B /* CRoomViewController.xib in Resources */,
+				750344C313D22CF30070495B /* TurntableFMStaticAssets in Resources */,
+				75B86F4413D23095001280FC /* CChatViewController.xib in Resources */,
+				75B86F4A13D23124001280FC /* CSongViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +893,9 @@
 				45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */,
 				45FD2CEB13D2152B00F88C0F /* CMainViewController.m in Sources */,
 				45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */,
+				750344BC13D2297D0070495B /* CRoomViewController.m in Sources */,
+				75B86F4313D23095001280FC /* CChatViewController.m in Sources */,
+				75B86F4913D23124001280FC /* CSongViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
