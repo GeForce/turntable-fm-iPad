@@ -10,6 +10,7 @@
 
 @implementation CLobbyTableViewCell
 
+@synthesize number;
 @synthesize roomName;
 @synthesize songTitle;
 
@@ -26,7 +27,7 @@
 
 + (CGFloat)cellHeight
 {
-	return 44.0;
+	return 50.0;
 }
 
 - (void)preview:(id)sender
