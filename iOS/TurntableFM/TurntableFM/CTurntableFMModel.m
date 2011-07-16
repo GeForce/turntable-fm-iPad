@@ -8,24 +8,35 @@
 
 #import "CTurntableFMModel.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "CTurntableFMSocket.h"
 #import "CURLOperation.h"
+#import "NSData_DigestExtensions.h"
+#import "NSData_Extensions.h"
 
-@interface CTurntableFMModel ()
-@property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
-@property (readwrite, nonatomic, retain) NSOperationQueue *queue;
+@interface CTurntableFMModel () <AVAudioPlayerDelegate>
 @property (readwrite, nonatomic, retain) NSDictionary *userInfo;
 @property (readwrite, nonatomic, retain) NSArray *rooms;
+@property (readwrite, nonatomic, retain) NSDictionary *room;
+
+@property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
+@property (readwrite, nonatomic, retain) NSOperationQueue *queue;
+@property (readwrite, nonatomic, retain) AVPlayer *player;
+
 @end
 
 #pragma mark -
 
 @implementation CTurntableFMModel
 
-@synthesize turntableFMSocket;
-@synthesize queue;
 @synthesize userInfo;
 @synthesize rooms;
+@synthesize room;
+
+@synthesize turntableFMSocket;
+@synthesize queue;
+@synthesize player;
 
 static CTurntableFMModel *gSharedInstance = NULL;
 
@@ -37,6 +48,15 @@ static CTurntableFMModel *gSharedInstance = NULL;
         });
     return(gSharedInstance);
     }
+
+- (id)init
+	{
+	if ((self = [super init]) != NULL)
+		{
+		}
+	return(self);
+	}
+
 
 - (void)loginWithFacebookAccessToken:(NSString *)inFacebookAccessToken;
     {
@@ -83,27 +103,60 @@ static CTurntableFMModel *gSharedInstance = NULL;
     [self.queue addOperation:theOperation];
     }
 
-- (void)registerWithRoom:(NSString *)inRoomID
+- (void)registerWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler
     {
-    NSLog(@"REGISTER: %@", inRoomID);
-    
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-        inRoomID, @"roomid",
+        [inRoomDescription objectForKey:@"roomid"], @"roomid",
         NULL];
     
     [self.turntableFMSocket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
         NSLog(@"ROOM REGISTER: %@", inResult);
-        }];
-    
-//
-//12:19
-//paul.blair@me.com
-//12:19
-//12:18:13 Preparing message {"api":"room.register","roomid":"4e01710f14169c1c4400241f","msgid":14,"clientid":"1310841990581-0.6640265875030309","userid":"4df032194fe7d063190425ca","userauth":"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b"}
-//response
-//12:18:14 Received: {"command": "registered", "user": [{"name": "@Masque", "created": 1307587096.74, "laptop": "mac", "userid": "4df032194fe7d063190425ca", "acl": 1, "fans": 540, "points": 9808, "avatarid": 26}], "success": true}    
-    
-    
-    }
+        self.room = inRoomDescription;
+        
+        NSURL *theSongURL = [self URLForSong:[self.room valueForKeyPath:@"metadata.current_song"]];
+        
+        
+        NSLog(@"%@", theSongURL);
+        
+//        AVPlayerItem *the
+        
+//        AVPlayer *thePlayer = [[[AVPlayer alloc] initWithPlayerItem:thePlayerItem] autorelease];
+        
+//        NSLog(@"%@", thePlayer);
+        
+//        
+//        self.player = thePlayer;
 
+        
+        if (inHandler)
+            {
+            inHandler();
+            }
+        }];
+    }
+    
+- (NSURL *)URLForSong:(NSDictionary *)inSong
+    {
+    NSString *theRoomID = [self.room objectForKey:@"roomid"];
+    NSString *theRandom = [NSString stringWithFormat:@"%d", arc4random()];
+    NSString *theFileID = [inSong objectForKey:@"_id"];
+    NSData *theData = [[NSString stringWithFormat:@"%@%@", theRoomID, theFileID] dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *theDownloadKey = [[theData SHA1Digest] hexString];
+    
+//    http://turntable.fm/getfile/?roomid=4e20dcca14169c25a400baea&rand=0.6888595288619399&fileid=4dd85949e8a6c42aa70005a3&downloadKey=846c95ef6abfa0a162d0f0651277900df2ea5c0c&userid=4df032194fe7d063190425ca&client=web
+    
+    NSString *theURLString = [NSString stringWithFormat:@"http://turntable.fm/getfile/?roomid=%@&rand=%@&fileid=%@&downloadKey=%@&userid=%@&client=web",
+        theRoomID,
+        theRandom,
+        theFileID,
+        theDownloadKey,
+        [self.userInfo objectForKey:@"userid"]];
+        
+    NSURL *theURL = [NSURL URLWithString:theURLString];
+    return(theURL);
+    }
+    
+#pragma mark -
+
+    
 @end

@@ -89,10 +89,10 @@
 		451D468D13D133F500530A57 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D468C13D133F500530A57 /* MobileCoreServices.framework */; };
 		451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D468E13D1340F00530A57 /* CFNetwork.framework */; };
 		451D469513D157EA00530A57 /* CWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D469413D157EA00530A57 /* CWebSocket.m */; };
+		453343E113D24002005AE115 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343E013D24002005AE115 /* AVFoundation.framework */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
 		45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */; };
 		45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */; };
-		45FD2CEB13D2152B00F88C0F /* CMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CE913D2152A00F88C0F /* CMainViewController.m */; };
 		45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */; };
 		750344BC13D2297D0070495B /* CRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750344BA13D2297D0070495B /* CRoomViewController.m */; };
 		750344BD13D2297D0070495B /* CRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750344BB13D2297D0070495B /* CRoomViewController.xib */; };
@@ -273,14 +273,13 @@
 		451D468E13D1340F00530A57 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		451D469313D157EA00530A57 /* CWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWebSocket.h; sourceTree = "<group>"; };
 		451D469413D157EA00530A57 /* CWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWebSocket.m; sourceTree = "<group>"; };
+		453343E013D24002005AE115 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
 		45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSocketIO.h; sourceTree = "<group>"; };
 		45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSocketIO.m; sourceTree = "<group>"; };
 		45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMSocket.h; sourceTree = "<group>"; };
 		45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTurntableFMSocket.m; sourceTree = "<group>"; };
-		45FD2CE813D2152A00F88C0F /* CMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainViewController.h; sourceTree = "<group>"; };
-		45FD2CE913D2152A00F88C0F /* CMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMainViewController.m; sourceTree = "<group>"; };
 		45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMModel.h; sourceTree = "<group>"; };
 		45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTurntableFMModel.m; sourceTree = "<group>"; };
 		750344B913D2297D0070495B /* CRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoomViewController.h; sourceTree = "<group>"; };
@@ -312,6 +311,7 @@
 				4506236313D117F800086997 /* UIKit.framework in Frameworks */,
 				4506236513D117F800086997 /* Foundation.framework in Frameworks */,
 				4506236713D117F800086997 /* CoreGraphics.framework in Frameworks */,
+				453343E113D24002005AE115 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +353,7 @@
 		4506236113D117F800086997 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				453343E013D24002005AE115 /* AVFoundation.framework */,
 				451D468E13D1340F00530A57 /* CFNetwork.framework */,
 				451D468C13D133F500530A57 /* MobileCoreServices.framework */,
 				451D468A13D133E200530A57 /* CoreData.framework */,
@@ -383,8 +384,6 @@
 				97ABD55713D212010058B68E /* CLobbyViewController.h */,
 				97ABD55813D212010058B68E /* CLobbyViewController.m */,
 				97ABD55913D212010058B68E /* CLobbyViewController.xib */,
-				45FD2CE813D2152A00F88C0F /* CMainViewController.h */,
-				45FD2CE913D2152A00F88C0F /* CMainViewController.m */,
 				750344B913D2297D0070495B /* CRoomViewController.h */,
 				750344BA13D2297D0070495B /* CRoomViewController.m */,
 				750344BB13D2297D0070495B /* CRoomViewController.xib */,
@@ -900,7 +899,6 @@
 				97ABD55A13D212010058B68E /* CLobbyViewController.m in Sources */,
 				45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */,
 				45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */,
-				45FD2CEB13D2152B00F88C0F /* CMainViewController.m in Sources */,
 				45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */,
 				750344BC13D2297D0070495B /* CRoomViewController.m in Sources */,
 				75B86F4313D23095001280FC /* CChatViewController.m in Sources */,

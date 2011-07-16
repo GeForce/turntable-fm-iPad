@@ -14,11 +14,14 @@
 
 @property (readonly, nonatomic, retain) NSDictionary *userInfo;
 @property (readonly, nonatomic, retain) NSArray *rooms;
+@property (readonly, nonatomic, retain) NSDictionary *room;
 
 + (CTurntableFMModel *)sharedInstance;
 
 - (void)loginWithFacebookAccessToken:(NSString *)inFacebookAccessToken;
 
-- (void)registerWithRoom:(NSString *)inRoomID;
+- (void)registerWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
+
+- (NSURL *)URLForSong:(NSDictionary *)inSong;
 
 @end
