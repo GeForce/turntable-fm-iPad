@@ -26,10 +26,12 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
 @property (readwrite, nonatomic, assign) CFWriteStreamRef writeStream;
 @property (readwrite, nonatomic, retain) CCircularBuffer *readBuffer;
 
-- (void)writePacket:(NSData *)inData;
 @end
 
 @implementation CWebSocket
+
+@synthesize didConnectHandler;
+@synthesize packetHandler;
 
 @synthesize state;
 @synthesize readStream;
@@ -78,7 +80,7 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
         {
         NSMutableData *theBuffer = [NSMutableData dataWithLength:64 * 1024];
         CFIndex theCount = CFReadStreamRead(self.readStream, theBuffer.mutableBytes, theBuffer.length);
-        NSLog(@"Read: %lu", theCount);
+//        NSLog(@"Read: %lu", theCount);
         theBuffer.length = theCount;
         [self.readBuffer writeData:theBuffer];
         }
@@ -93,7 +95,7 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
         NSData *theData = [self.readBuffer readDataToSentinal:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         if (theData != NULL)
             {
-            NSLog(@"WebSocketState_RequestSent: %d", theData.length);
+//            NSLog(@"WebSocketState_RequestSent: %d", theData.length);
             self.state = WebSocketState_ResponseReceived;
             }
 
@@ -104,8 +106,10 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
         NSData *theData = [self.readBuffer readDataOfLength:16];
         if (theData != NULL)
             {
-            NSLog(@"WebSocketState_ResponseReceived: %d", theData.length);
+//            NSLog(@"WebSocketState_ResponseReceived: %d", theData.length);
             self.state = WebSocketState_Transceiving;
+            
+            [self didConnect];
             }
 
         [self readPacket];
@@ -114,26 +118,39 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
         {
         UInt8 theFF = 0xFF;
         NSData *theData = [self.readBuffer readDataToSentinal:[NSData dataWithBytesNoCopy:&theFF length:1 freeWhenDone:NO]];
-        if (theData.length > 2)
+        if (theData)
             {
-            theData = [theData subdataWithRange:(NSRange){ .location = 1, .length = theData.length - 2 }];
-            
-            NSString *thePacket = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
-            [self packetReceived:thePacket];
-            }
-        else
-            {
-            NSLog(@"HUH? %@", theData);
+            if (theData.length > 2)
+                {
+                theData = [theData subdataWithRange:(NSRange){ .location = 1, .length = theData.length - 2 }];
+                
+                NSString *thePacket = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
+                [self packetReceived:thePacket];
+                }
+            else
+                {
+                NSLog(@"HUH? %@", theData);
+                }
             }
 
         [self readPacket];
         }
-        
+    }
+
+- (void)didConnect
+    {
+    if (self.didConnectHandler)
+        {
+        self.didConnectHandler();
+        }
     }
 
 - (void)packetReceived:(id)inPacket
     {
-        
+    if (self.packetHandler)
+        {
+        self.packetHandler(inPacket);
+        }
     }
 
 - (void)writePacket:(id)inPacket
@@ -185,7 +202,7 @@ static void MyCFReadStreamClientCallBack(CFReadStreamRef stream, CFStreamEventTy
 static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEventType type, void *clientCallBackInfo)
     {
     CWebSocket *self = clientCallBackInfo;
-    NSLog(@"WRITE: %lu", type);
+//    NSLog(@"WRITE: %lu", type);
     if (type == kCFStreamStatusWriting)
         {
         if (self.state == WebSocketState_Initial)
@@ -207,7 +224,11 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
             NSData *theHeaderData = [theHeader dataUsingEncoding:NSUTF8StringEncoding];
 
             CFIndex theCount = CFWriteStreamWrite(self.writeStream, [theHeaderData bytes], [theHeaderData length]);
-            NSLog(@"Wrote: %lu", theCount);
+            if (theCount != [theHeaderData length])
+                {
+                NSLog(@"Couldnt write all the data");
+                }
+//            NSLog(@"Wrote: %lu", theCount);
             
             self.state = WebSocketState_RequestSent;
             }
