@@ -107,6 +107,8 @@ static CApplicationController *gSharedInstance = NULL;
         
         [[NSUserDefaults standardUserDefaults] setObject:self.facebook.accessToken forKey:@"FacebookAccessToken"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+			
+		[[CTurntableFMModel sharedInstance] loginWithFacebookAccessToken:self.facebookAccessToken];
         }
     }
     
