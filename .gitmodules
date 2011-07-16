@@ -4,3 +4,6 @@
 [submodule "iOS/TurntableFM/Externals/TouchJSON"]
 	path = iOS/TurntableFM/Externals/TouchJSON
 	url = git://github.com/TouchCode/TouchJSON.git
+[submodule "iOS/TurntableFM/Externals/TouchFoundation"]
+	path = iOS/TurntableFM/Externals/TouchFoundation
+	url = git://github.com/TouchCode/TouchFoundation.git
