@@ -76,6 +76,12 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
 
 - (void)readPacket
     {
+    if (CFReadStreamGetStatus(self.readStream) != kCFStreamStatusOpen)
+        {
+        NSLog(@"READ SOCKET NOT OPEN");
+        return;
+        }
+    
     if (CFReadStreamHasBytesAvailable(self.readStream))
         {
         NSMutableData *theBuffer = [NSMutableData dataWithLength:64 * 1024];

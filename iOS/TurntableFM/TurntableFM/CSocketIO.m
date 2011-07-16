@@ -46,6 +46,7 @@
     if ([[thePacket substringToIndex:3] isEqualToString:@"~h~"])
         {
         NSLog(@"Ignoring heartbeat");
+        [self writeMessage:thePacket];
         return;
         }
     

@@ -116,6 +116,16 @@
 	return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+    {
+	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
+	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
+	NSDictionary *description = [room objectAtIndex:0];
+    NSString *theRoomID = [description objectForKey:@"roomid"];
+
+    [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomID];
+    }
+
 #pragma mark - Private
 
 - (void)refresh:(id)sender
@@ -136,6 +146,8 @@
 		[refresh release];
 	});
 }
+
+
 
 #pragma mark - KVO
 
