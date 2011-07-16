@@ -132,10 +132,9 @@
     {
 	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
 	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
-	NSDictionary *description = [room objectAtIndex:0];
-    NSString *theRoomID = [description objectForKey:@"roomid"];
+	NSDictionary *theRoomDescription = [room objectAtIndex:0];
 
-    [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomID];
+    [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomDescription handler:NULL];
     }
 
 #pragma mark - Private
