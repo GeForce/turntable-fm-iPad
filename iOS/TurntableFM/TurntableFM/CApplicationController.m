@@ -12,7 +12,7 @@
 #import "CURLOperation.h"
 #import "CWebSocket.h"
 
-@interface CApplicationController () <FBSessionDelegate>
+@interface CApplicationController () <FBSessionDelegate, UIAlertViewDelegate>
 
 @property (readwrite, nonatomic, retain) Facebook *facebook;
 @property (readwrite, nonatomic, retain) NSOperationQueue *queue;
@@ -56,9 +56,13 @@ static CApplicationController *gSharedInstance = NULL;
         NSLog(@"ACCESS TOKEN: %@", self.facebook.accessToken);
         if (self.facebook.accessToken.length == 0)
             {
-            NSArray *thePermissions = [NSArray arrayWithObjects:@"read_stream", @"publish_stream", @"offline_access", NULL];
-
-            [self.facebook authorize:thePermissions delegate:self];
+				UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connect to Facebook"
+																	message:@"You need to connect to Facebook to use Turntable.fm."
+																   delegate:self
+														  cancelButtonTitle:@"Cancel"
+														  otherButtonTitles:@"Connect", nil];
+				[alertView show];
+				[alertView release];
             }
         }
     else
@@ -163,5 +167,15 @@ static CApplicationController *gSharedInstance = NULL;
     NSLog(@"DID LOGOUT");
     }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex != alertView.cancelButtonIndex) {
+		NSArray *thePermissions = [NSArray arrayWithObjects:@"read_stream", @"publish_stream", @"offline_access", NULL];
+		
+		[self.facebook authorize:thePermissions delegate:self];
+	}
+}
 
 @end
