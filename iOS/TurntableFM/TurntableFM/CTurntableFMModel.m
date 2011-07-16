@@ -85,12 +85,14 @@ static CTurntableFMModel *gSharedInstance = NULL;
 
 - (void)registerWithRoom:(NSString *)inRoomID
     {
+    NSLog(@"REGISTER: %@", inRoomID);
+    
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
         inRoomID, @"roomid",
         NULL];
     
     [self.turntableFMSocket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
-        NSLog(@">>> %@", inResult);
+        NSLog(@"ROOM REGISTER: %@", inResult);
         }];
     
 //
