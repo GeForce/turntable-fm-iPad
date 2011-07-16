@@ -16,6 +16,7 @@
 
 @property (readwrite, nonatomic, retain) Facebook *facebook;
 @property (readwrite, nonatomic, retain) NSOperationQueue *queue;
+@property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
 @end
 
 #pragma mark -
@@ -28,6 +29,7 @@
 
 @synthesize facebook;
 @synthesize queue;
+@synthesize turntableFMSocket;
 
 static CApplicationController *gSharedInstance = NULL;
 
@@ -67,69 +69,39 @@ static CApplicationController *gSharedInstance = NULL;
         }
     else
         {
-        CTurntableFMSocket *theWebSocket = [[CTurntableFMSocket alloc] init];
-        theWebSocket.didConnectHandler = ^(void) {
-            [theWebSocket listRooms:^(NSArray *inRooms) {
-                NSLog(@"%@", inRooms);
-            }];
-
-//            NSLog(@"PACKET: %@", inPacket);
-//            
-//            NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-//                @"room.list_rooms", @"api",
-//                [NSNumber numberWithInt:1], @"msgid",
-//                @"1310833072120-0.4627539317589253", @"clientid",
-//                @"4df032194fe7d063190425ca", @"userid",
-//                @"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b", @"userauth",
-//                NULL];
-//            
-//            [theWebSocket writeDictionary:theDictionary];
+        self.turntableFMSocket = [[[CTurntableFMSocket alloc] init] autorelease];
+        
+        NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://turntable.fm/?fbtoken=%@", self.facebookAccessToken]];
+        NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
+        CURLOperation *theOperation = [[[CURLOperation alloc] initWithRequest:theRequest] autorelease];
+        theOperation.completionBlock = ^(void) {
+            NSLog(@"SUCCESS");
             
+            for (NSHTTPCookie *theCookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:theURL])
+                {
+                if ([theCookie.name isEqualToString:@"turntableUserAuth"])
+                    {
+                    self.turntableFMSocket.userAuth = theCookie.value;
+                    }
+                else if ([theCookie.name isEqualToString:@"turntableUserId"])
+                    {
+                    self.turntableFMSocket.userID = theCookie.value;
+                    }
+                }
+             
+            self.turntableFMSocket.didConnectHandler = ^(void) {
+            
+                [self.turntableFMSocket listRooms:^(NSArray *inRooms) {
+                    NSLog(@"%@", inRooms);
+                    }];
+            
+                };
+            
+            [self.turntableFMSocket main];
             
             };
-        [theWebSocket main];
 
-        return(YES);
-
-//        NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://turntable.fm/?fbtoken=%@", self.facebookAccessToken]];
-        
-//        NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
-//
-//        CURLOperation *theOperation = [[[CURLOperation alloc] initWithRequest:theRequest] autorelease];
-//        theOperation.successHandler = ^(id inData) {
-//            NSLog(@"SUCCESS");
-//
-//
-//
-////            NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://chat2.turntable.fm/socket.io/websocket"]];
-////            
-////            NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL];
-////            
-////            [theRequest setValue:@"http://turntable.fm" forHTTPHeaderField:@"Origin"];
-////            [theRequest setValue:@"WebSocket" forHTTPHeaderField:@"Upgrade"];
-////            [theRequest setValue:@"Upgrade" forHTTPHeaderField:@"Connection"];
-////
-////            [theRequest setValue:@"11111111" forHTTPHeaderField:@"Sec-WebSocket-Key1"];
-////            [theRequest setValue:@"22222222" forHTTPHeaderField:@"Sec-WebSocket-Key2"];
-////            
-////            [theRequest setHTTPBody:[@"33333333" dataUsingEncoding:NSASCIIStringEncoding]];
-////            
-////            NSLog(@"%@", [theRequest allHTTPHeaderFields]);
-////            
-////            NSLog(@"%@", [theRequest debugDescription]);
-////
-////            CWebsocketOperation *theWebsocketOperation = [[[CWebsocketOperation alloc] initWithRequest:theRequest] autorelease];
-////            theWebsocketOperation.successHandler = ^(NSData *inData) { NSLog(@"%@", inData); };
-////            [self.queue addOperation:theWebsocketOperation];
-//            
-//            };
-//        [self.queue addOperation:theOperation];
-//
-//
-//
-//        theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://turntable.fm/?fbtoken=%@", self.facebookAccessToken]];
-
-
+        [self.queue addOperation:theOperation];
         }
 
     return(YES);

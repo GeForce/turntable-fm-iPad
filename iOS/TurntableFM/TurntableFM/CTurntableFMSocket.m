@@ -28,9 +28,18 @@
 	{
 	if ((self = [super init]) != NULL)
 		{
-        clientID = @"1310833072120-0.4627539317589253";
-        userID = @"4df032194fe7d063190425ca";
-        userAuth = @"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b";
+//        clientID = @"1310833072120-0.4627539317589253";
+//        userID = @"4df032194fe7d063190425ca";
+//        userAuth = @"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b";
+
+
+        NSString *theClientID = [[NSUserDefaults standardUserDefaults] objectForKey:@"TurntableFMClientID"];
+        if (theClientID == NULL)
+            {
+            theClientID = [NSString stringWithFormat:@"%d", arc4random()];
+            [[NSUserDefaults standardUserDefaults] setObject:theClientID forKey:@"TurntableFMClientID"];
+            }
+        clientID = [theClientID retain];
         
         blocksForMessageID = [[NSMutableDictionary alloc] init];
 		}
@@ -55,7 +64,6 @@
 
         [self.blocksForMessageID removeObjectForKey:theMessageID];
         }
-    
     }
 
 - (void)listRooms:(void (^)(NSArray *inRooms))inHandler;
