@@ -92,6 +92,8 @@
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
 		45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */; };
 		45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */; };
+		45FD2CEB13D2152B00F88C0F /* CMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CE913D2152A00F88C0F /* CMainViewController.m */; };
+		45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +268,10 @@
 		45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSocketIO.m; sourceTree = "<group>"; };
 		45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMSocket.h; sourceTree = "<group>"; };
 		45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTurntableFMSocket.m; sourceTree = "<group>"; };
+		45FD2CE813D2152A00F88C0F /* CMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainViewController.h; sourceTree = "<group>"; };
+		45FD2CE913D2152A00F88C0F /* CMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMainViewController.m; sourceTree = "<group>"; };
+		45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMModel.h; sourceTree = "<group>"; };
+		45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTurntableFMModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,9 +347,13 @@
 				45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */,
 				45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */,
 				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
+				45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */,
+				45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */,
 				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
 				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
 				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
+				45FD2CE813D2152A00F88C0F /* CMainViewController.h */,
+				45FD2CE913D2152A00F88C0F /* CMainViewController.m */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -840,6 +850,8 @@
 				456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */,
 				45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */,
 				45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */,
+				45FD2CEB13D2152B00F88C0F /* CMainViewController.m in Sources */,
+				45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

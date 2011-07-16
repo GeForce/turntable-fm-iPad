@@ -9,14 +9,11 @@
 #import "CApplicationController.h"
 
 #import "FBConnect.h"
-#import "CURLOperation.h"
-#import "CTurntableFMSocket.h"
+#import "CTurntableFMModel.h"
 
 @interface CApplicationController () <FBSessionDelegate, UIAlertViewDelegate>
 
 @property (readwrite, nonatomic, retain) Facebook *facebook;
-@property (readwrite, nonatomic, retain) NSOperationQueue *queue;
-@property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
 @end
 
 #pragma mark -
@@ -28,8 +25,6 @@
 @synthesize facebookAccessToken;
 
 @synthesize facebook;
-@synthesize queue;
-@synthesize turntableFMSocket;
 
 static CApplicationController *gSharedInstance = NULL;
 
@@ -43,8 +38,6 @@ static CApplicationController *gSharedInstance = NULL;
 	if ((self = [super init]) != NULL)
 		{
         gSharedInstance = self;
-        
-        queue = [[NSOperationQueue alloc] init];
 		}
 	return(self);
 	}
@@ -69,39 +62,8 @@ static CApplicationController *gSharedInstance = NULL;
         }
     else
         {
-        self.turntableFMSocket = [[[CTurntableFMSocket alloc] init] autorelease];
         
-        NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://turntable.fm/?fbtoken=%@", self.facebookAccessToken]];
-        NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
-        CURLOperation *theOperation = [[[CURLOperation alloc] initWithRequest:theRequest] autorelease];
-        theOperation.completionBlock = ^(void) {
-            NSLog(@"SUCCESS");
-            
-            for (NSHTTPCookie *theCookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:theURL])
-                {
-                if ([theCookie.name isEqualToString:@"turntableUserAuth"])
-                    {
-                    self.turntableFMSocket.userAuth = theCookie.value;
-                    }
-                else if ([theCookie.name isEqualToString:@"turntableUserId"])
-                    {
-                    self.turntableFMSocket.userID = theCookie.value;
-                    }
-                }
-             
-            self.turntableFMSocket.didConnectHandler = ^(void) {
-            
-                [self.turntableFMSocket listRooms:^(NSArray *inRooms) {
-                    NSLog(@"%@", inRooms);
-                    }];
-            
-                };
-            
-            [self.turntableFMSocket main];
-            
-            };
-
-        [self.queue addOperation:theOperation];
+        [[CTurntableFMModel sharedInstance] loginWithFacebookAccessToken:self.facebookAccessToken];
         }
 
     return(YES);

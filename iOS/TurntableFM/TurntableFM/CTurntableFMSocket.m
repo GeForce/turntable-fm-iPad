@@ -60,7 +60,7 @@
     if (theBlock)
         {
         NSArray *theRooms = [theDictionary objectForKey:@"rooms"];
-        theBlock([theRooms objectAtIndex:0]);
+        theBlock(theRooms);
 
         [self.blocksForMessageID removeObjectForKey:theMessageID];
         }
