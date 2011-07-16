@@ -9,6 +9,7 @@
 #import "CLobbyViewController.h"
 
 #import "CTurntableFMModel.h"
+#import "CLobbyTableViewCell.h"
 
 @interface CLobbyViewController ()
 
@@ -21,6 +22,7 @@
 
 @synthesize searchBar;
 @synthesize tableView;
+@synthesize lobbyCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -97,23 +99,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *Identifier = @"Cell";
-	UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:Identifier];
+	CLobbyTableViewCell *cell = [tv dequeueReusableCellWithIdentifier:[CLobbyTableViewCell reuseIdentifier]];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Identifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		static UINib *nib = nil;
+		static dispatch_once_t onceToken;
+		dispatch_once(&onceToken, ^{
+			nib = [[UINib nibWithNibName:@"CLobbyTableViewCell" bundle:nil] retain];
+		});
+		[nib instantiateWithOwner:self options:nil];
+		cell = self.lobbyCell;
+		self.lobbyCell = nil;
 	}
 	
 	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
 	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
 	NSDictionary *description = [room objectAtIndex:0];
-	cell.textLabel.text = [description objectForKey:@"name"];
+	cell.roomName.text = [description objectForKey:@"name"];
 	NSDictionary *metadata = [description objectForKey:@"metadata"];
 	NSDictionary *song = [metadata objectForKey:@"current_song"];
 	metadata = [song objectForKey:@"metadata"];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:@"song"], [metadata objectForKey:@"artist"]];
+	cell.songTitle.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:@"song"], [metadata objectForKey:@"artist"]];
 	
 	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return [CLobbyTableViewCell cellHeight];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;

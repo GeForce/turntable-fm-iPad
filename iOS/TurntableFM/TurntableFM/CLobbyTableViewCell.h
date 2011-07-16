@@ -10,4 +10,12 @@
 
 @interface CLobbyTableViewCell : UITableViewCell
 
+@property(nonatomic, retain) IBOutlet UILabel *roomName;
+@property(nonatomic, retain) IBOutlet UILabel *songTitle;
+
++ (NSString *)reuseIdentifier;
++ (CGFloat)cellHeight;
+
+- (IBAction)preview:(id)sender;
+
 @end

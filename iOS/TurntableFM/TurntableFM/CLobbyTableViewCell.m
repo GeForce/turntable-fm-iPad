@@ -10,20 +10,28 @@
 
 @implementation CLobbyTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+@synthesize roomName;
+@synthesize songTitle;
+
++ (NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+	static NSString *reuseIdentifier = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		reuseIdentifier = [NSStringFromClass([self class]) retain];
+	});
+	
+	return reuseIdentifier;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
++ (CGFloat)cellHeight
 {
-    [super setSelected:selected animated:animated];
+	return 44.0;
+}
 
-    // Configure the view for the selected state
+- (void)preview:(id)sender
+{
+	
 }
 
 @end
