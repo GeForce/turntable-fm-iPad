@@ -103,6 +103,8 @@
 		75B86F4A13D23124001280FC /* CSongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4813D23124001280FC /* CSongViewController.xib */; };
 		97ABD55A13D212010058B68E /* CLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55813D212010058B68E /* CLobbyViewController.m */; };
 		97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD55913D212010058B68E /* CLobbyViewController.xib */; };
+		97ABD55F13D218310058B68E /* CLobbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55E13D218310058B68E /* CLobbyTableViewCell.m */; };
+		97ABD56113D218500058B68E /* CLobbyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +296,9 @@
 		97ABD55713D212010058B68E /* CLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyViewController.h; sourceTree = "<group>"; };
 		97ABD55813D212010058B68E /* CLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyViewController.m; sourceTree = "<group>"; };
 		97ABD55913D212010058B68E /* CLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyViewController.xib; sourceTree = "<group>"; };
+		97ABD55D13D218310058B68E /* CLobbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyTableViewCell.h; sourceTree = "<group>"; };
+		97ABD55E13D218310058B68E /* CLobbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyTableViewCell.m; sourceTree = "<group>"; };
+		97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +394,9 @@
 				75B86F4613D23124001280FC /* CSongViewController.h */,
 				75B86F4713D23124001280FC /* CSongViewController.m */,
 				75B86F4813D23124001280FC /* CSongViewController.xib */,
+				97ABD55D13D218310058B68E /* CLobbyTableViewCell.h */,
+				97ABD55E13D218310058B68E /* CLobbyTableViewCell.m */,
+				97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -786,6 +794,7 @@
 				750344C313D22CF30070495B /* TurntableFMStaticAssets in Resources */,
 				75B86F4413D23095001280FC /* CChatViewController.xib in Resources */,
 				75B86F4A13D23124001280FC /* CSongViewController.xib in Resources */,
+				97ABD56113D218500058B68E /* CLobbyTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +905,7 @@
 				750344BC13D2297D0070495B /* CRoomViewController.m in Sources */,
 				75B86F4313D23095001280FC /* CChatViewController.m in Sources */,
 				75B86F4913D23124001280FC /* CSongViewController.m in Sources */,
+				97ABD55F13D218310058B68E /* CLobbyTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
