@@ -90,6 +90,8 @@
 		451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D468E13D1340F00530A57 /* CFNetwork.framework */; };
 		451D469513D157EA00530A57 /* CWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D469413D157EA00530A57 /* CWebSocket.m */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
+		45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */; };
+		45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +262,10 @@
 		451D469413D157EA00530A57 /* CWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWebSocket.m; sourceTree = "<group>"; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
+		45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSocketIO.h; sourceTree = "<group>"; };
+		45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSocketIO.m; sourceTree = "<group>"; };
+		45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMSocket.h; sourceTree = "<group>"; };
+		45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTurntableFMSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +337,10 @@
 				4506237213D117F800086997 /* CApplicationController.m */,
 				451D469313D157EA00530A57 /* CWebSocket.h */,
 				451D469413D157EA00530A57 /* CWebSocket.m */,
+				45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */,
+				45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */,
+				45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */,
+				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
 				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
 				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
 				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
@@ -828,6 +838,8 @@
 				451D468013D133B700530A57 /* CNumberToStringValueTransformer.m in Sources */,
 				451D469513D157EA00530A57 /* CWebSocket.m in Sources */,
 				456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */,
+				45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */,
+				45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
