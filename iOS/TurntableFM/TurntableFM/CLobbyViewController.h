@@ -10,7 +10,7 @@
 
 @interface CLobbyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic, retain) UISearchBar *searchBar;
-@property(nonatomic, retain) UITableView *tableView;
+@property(nonatomic, retain) IBOutlet UISearchBar *searchBar;
+@property(nonatomic, retain) IBOutlet UITableView *tableView;
 
 @end

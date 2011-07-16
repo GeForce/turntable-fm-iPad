@@ -8,6 +8,15 @@
 
 #import "CLobbyViewController.h"
 
+#import "CTurntableFMModel.h"
+
+@interface CLobbyViewController ()
+
+- (void)setUp;
+- (void)refresh:(id)sender;
+
+@end
+
 @implementation CLobbyViewController
 
 @synthesize searchBar;
@@ -17,13 +26,29 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setUp];
     }
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		[self setUp];
+	}
+	return self;
+}
+
+- (void)setUp
+{
+	[[CTurntableFMModel sharedInstance] addObserver:self forKeyPath:@"rooms" options:0 context:NULL];
+}
+
 - (void)dealloc
 {
+	[[CTurntableFMModel sharedInstance] removeObserver:self forKeyPath:@"rooms"];
+	
 	self.searchBar = nil;
 	self.tableView = nil;
 	
@@ -35,7 +60,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[spinner startAnimating];
+	UIBarButtonItem *spinnerBarItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+	[spinner release];
+	self.navigationItem.rightBarButtonItem = spinnerBarItem;
+	[spinnerBarItem release];
 }
 
 - (void)viewDidUnload
@@ -61,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 30;
+	return [CTurntableFMModel sharedInstance].rooms.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,10 +104,52 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
-	cell.textLabel.text = [NSString stringWithFormat:@"Room #%u", indexPath.row+1];
-	cell.detailTextLabel.text = @"Song title - Artist name";
+	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
+	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
+	NSDictionary *description = [room objectAtIndex:0];
+	NSLog(@"%@", description);
+	cell.textLabel.text = [description objectForKey:@"name"];
+	NSDictionary *metadata = [description objectForKey:@"metadata"];
+	NSDictionary *song = [metadata objectForKey:@"current_song"];
+	metadata = [song objectForKey:@"metadata"];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:@"song"], [metadata objectForKey:@"artist"]];
 	
 	return cell;
+}
+
+#pragma mark - Private
+
+- (void)refresh:(id)sender
+{
+	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[spinner startAnimating];
+	UIBarButtonItem *spinnerBarItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+	[spinner release];
+	self.navigationItem.rightBarButtonItem = spinnerBarItem;
+	[spinnerBarItem release];
+	
+	// hack - actually refresh the list in the future
+	double delayInSeconds = 2.0;
+	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+		UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
+		self.navigationItem.rightBarButtonItem = refresh;
+		[refresh release];
+	});
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (object == [CTurntableFMModel sharedInstance]) {
+		if ([keyPath isEqualToString:@"rooms"]) {
+			[self.tableView reloadData];
+			UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
+			self.navigationItem.rightBarButtonItem = refresh;
+			[refresh release];
+		}
+	}
 }
 
 @end
