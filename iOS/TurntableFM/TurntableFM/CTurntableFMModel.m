@@ -22,6 +22,7 @@
 
 @property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
 @property (readwrite, nonatomic, retain) NSOperationQueue *queue;
+@property (readwrite, nonatomic, assign) NSTimeInterval roomTime;
 @property (readwrite, nonatomic, retain) AVPlayer *player;
 
 @end
@@ -36,6 +37,7 @@
 
 @synthesize turntableFMSocket;
 @synthesize queue;
+@synthesize roomTime;
 @synthesize player;
 
 static CTurntableFMModel *gSharedInstance = NULL;
@@ -111,18 +113,35 @@ static CTurntableFMModel *gSharedInstance = NULL;
     
     [self.turntableFMSocket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
         self.room = inRoomDescription;
-        
-        NSDictionary *theSong = [self.room valueForKeyPath:@"metadata.current_song"];
-        NSLog(@"%@", theSong);
-        
-        [self playSong:theSong preview:NO];
+    
+        [self.turntableFMSocket postMessage:@"room.now" dictionary:NULL handler:^(id inResult) {
+            NSLog(@"ROOM.NOW: %@", inResult);
+            
+            self.roomTime = [[inResult objectForKey:@"now"] doubleValue];
+            
+            
+            NSDictionary *theSong = [self.room valueForKeyPath:@"metadata.current_song"];
+            NSLog(@"%@", theSong);
+            
+            [self playSong:theSong preview:NO];
 
-        
-        if (inHandler)
-            {
-            inHandler();
-            }
+            
+            if (inHandler)
+                {
+                inHandler();
+                }
+            }];
         }];
+    }
+    
+- (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
+    {
+    [self.turntableFMSocket postMessage:@"room.unregister" dictionary:NULL handler:^(id inResult) {
+        NSLog(@"UNREGISTER");
+        self.room = NULL;
+
+        }];
+    
     }
     
 - (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview
@@ -157,23 +176,25 @@ static CTurntableFMModel *gSharedInstance = NULL;
     
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {
-
+    NSTimeInterval theStartTime = [[inSong objectForKey:@"starttime"] doubleValue];
+    int64_t theOffsetSeconds = floor((self.roomTime - theStartTime) * 1000.0);
+    NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
 
 #if TARGET_IPHONE_SIMULATOR == 0
+
+
+    CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
+
+
     NSURL *theSongURL = [self URLForSong:inSong preview:inPreview];
 
     AVPlayerItem *thePlayerItem = [[[AVPlayerItem alloc] initWithURL:theSongURL] autorelease];
 
     AVPlayer *thePlayer = [[[AVPlayer alloc] initWithPlayerItem:thePlayerItem] autorelease];
     self.player = thePlayer;
-    
-//        NSTimeInterval theStartTime = [[theSong objectForKey:@"starttime"] doubleValue];
-//        NSTimeInterval theCurrentTime = [[NSDate date] timeIntervalSince1970];
-//        int64_t theOffsetSeconds = floor((theCurrentTime - theStartTime) * 1000.0);
-//        NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
-    
-//        CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
-//        [self.player seekToTime:theOffset];
+
+    [self.player seekToTime:theOffset];
+
     self.player.rate = 1.0;
 #endif
 

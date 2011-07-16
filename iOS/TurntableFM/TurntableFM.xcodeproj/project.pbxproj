@@ -772,7 +772,6 @@
 			isa = PBXGroup;
 			children = (
 				453343EB13D24EE3005AE115 /* CoreMedia.framework */,
-				750344C213D22CF30070495B /* TurntableFMStaticAssets */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
 				4506239013D117F800086997 /* TurntableFMTests */,
