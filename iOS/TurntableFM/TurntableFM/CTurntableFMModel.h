@@ -22,6 +22,8 @@
 
 - (void)registerWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
 
-- (NSURL *)URLForSong:(NSDictionary *)inSong;
+- (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
+
+- (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 
 @end

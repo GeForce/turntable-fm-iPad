@@ -114,21 +114,9 @@ static CTurntableFMModel *gSharedInstance = NULL;
         
         NSDictionary *theSong = [self.room valueForKeyPath:@"metadata.current_song"];
         NSLog(@"%@", theSong);
-        NSURL *theSongURL = [self URLForSong:theSong];
         
-        AVPlayerItem *thePlayerItem = [[[AVPlayerItem alloc] initWithURL:theSongURL] autorelease];
+        [self playSong:theSong preview:NO];
 
-        AVPlayer *thePlayer = [[[AVPlayer alloc] initWithPlayerItem:thePlayerItem] autorelease];
-        self.player = thePlayer;
-        
-//        NSTimeInterval theStartTime = [[theSong objectForKey:@"starttime"] doubleValue];
-//        NSTimeInterval theCurrentTime = [[NSDate date] timeIntervalSince1970];
-//        int64_t theOffsetSeconds = floor((theCurrentTime - theStartTime) * 1000.0);
-//        NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
-        
-//        CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
-//        [self.player seekToTime:theOffset];
-        self.player.rate = 1.0;
         
         if (inHandler)
             {
@@ -137,25 +125,59 @@ static CTurntableFMModel *gSharedInstance = NULL;
         }];
     }
     
-- (NSURL *)URLForSong:(NSDictionary *)inSong
+- (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview
     {
-    NSString *theRoomID = [self.room objectForKey:@"roomid"];
-    NSString *theRandom = [NSString stringWithFormat:@"%d", arc4random()];
-    NSString *theFileID = [inSong objectForKey:@"_id"];
-    NSData *theData = [[NSString stringWithFormat:@"%@%@", theRoomID, theFileID] dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *theDownloadKey = [[theData SHA1Digest] hexString];
-    
-//    http://turntable.fm/getfile/?roomid=4e20dcca14169c25a400baea&rand=0.6888595288619399&fileid=4dd85949e8a6c42aa70005a3&downloadKey=846c95ef6abfa0a162d0f0651277900df2ea5c0c&userid=4df032194fe7d063190425ca&client=web
-    
-    NSString *theURLString = [NSString stringWithFormat:@"http://turntable.fm/getfile/?roomid=%@&rand=%@&fileid=%@&downloadKey=%@&userid=%@&client=web",
-        theRoomID,
-        theRandom,
-        theFileID,
-        theDownloadKey,
-        [self.userInfo objectForKey:@"userid"]];
+    NSURL *theURL = NULL;
+    NSString *theSongID = [inSong objectForKey:@"_id"];
+    if (inPreview == YES)
+        {
+        NSString *theURLString = [NSString stringWithFormat:@"http://turntable.fm/previewfile/?fileid=%@", theSongID];
+        theURL = [NSURL URLWithString:theURLString];
+        }
+    else
+        {
+        NSString *theRoomID = [self.room objectForKey:@"roomid"];
+        NSString *theRandom = [NSString stringWithFormat:@"%d", arc4random()];
+        NSData *theData = [[NSString stringWithFormat:@"%@%@", theRoomID, theSongID] dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *theDownloadKey = [[theData SHA1Digest] hexString];
         
-    NSURL *theURL = [NSURL URLWithString:theURLString];
+    //    http://turntable.fm/getfile/?roomid=4e20dcca14169c25a400baea&rand=0.6888595288619399&fileid=4dd85949e8a6c42aa70005a3&downloadKey=846c95ef6abfa0a162d0f0651277900df2ea5c0c&userid=4df032194fe7d063190425ca&client=web
+        
+        NSString *theURLString = [NSString stringWithFormat:@"http://turntable.fm/getfile/?roomid=%@&rand=%@&fileid=%@&downloadKey=%@&userid=%@&client=web",
+            theRoomID,
+            theRandom,
+            theSongID,
+            theDownloadKey,
+            [self.userInfo objectForKey:@"userid"]];
+            
+        theURL = [NSURL URLWithString:theURLString];
+        }
     return(theURL);
+    }
+    
+- (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
+    {
+
+
+#if TARGET_IPHONE_SIMULATOR == 0
+    NSURL *theSongURL = [self URLForSong:inSong preview:inPreview];
+
+    AVPlayerItem *thePlayerItem = [[[AVPlayerItem alloc] initWithURL:theSongURL] autorelease];
+
+    AVPlayer *thePlayer = [[[AVPlayer alloc] initWithPlayerItem:thePlayerItem] autorelease];
+    self.player = thePlayer;
+    
+//        NSTimeInterval theStartTime = [[theSong objectForKey:@"starttime"] doubleValue];
+//        NSTimeInterval theCurrentTime = [[NSDate date] timeIntervalSince1970];
+//        int64_t theOffsetSeconds = floor((theCurrentTime - theStartTime) * 1000.0);
+//        NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
+    
+//        CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
+//        [self.player seekToTime:theOffset];
+    self.player.rate = 1.0;
+#endif
+
+
     }
     
 #pragma mark -
