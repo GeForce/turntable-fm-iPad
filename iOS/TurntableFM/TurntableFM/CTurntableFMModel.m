@@ -14,6 +14,7 @@
 @interface CTurntableFMModel ()
 @property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
 @property (readwrite, nonatomic, retain) NSOperationQueue *queue;
+@property (readwrite, nonatomic, retain) NSDictionary *userInfo;
 @property (readwrite, nonatomic, retain) NSArray *rooms;
 @end
 
@@ -23,6 +24,7 @@
 
 @synthesize turntableFMSocket;
 @synthesize queue;
+@synthesize userInfo;
 @synthesize rooms;
 
 static CTurntableFMModel *gSharedInstance = NULL;
@@ -51,18 +53,26 @@ static CTurntableFMModel *gSharedInstance = NULL;
             if ([theCookie.name isEqualToString:@"turntableUserAuth"])
                 {
                 self.turntableFMSocket.userAuth = theCookie.value;
-                NSLog(@"USER AUTH: %@", self.turntableFMSocket.userAuth);
                 }
             else if ([theCookie.name isEqualToString:@"turntableUserId"])
                 {
                 self.turntableFMSocket.userID = theCookie.value;
-                NSLog(@"USER ID: %@", self.turntableFMSocket.userID);
                 }
             }
          
         self.turntableFMSocket.didConnectHandler = ^(void) {
-            [self.turntableFMSocket postMessage:@"room.list_rooms" dictionary:NULL handler:^(id inResult) {
-                self.rooms = [inResult objectForKey:@"rooms"];
+            [self.turntableFMSocket postMessage:@"user.authenticate" dictionary:NULL handler:^(id inResult) {
+                NSLog(@"AUTHENTICATED? %@", inResult);
+                
+                [self.turntableFMSocket postMessage:@"user.info" dictionary:NULL handler:^(id inResult) {
+                    NSLog(@"USER INFO: %@", inResult);
+                    self.userInfo = inResult;
+                    }];
+                
+                
+                [self.turntableFMSocket postMessage:@"room.list_rooms" dictionary:NULL handler:^(id inResult) {
+                    self.rooms = [inResult objectForKey:@"rooms"];
+                    }];
                 }];
             };
         
