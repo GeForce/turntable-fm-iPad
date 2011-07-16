@@ -90,6 +90,8 @@
 		451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D468E13D1340F00530A57 /* CFNetwork.framework */; };
 		451D469513D157EA00530A57 /* CWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D469413D157EA00530A57 /* CWebSocket.m */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
+		97ABD55A13D212010058B68E /* CLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55813D212010058B68E /* CLobbyViewController.m */; };
+		97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD55913D212010058B68E /* CLobbyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +262,9 @@
 		451D469413D157EA00530A57 /* CWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWebSocket.m; sourceTree = "<group>"; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
+		97ABD55713D212010058B68E /* CLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyViewController.h; sourceTree = "<group>"; };
+		97ABD55813D212010058B68E /* CLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyViewController.m; sourceTree = "<group>"; };
+		97ABD55913D212010058B68E /* CLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +339,9 @@
 				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
 				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
 				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
+				97ABD55713D212010058B68E /* CLobbyViewController.h */,
+				97ABD55813D212010058B68E /* CLobbyViewController.m */,
+				97ABD55913D212010058B68E /* CLobbyViewController.xib */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -726,6 +734,7 @@
 				4506236D13D117F800086997 /* InfoPlist.strings in Resources */,
 				450623B313D11B1E00086997 /* MainWindow_iPad.xib in Resources */,
 				451D458F13D11F8900530A57 /* FBDialog.bundle in Resources */,
+				97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +837,7 @@
 				451D468013D133B700530A57 /* CNumberToStringValueTransformer.m in Sources */,
 				451D469513D157EA00530A57 /* CWebSocket.m in Sources */,
 				456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */,
+				97ABD55A13D212010058B68E /* CLobbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
