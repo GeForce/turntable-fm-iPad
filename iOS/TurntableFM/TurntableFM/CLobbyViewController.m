@@ -10,6 +10,7 @@
 
 #import "CTurntableFMModel.h"
 #import "CLobbyTableViewCell.h"
+#import "CRoomViewController.h"
 
 @interface CLobbyViewController ()
 
@@ -135,7 +136,11 @@
 	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
 	NSDictionary *theRoomDescription = [room objectAtIndex:0];
 
-    [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomDescription handler:NULL];
+    [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomDescription handler:^(void) {
+		CRoomViewController *rvc = [[CRoomViewController alloc] initWithNibName:nil bundle:nil];
+		[self.navigationController pushViewController:rvc animated:YES];
+		[rvc release];
+	}];
     }
 
 #pragma mark - Private
