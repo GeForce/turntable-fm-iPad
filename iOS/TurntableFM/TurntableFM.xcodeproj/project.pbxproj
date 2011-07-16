@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4506236313D117F800086997 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4506236213D117F800086997 /* UIKit.framework */; };
+		4506236513D117F800086997 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4506236413D117F800086997 /* Foundation.framework */; };
+		4506236713D117F800086997 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4506236613D117F800086997 /* CoreGraphics.framework */; };
+		4506236D13D117F800086997 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4506236B13D117F800086997 /* InfoPlist.strings */; };
+		4506236F13D117F800086997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506236E13D117F800086997 /* main.m */; };
+		4506237313D117F800086997 /* TurntableFMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506237213D117F800086997 /* TurntableFMAppDelegate.m */; };
+		4506238A13D117F800086997 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4506238913D117F800086997 /* SenTestingKit.framework */; };
+		4506238B13D117F800086997 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4506236213D117F800086997 /* UIKit.framework */; };
+		4506238C13D117F800086997 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4506236413D117F800086997 /* Foundation.framework */; };
+		4506238D13D117F800086997 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4506236613D117F800086997 /* CoreGraphics.framework */; };
+		4506239513D117F800086997 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4506239313D117F800086997 /* InfoPlist.strings */; };
+		4506239713D117F800086997 /* TurntableFMTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 4506239613D117F800086997 /* TurntableFMTests.h */; };
+		4506239913D117F800086997 /* TurntableFMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506239813D117F800086997 /* TurntableFMTests.m */; };
+		450623B313D11B1E00086997 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450623B213D11B1D00086997 /* MainWindow_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4506238E13D117F800086997 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4506235513D117F800086997 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4506235D13D117F800086997;
+			remoteInfo = TurntableFM;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4506235E13D117F800086997 /* TurntableFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TurntableFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4506236213D117F800086997 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4506236413D117F800086997 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4506236613D117F800086997 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4506236A13D117F800086997 /* TurntableFM-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TurntableFM-Info.plist"; sourceTree = "<group>"; };
+		4506236C13D117F800086997 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4506236E13D117F800086997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4506237013D117F800086997 /* TurntableFM-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TurntableFM-Prefix.pch"; sourceTree = "<group>"; };
+		4506237113D117F800086997 /* TurntableFMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurntableFMAppDelegate.h; sourceTree = "<group>"; };
+		4506237213D117F800086997 /* TurntableFMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurntableFMAppDelegate.m; sourceTree = "<group>"; };
+		4506238813D117F800086997 /* TurntableFMTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TurntableFMTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4506238913D117F800086997 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		4506239213D117F800086997 /* TurntableFMTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TurntableFMTests-Info.plist"; sourceTree = "<group>"; };
+		4506239413D117F800086997 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4506239613D117F800086997 /* TurntableFMTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurntableFMTests.h; sourceTree = "<group>"; };
+		4506239813D117F800086997 /* TurntableFMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurntableFMTests.m; sourceTree = "<group>"; };
+		450623B213D11B1D00086997 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4506235B13D117F800086997 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4506236313D117F800086997 /* UIKit.framework in Frameworks */,
+				4506236513D117F800086997 /* Foundation.framework in Frameworks */,
+				4506236713D117F800086997 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4506238413D117F800086997 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4506238A13D117F800086997 /* SenTestingKit.framework in Frameworks */,
+				4506238B13D117F800086997 /* UIKit.framework in Frameworks */,
+				4506238C13D117F800086997 /* Foundation.framework in Frameworks */,
+				4506238D13D117F800086997 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4506235313D117F800086997 = {
+			isa = PBXGroup;
+			children = (
+				4506236813D117F800086997 /* TurntableFM */,
+				4506239013D117F800086997 /* TurntableFMTests */,
+				4506236113D117F800086997 /* Frameworks */,
+				4506235F13D117F800086997 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4506235F13D117F800086997 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4506235E13D117F800086997 /* TurntableFM.app */,
+				4506238813D117F800086997 /* TurntableFMTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4506236113D117F800086997 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4506236213D117F800086997 /* UIKit.framework */,
+				4506236413D117F800086997 /* Foundation.framework */,
+				4506236613D117F800086997 /* CoreGraphics.framework */,
+				4506238913D117F800086997 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4506236813D117F800086997 /* TurntableFM */ = {
+			isa = PBXGroup;
+			children = (
+				4506237113D117F800086997 /* TurntableFMAppDelegate.h */,
+				4506237213D117F800086997 /* TurntableFMAppDelegate.m */,
+				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
+				4506236913D117F800086997 /* Supporting Files */,
+			);
+			path = TurntableFM;
+			sourceTree = "<group>";
+		};
+		4506236913D117F800086997 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4506236A13D117F800086997 /* TurntableFM-Info.plist */,
+				4506236B13D117F800086997 /* InfoPlist.strings */,
+				4506236E13D117F800086997 /* main.m */,
+				4506237013D117F800086997 /* TurntableFM-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4506239013D117F800086997 /* TurntableFMTests */ = {
+			isa = PBXGroup;
+			children = (
+				4506239613D117F800086997 /* TurntableFMTests.h */,
+				4506239813D117F800086997 /* TurntableFMTests.m */,
+				4506239113D117F800086997 /* Supporting Files */,
+			);
+			path = TurntableFMTests;
+			sourceTree = "<group>";
+		};
+		4506239113D117F800086997 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4506239213D117F800086997 /* TurntableFMTests-Info.plist */,
+				4506239313D117F800086997 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4506235D13D117F800086997 /* TurntableFM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4506239C13D117F800086997 /* Build configuration list for PBXNativeTarget "TurntableFM" */;
+			buildPhases = (
+				4506235A13D117F800086997 /* Sources */,
+				4506235B13D117F800086997 /* Frameworks */,
+				4506235C13D117F800086997 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TurntableFM;
+			productName = TurntableFM;
+			productReference = 4506235E13D117F800086997 /* TurntableFM.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4506238713D117F800086997 /* TurntableFMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4506239F13D117F800086997 /* Build configuration list for PBXNativeTarget "TurntableFMTests" */;
+			buildPhases = (
+				4506238313D117F800086997 /* Sources */,
+				4506238413D117F800086997 /* Frameworks */,
+				4506238513D117F800086997 /* Resources */,
+				4506238613D117F800086997 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4506238F13D117F800086997 /* PBXTargetDependency */,
+			);
+			name = TurntableFMTests;
+			productName = TurntableFMTests;
+			productReference = 4506238813D117F800086997 /* TurntableFMTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4506235513D117F800086997 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = toxicsoftware.com;
+			};
+			buildConfigurationList = 4506235813D117F800086997 /* Build configuration list for PBXProject "TurntableFM" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4506235313D117F800086997;
+			productRefGroup = 4506235F13D117F800086997 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4506235D13D117F800086997 /* TurntableFM */,
+				4506238713D117F800086997 /* TurntableFMTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4506235C13D117F800086997 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4506236D13D117F800086997 /* InfoPlist.strings in Resources */,
+				450623B313D11B1E00086997 /* MainWindow_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4506238513D117F800086997 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4506239513D117F800086997 /* InfoPlist.strings in Resources */,
+				4506239713D117F800086997 /* TurntableFMTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4506238613D117F800086997 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4506235A13D117F800086997 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4506236F13D117F800086997 /* main.m in Sources */,
+				4506237313D117F800086997 /* TurntableFMAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4506238313D117F800086997 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4506239913D117F800086997 /* TurntableFMTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4506238F13D117F800086997 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4506235D13D117F800086997 /* TurntableFM */;
+			targetProxy = 4506238E13D117F800086997 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4506236B13D117F800086997 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4506236C13D117F800086997 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4506239313D117F800086997 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4506239413D117F800086997 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4506239A13D117F800086997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		4506239B13D117F800086997 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4506239D13D117F800086997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				INFOPLIST_FILE = "TurntableFM/TurntableFM-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4506239E13D117F800086997 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				INFOPLIST_FILE = "TurntableFM/TurntableFM-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		450623A013D117F800086997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TurntableFM.app/TurntableFM";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				INFOPLIST_FILE = "TurntableFMTests/TurntableFMTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		450623A113D117F800086997 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TurntableFM.app/TurntableFM";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				INFOPLIST_FILE = "TurntableFMTests/TurntableFMTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4506235813D117F800086997 /* Build configuration list for PBXProject "TurntableFM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4506239A13D117F800086997 /* Debug */,
+				4506239B13D117F800086997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4506239C13D117F800086997 /* Build configuration list for PBXNativeTarget "TurntableFM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4506239D13D117F800086997 /* Debug */,
+				4506239E13D117F800086997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4506239F13D117F800086997 /* Build configuration list for PBXNativeTarget "TurntableFMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				450623A013D117F800086997 /* Debug */,
+				450623A113D117F800086997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4506235513D117F800086997 /* Project object */;
+}
