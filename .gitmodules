@@ -1,0 +1,6 @@
+[submodule "iOS/TurntableFM/Externals/facebook-ios-sdk"]
+	path = iOS/TurntableFM/Externals/facebook-ios-sdk
+	url = git://github.com/schwa/facebook-ios-sdk.git
+[submodule "iOS/TurntableFM/Externals/TouchJSON"]
+	path = iOS/TurntableFM/Externals/TouchJSON
+	url = git://github.com/TouchCode/TouchJSON.git
