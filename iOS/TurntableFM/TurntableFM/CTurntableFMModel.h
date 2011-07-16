@@ -12,6 +12,7 @@
 
 @interface CTurntableFMModel : NSObject
 
+@property (readonly, nonatomic, retain) NSDictionary *userInfo;
 @property (readonly, nonatomic, retain) NSArray *rooms;
 
 + (CTurntableFMModel *)sharedInstance;

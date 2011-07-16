@@ -28,8 +28,6 @@
 	{
 	if ((self = [super init]) != NULL)
 		{
-
-
         NSString *theClientID = [[NSUserDefaults standardUserDefaults] objectForKey:@"TurntableFMClientID"];
         if (theClientID == NULL)
             {
@@ -52,13 +50,24 @@
     NSError *theError = NULL;
     NSDictionary *theDictionary = [[CJSONDeserializer deserializer] deserialize:inMessage error:&theError];
     
+    NSNumber *theSuccess = [theDictionary objectForKey:@"success"];
+    if ([theSuccess intValue] != 1)
+        {
+        NSLog(@"FAILURE!! %@", theDictionary);
+        return;
+        }
+    
     NSNumber *theMessageID = [theDictionary objectForKey:@"msgid"];
-    void (^theBlock)(NSArray *inRooms) = [self.blocksForMessageID objectForKey:theMessageID];
+    void (^theBlock)(id) = [self.blocksForMessageID objectForKey:theMessageID];
     if (theBlock)
         {
         theBlock(theDictionary);
 
         [self.blocksForMessageID removeObjectForKey:theMessageID];
+        }
+    else 
+        {
+        NSLog(@"NO HANDLER FOR %@", theDictionary);
         }
     }
 
@@ -79,7 +88,7 @@
     
     [theDictionary setObject:inAPI forKey:@"api"];
     [theDictionary setObject:self.clientID forKey:@"clientid"];
-    [theDictionary setObject:self.userID forKey:@"authid"];
+    [theDictionary setObject:self.userID forKey:@"userid"];
     [theDictionary setObject:self.userAuth forKey:@"userauth"];
     [theDictionary setObject:theMessageID forKey:@"msgid"];
         
