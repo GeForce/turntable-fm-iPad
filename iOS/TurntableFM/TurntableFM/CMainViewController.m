@@ -11,6 +11,9 @@
 #import "CApplicationController.h"
 #import "CTurntableFMModel.h"
 
+@interface CMainViewController () <UIActionSheetDelegate>
+@end
+
 @implementation CMainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,6 +61,15 @@
         }
     
     [theActionSheet showFromBarButtonItem:sender animated:YES];
+    }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+    {
+    id theRoom = [[CTurntableFMModel sharedInstance].rooms objectAtIndex:buttonIndex];
+    theRoom = [theRoom objectAtIndex:0];
+    NSString *theRoomID = [theRoom objectForKey:@"roomid"];
+    
+    [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomID];
     }
 
 @end

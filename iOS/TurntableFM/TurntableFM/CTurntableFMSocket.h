@@ -14,6 +14,6 @@
 @property (readwrite, nonatomic, retain) NSString *userID;
 @property (readwrite, nonatomic, retain) NSString *userAuth;
 
-- (void)listRooms:(void (^)(NSArray *inRooms))inHandler;
+- (void)postMessage:(NSString *)inAPI dictionary:(NSDictionary *)inDictionary handler:(void (^)(id inResult))inHandler;
 
 @end

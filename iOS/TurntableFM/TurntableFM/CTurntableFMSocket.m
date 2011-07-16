@@ -28,9 +28,6 @@
 	{
 	if ((self = [super init]) != NULL)
 		{
-//        clientID = @"1310833072120-0.4627539317589253";
-//        userID = @"4df032194fe7d063190425ca";
-//        userAuth = @"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b";
 
 
         NSString *theClientID = [[NSUserDefaults standardUserDefaults] objectForKey:@"TurntableFMClientID"];
@@ -59,26 +56,34 @@
     void (^theBlock)(NSArray *inRooms) = [self.blocksForMessageID objectForKey:theMessageID];
     if (theBlock)
         {
-        NSArray *theRooms = [theDictionary objectForKey:@"rooms"];
-        theBlock(theRooms);
+        theBlock(theDictionary);
 
         [self.blocksForMessageID removeObjectForKey:theMessageID];
         }
     }
 
-- (void)listRooms:(void (^)(NSArray *inRooms))inHandler;
+- (void)postMessage:(NSString *)inAPI dictionary:(NSDictionary *)inDictionary handler:(void (^)(id inResult))inHandler;
     {
     id theMessageID = [NSNumber numberWithInt:self.nextMessageID++];
     
-    [self.blocksForMessageID setObject:[[inHandler copy] autorelease] forKey:theMessageID];
+    NSMutableDictionary *theDictionary = [NSMutableDictionary dictionary];
     
-    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-        @"room.list_rooms", @"api",
-        theMessageID, @"msgid",
-        self.clientID, @"clientid",
-        self.userID, @"userid",
-        self.userAuth, @"userauth",
-        NULL];
+    if (inDictionary)
+        {
+        [theDictionary addEntriesFromDictionary:inDictionary];
+        }
+        
+    NSAssert(self.clientID.length > 0, @"Bad client id");
+    NSAssert(self.userID.length > 0, @"Bad user id");
+    NSAssert(self.userAuth.length > 0, @"Bad user auth");
+    
+    [theDictionary setObject:inAPI forKey:@"api"];
+    [theDictionary setObject:self.clientID forKey:@"clientid"];
+    [theDictionary setObject:self.userID forKey:@"authid"];
+    [theDictionary setObject:self.userAuth forKey:@"userauth"];
+    [theDictionary setObject:theMessageID forKey:@"msgid"];
+        
+    [self.blocksForMessageID setObject:[[inHandler copy] autorelease] forKey:theMessageID];
     
     [self writeDictionary:theDictionary];
     }

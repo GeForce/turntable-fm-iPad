@@ -18,4 +18,6 @@
 
 - (void)loginWithFacebookAccessToken:(NSString *)inFacebookAccessToken;
 
+- (void)registerWithRoom:(NSString *)inRoomID;
+
 @end

@@ -207,18 +207,28 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
         {
         if (self.state == WebSocketState_Initial)
             {
-            NSArray *theLines = [NSArray arrayWithObjects:
+
+            NSMutableString *theCookieString = [NSMutableString string];
+
+            for (NSHTTPCookie *theCookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"http://turntable.fm"]])
+                {
+                [theCookieString appendFormat:@"%@=%@;", theCookie.name, theCookie.value];
+                }
+
+            NSMutableArray *theLines = [NSMutableArray arrayWithObjects:
                 [NSString stringWithFormat:@"GET /socket.io/websocket HTTP/1.1"],
                 [NSString stringWithFormat:@"Upgrade: WebSocket"],
                 [NSString stringWithFormat:@"Connection: Upgrade"],
                 [NSString stringWithFormat:@"Host: chat2.turntable.fm"],
-                [NSString stringWithFormat:@"Cookie: __utma=113390594.280985840.1308591753.1310782420.1310785459.13; __utmb=113390594.4.10.1310785459; __utmc=113390594; __utmz=113390594.1308591753.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)"],
                 [NSString stringWithFormat:@"Origin: http://turntable.fm"],
                 [NSString stringWithFormat:@"Sec-WebSocket-Key1: 4 @1  46546xW%0l 1 5"],
                 [NSString stringWithFormat:@"Sec-WebSocket-Key2: 12998 5 Y3 1  .P00"],
+                [NSString stringWithFormat:@"Cookie: %@", theCookieString],
                 @"",
                 @"^n:ds[4U",
                 NULL];
+
+
                 
             NSString *theHeader = [theLines componentsJoinedByString:@"\r\n"];
             NSData *theHeaderData = [theHeader dataUsingEncoding:NSUTF8StringEncoding];
