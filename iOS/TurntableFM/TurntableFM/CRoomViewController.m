@@ -7,9 +7,15 @@
 //
 
 #import "CRoomViewController.h"
+#import "CChatViewController.h"
+#import "CSongViewController.h"
 
 
 @implementation CRoomViewController
+
+@synthesize chatButton, songButton;
+@synthesize chatPopoverController, songPopoverController;
+@synthesize chatViewController, songViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,7 +28,12 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+	[chatButton release];
+    [chatPopoverController release];
+	[songPopoverController release];
+	[chatViewController release];
+	[songViewController release];
+	[super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,6 +50,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+	
+	if (songButton == nil)
+	{
+		self.songButton = [[UIBarButtonItem alloc] initWithTitle:@"Songs" style:UIBarButtonItemStyleBordered target:self action:@selector(launchSongPopoverViewController)];
+		[self.navigationItem setRightBarButtonItem:songButton];
+	}
 }
 
 - (void)viewDidUnload
@@ -52,6 +69,42 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (void)launchSongPopoverViewController
+{
+	if (songPopoverController == nil) 
+	{
+		[self setSongViewController:[[CSongViewController alloc] initWithStyle:UITableViewStylePlain]];
+		[self setSongPopoverController:[[UIPopoverController alloc] initWithContentViewController:songViewController]];
+		[songPopoverController setDelegate:self];
+		CGSize popOverSize = CGSizeMake(240, 500);
+		[songPopoverController setPopoverContentSize:popOverSize];
+	}
+	[songPopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+- (void)launchChatPopoverViewController
+{
+	if (chatPopoverController == nil) 
+	{
+		[self setChatViewController:[[CChatViewController alloc] initWithStyle:UITableViewStylePlain]];
+		[self setChatPopoverController:[[UIPopoverController alloc] initWithContentViewController:chatViewController]];
+		[chatPopoverController setDelegate:self];
+		CGSize popOverSize = CGSizeMake(240, 500);
+		[chatPopoverController setPopoverContentSize:popOverSize];
+	}
+	[chatPopoverController presentPopoverFromBarButtonItem:chatButton permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+}
+
+- (IBAction)voteAwesome
+{
+	
+}
+
+- (IBAction)voteLame
+{
+	
 }
 
 @end
