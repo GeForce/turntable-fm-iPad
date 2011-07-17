@@ -128,6 +128,13 @@
 	NSDictionary *song = [metadata objectForKey:@"current_song"];
 	metadata = [song objectForKey:@"metadata"];
 	cell.songTitle.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:@"song"], [metadata objectForKey:@"artist"]];
+	NSString *coverArt = [metadata objectForKey:@"coverart"];
+	if (coverArt.length != 0) {
+		cell.coverArt = coverArt;
+	}
+	else {
+		cell.coverArt = nil;
+	}
 	
 	return cell;
 }
