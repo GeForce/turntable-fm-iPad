@@ -216,7 +216,7 @@
 		UIImage *headImage = [library imageForAvatar:inUser.avatarID head:YES front:NO];
 		UIImage *bodyImage = [library imageForAvatar:inUser.avatarID head:NO front:NO];
 				
-		CALayer *theLayer = [CALayer layer];
+		theLayer = [CALayer layer];
             
 		CALayer *bodyImageLayer = [CALayer layer];
 		bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
@@ -228,7 +228,6 @@
 		headImageLayer.bounds = (CGRect){ .size = headImage.size };
 		headImageLayer.contents = (id)headImage.CGImage;
 		[theLayer addSublayer:headImageLayer];
-
 
         objc_setAssociatedObject(inUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
         }
