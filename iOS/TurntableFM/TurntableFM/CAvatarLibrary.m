@@ -41,7 +41,7 @@ static CAvatarLibrary *gSharedInstance = NULL;
 	NSString *resourcePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/"];
 	NSString *filePath = [resourcePath stringByAppendingString:fileName];
 	
-	NSLog(@"Resource path: %@", resourcePath);
+//	NSLog(@"Resource path: %@", resourcePath);
 	
 	UIImage *headImage = nil;
 	UIImage *torsoImage = nil;	

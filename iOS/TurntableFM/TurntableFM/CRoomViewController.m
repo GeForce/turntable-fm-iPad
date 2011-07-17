@@ -41,6 +41,7 @@
 @synthesize usersPopoverController, songPopoverController;
 @synthesize usersViewController, songViewController;
 @synthesize avatarView;
+@synthesize DJView;
 @synthesize chatTextView;
 @synthesize speakTextField;
 @synthesize marqueeView;
@@ -53,12 +54,10 @@
         room = [inRoom retain];
         [room subscribe];
         
-        NSLog(@"%@", room.currentSong.parameters);
-        
         [self addObserver:self forKeyPath:@"room.currentSong" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
-    
+        [self addObserver:self forKeyPath:@"room.DJs" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL]            ;
         }
     return self;
     }
@@ -205,6 +204,52 @@
 
 #pragma mark -
 
+- (CALayer *)layerForUser:(CUser *)inUser
+    {
+    CALayer *theLayer = objc_getAssociatedObject(inUser, "layer");
+    if (theLayer == NULL)   
+        {
+
+		NSInteger avatarID = theUser.avatarID;
+		NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
+		CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
+		UIImage *headImage = [library imageForAvatar:theUser.avatarID head:YES front:NO];
+		UIImage *bodyImage = [library imageForAvatar:theUser.avatarID head:NO front:NO];
+				
+		CALayer *theLayer = [CALayer layer];
+		theLayer.bounds = (CGRect) { .size = 
+			(headImage.size.width > bodyImage.size.width) ? headImage.size.width : bodyImage.size.width,
+			headImage.size.height + bodyImage.size.height - neck };
+			theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
+            
+		CALayer *bodyImageLayer = [CALayer layer];
+		bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
+		bodyImageLayer.contents = (id)bodyImage.CGImage;
+		bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height - neck };
+		[theLayer addSublayer:bodyImageLayer];
+				
+		CALayer *headImageLayer = [CALayer layer];
+		headImageLayer.bounds = (CGRect){ .size = headImage.size };
+		headImageLayer.contents = (id)headImage.CGImage;
+		[theLayer addSublayer:headImageLayer];
+
+
+        objc_setAssociatedObject(inUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
+        }
+    
+    return(theLayer);
+    }
+
+- (void)DJUser:(CUser *)inUser
+    {
+    }
+
+- (void)UnDJUser:(CUser *)inUser
+    {
+    }
+
+#pragma mark -
+
 - (void)keyboardWillShowNotification:(NSNotification *)inNotification
     {
     self.speakTextField.inputAccessoryView = self.speakTextField;
@@ -218,10 +263,21 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
     {
-    if ([keyPath isEqualToString:@"room.currentSong"])
+    if ([keyPath isEqualToString:@"room.DJs"])
         {
-        NSLog(@"%@", change);
+        for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
+            {
+            [self DJUser:theUser];
+            }
+
+        for (CUser *theUser in [change objectForKey:NSKeyValueChangeOldKey])
+            {
+            [self UnDJUser:theUser];
+            }
         
+        }
+    else if ([keyPath isEqualToString:@"room.currentSong"])
+        {
         CSong *theSong = [change objectForKey:NSKeyValueChangeNewKey];
         if ((id)theSong == [NSNull null])
             {
@@ -240,8 +296,7 @@
             
             CUser *theUser = [self.room.usersByUserID objectForKey:theUserID];
             
-            
-            CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
+            CALayer *theLayer = [self layerForUser:theUser];
 
             CABasicAnimation *thePulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
             thePulseAnimation.duration = 0.2;
@@ -260,45 +315,8 @@
 
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
-				NSInteger avatarID = theUser.avatarID;
-				NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
-				CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
-				UIImage *headImage = [library imageForAvatar:theUser.avatarID head:YES front:NO];
-				UIImage *bodyImage = [library imageForAvatar:theUser.avatarID head:NO front:NO];
-				
-				CALayer *theLayer = [CALayer layer];
-				theLayer.bounds = (CGRect) { .size = 
-					(headImage.size.width > bodyImage.size.width) ? headImage.size.width : bodyImage.size.width,
-					headImage.size.height + bodyImage.size.height - neck };
-					theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
-            
-				CALayer *bodyImageLayer = [CALayer layer];
-				bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
-				bodyImageLayer.contents = (id)bodyImage.CGImage;
-				bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height - neck };
-				[theLayer addSublayer:bodyImageLayer];
-				
-				CALayer *headImageLayer = [CALayer layer];
-				headImageLayer.bounds = (CGRect){ .size = headImage.size };
-				headImageLayer.contents = (id)headImage.CGImage;
-				[theLayer addSublayer:headImageLayer];
-				
-            /*theImageLayer.bounds = (CGRect){ .size = { 130, 130 } };
-            NSString *theImageName = [NSString stringWithFormat:@"avatars_%d_fullfront.png", theUser.avatarID];
-            theImageLayer.contents = (id)[UIImage imageNamed:theImageName].CGImage;
-            [theLayer addSublayer:theImageLayer];*/			
-            
-            
-//            CATextLayer *theTextLayer = [CATextLayer layer];
-//            theTextLayer.bounds = (CGRect){ .size = {64, 64 } };
-//            theTextLayer.borderColor = [UIColor colorWithHue:(CGFloat)theUser.avatarID / 26.0 saturation:1.0 brightness:1.0 alpha:1.0].CGColor;
-//            theTextLayer.borderWidth = 1.0;
-//            theTextLayer.string = theUser.name;
-//            [theLayer addSublayer:theTextLayer];
-
+            CALayer *theLayer = [self layerForUser:theUser];
             [self.avatarView.layer addSublayer:theLayer];
-            
-            objc_setAssociatedObject(theUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
             
             [theNewLayers addObject:theLayer];
             }
@@ -324,7 +342,7 @@
 
         for (CUser *theUser in [change objectForKey:@"old"])
             {
-            CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
+            CALayer *theLayer = [self layerForUser:theUser];
             
             [CATransaction begin];
             [CATransaction setAnimationDuration:0.5];

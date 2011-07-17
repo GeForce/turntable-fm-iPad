@@ -133,8 +133,6 @@
     [self.layer addSublayer:theTextLayer];
     
     self.scrollingLayer = theTextLayer;
-    
-    NSLog(@"DONEE WITH CHANGE LAYER");
     }
 
 @end
