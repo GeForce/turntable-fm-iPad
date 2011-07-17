@@ -10,6 +10,7 @@
 
 @interface CAvatarLibrary : NSObject
 
++ (CAvatarLibrary *)sharedInstance;
 - (UIImage *)imageForAvatar:(NSInteger)inID head:(BOOL)inHead front:(BOOL)inFront;
 
 @end

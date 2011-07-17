@@ -14,12 +14,14 @@
 
 #import "CUsersViewController.h"
 #import "CSongViewController.h"
+<<<<<<< HEAD
+#import "CAvatarLibrary.h"
+=======
 #import "CTurntableFMModel.h"
 #import "CUser.h"
 #import "CRoom.h"
 #import "CSong.h"
 #import "CMarqueeView.h"
-#import "CAvatarLibrary.h"
 
 @interface CRoomViewController () <UITextFieldDelegate>
 
@@ -31,6 +33,7 @@
 @end
 
 #pragma mark -
+>>>>>>> origin/master
 
 @implementation CRoomViewController
 
@@ -188,8 +191,6 @@
     {
     if ([keyPath isEqualToString:@"room.currentSong"])
         {
-        NSLog(@"%@", change);
-        
         CSong *theSong = [change objectForKey:NSKeyValueChangeNewKey];
         if ((id)theSong == [NSNull null])
             {
@@ -228,30 +229,15 @@
 
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
-				CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
-				UIImage *headImage = [library imageForAvatar:theUser.avatarID head:YES front:NO];
-				UIImage *bodyImage = [library imageForAvatar:theUser.avatarID head:NO front:NO];
-				
-				CALayer *theLayer = [CALayer layer];
-				theLayer.bounds = (CGRect) { .size = 
-					(headImage.size.width > bodyImage.size.width) ? headImage.size.width : bodyImage.size.width,
-					headImage.size.height + bodyImage.size.height };
-					theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
+            CALayer *theLayer = [CALayer layer];
+            theLayer.bounds = (CGRect){ .size = { 130, 130 } };
+            theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
             
-				CALayer *headImageLayer = [CALayer layer];
-				headImageLayer.bounds = (CGRect){ .size = headImage.size };
-				headImageLayer.contents = (id)headImage.CGImage;
-				[theLayer addSublayer:headImageLayer];
-				
-				CALayer *bodyImageLayer = [CALayer layer];
-				bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
-				bodyImageLayer.contents = (id)bodyImage.CGImage;
-				bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height };
-				[theLayer addSublayer:bodyImageLayer];
-            /*theImageLayer.bounds = (CGRect){ .size = { 130, 130 } };
+            CALayer *theImageLayer = [CALayer layer];
+            theImageLayer.bounds = (CGRect){ .size = { 130, 130 } };
             NSString *theImageName = [NSString stringWithFormat:@"avatars_%d_fullfront.png", theUser.avatarID];
             theImageLayer.contents = (id)[UIImage imageNamed:theImageName].CGImage;
-            [theLayer addSublayer:theImageLayer];*/			
+            [theLayer addSublayer:theImageLayer];
             
             
 //            CATextLayer *theTextLayer = [CATextLayer layer];
