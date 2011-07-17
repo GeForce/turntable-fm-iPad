@@ -84,7 +84,8 @@
 
 - (void)preview:(id)sender
 {
-	[[CTurntableFMModel sharedInstance] playSong:[self.room objectAtIndex:0] preview:YES];
+    id theSong = [[self.room objectAtIndex:0] valueForKeyPath:@"metadata.current_song"];
+	[[CTurntableFMModel sharedInstance] playSong:theSong preview:YES];
 }
 
 #pragma mark - NSURLConnectionDelegate
