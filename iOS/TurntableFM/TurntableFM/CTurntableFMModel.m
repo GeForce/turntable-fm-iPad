@@ -236,7 +236,6 @@ static CTurntableFMModel *gSharedInstance = NULL;
         NULL];
     
     [[CTurntableFMModel sharedInstance].socket postMessage:@"playlist.all" dictionary:theDictionary handler:^(id inResult) {
-        NSLog(@"I HAZ PLAYLIST: %@", inResult);
 
         NSMutableArray *theSongs = [NSMutableArray array];
 
@@ -247,7 +246,6 @@ static CTurntableFMModel *gSharedInstance = NULL;
             }
         
         self.songQueue = theSongs;
-        NSLog(@"%@", self.songQueue);
 
         if (inHandler)
             {

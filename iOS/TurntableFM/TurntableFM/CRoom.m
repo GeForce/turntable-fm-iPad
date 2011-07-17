@@ -16,6 +16,8 @@
 @interface CRoom ()
 @property (readwrite, nonatomic, retain) NSMutableDictionary *usersByUserID;
 @property (readwrite, nonatomic, retain) NSMutableArray *users;
+
+- (void)handleVoteLog:(NSArray *)inVoteLog;
 @end
 
 #pragma mark -
@@ -82,6 +84,10 @@
             [self.DJs addObject:[self.usersByUserID objectForKey:theDJUserID]];
             [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"DJs"];
             }
+
+        NSArray *theVotelog = [inResult valueForKeyPath:@"room.metadata.votelog"];
+        [self handleVoteLog:theVotelog];
+
         
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
@@ -95,7 +101,9 @@
                 [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"users"];
                 
                 }
-            } forCommand:@"registered"];
+
+
+        } forCommand:@"registered"];
 
         // USER DEREGISTRER ####################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
@@ -160,28 +168,52 @@
                 
                 [[CTurntableFMModel sharedInstance] playSong:self.currentSong.parameters preview:NO];
                 
+                for (CUser *theUser in self.users)
+                    {
+                    theUser.bobbing = NO;
+                    }
                 }
-//   now = "1310896173.28";
             } forCommand:@"newsong"];
-
-
 
 //        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
 //            // We're ignoring this...
 //            } forCommand:@"update_user"];
-//
-//        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-//            NSLog(@"%@", inParam);
-//            } forCommand:@"update_votes"];
 
+        // #####################################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+        
+            NSArray *theVotelog = [inParam valueForKeyPath:@"room.metadata.votelog"];
+            [self handleVoteLog:theVotelog];
 
+
+//2011-07-17 15:05:46.961 TurntableFM[59881:cb03] {
+//    command = "update_votes";
+//    room =     {
+//        metadata =         {
+//            downvotes = 3;
+//            listeners = 130;
+//            upvotes = 2;
+//            votelog =             (
+//                                (
+//                    4e145bd1a3f75114d80a75c9,
+//                    down
+//                )
+//            );
+//        };
+//    };
+//    success = 1;
+//}
+
+
+
+            } forCommand:@"update_votes"];
+
+        // #####################################################################
+        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.chatLog.count];
             [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
             [self.chatLog addObject:inParam];
             [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
-
-
             } forCommand:@"speak"];
         
         }];
@@ -195,5 +227,19 @@
     [[CTurntableFMModel sharedInstance].socket removeHandlerForCommand:@"rem_dj"];
     }
 
+- (void)handleVoteLog:(NSArray *)inVoteLog
+    {
+    for (NSArray *theVote in inVoteLog)
+        {
+        NSString *theUserID = [theVote objectAtIndex:0];
+        NSString *theVoteChoice = [theVote objectAtIndex:1];
+        
+        CUser *theUser = [self.usersByUserID objectForKey:theUserID];
+        if ([theVoteChoice isEqualToString:@"down"])
+            theUser.bobbing = NO;
+        else
+            theUser.bobbing = YES;
+        }
+    }
 
 @end
