@@ -342,7 +342,6 @@
 		4506235313D117F800086997 = {
 			isa = PBXGroup;
 			children = (
-				453343EB13D24EE3005AE115 /* CoreMedia.framework */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
 				4506239013D117F800086997 /* TurntableFMTests */,
@@ -363,6 +362,7 @@
 		4506236113D117F800086997 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				453343EB13D24EE3005AE115 /* CoreMedia.framework */,
 				453343E013D24002005AE115 /* AVFoundation.framework */,
 				451D468E13D1340F00530A57 /* CFNetwork.framework */,
 				451D468C13D133F500530A57 /* MobileCoreServices.framework */,
