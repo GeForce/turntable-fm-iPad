@@ -200,6 +200,40 @@ static CTurntableFMModel *gSharedInstance = NULL;
         }];
     }
     
+- (void)bootUser:(CUser *)inUser handler:(void (^)(void))inHandler
+{
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inUser.userID forKey:@"target_userid"];
+    [self.socket postMessage:@"user.boot_user" dictionary:theDictionary handler:^(id inResult) {
+        if (inHandler)
+        {
+            inHandler();
+        }
+    }];
+}
+
+// Below really should be removeSong:fromPlaylist: or similar when they do multiple playlists
+- (void)removeSongFromPlaylist:(NSInteger)inTeger handler:(void (^)(void))inHandler
+{
+   // NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inTeger forKey:@"index"];
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"default", @"playlist",
+                                   [NSNumber numberWithInteger:inTeger], @"index",
+                                   NULL];
+    [self.socket postMessage:@"playlist.remove" dictionary:theDictionary handler:^(id inResult) {
+        if (inHandler)
+        {
+            inHandler();
+        }
+    }];
+}
+
+- (void)becomeDJ
+{
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:self.room.roomID forKey:@"roomid"];
+    [self.socket postMessage:@"user.add_dj" dictionary:theDictionary handler:^(id inResult) {
+    }];
+}
+
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {
 
