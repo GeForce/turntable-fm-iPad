@@ -132,7 +132,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
     
 - (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
     {
-    [self.socket postMessage:@"room.unregister" dictionary:NULL handler:^(id inResult) {
+    [self.socket postMessage:@"room.deregister" dictionary:NULL handler:^(id inResult) {
         NSLog(@"UNREGISTER");
         self.room = NULL;
 
