@@ -162,10 +162,17 @@
 	if (queuePopoverController == nil) 
 	{
 		[self setQueueViewController:[[[CQueueViewController alloc] initWithNibName:nil bundle:nil] autorelease]];
-		[self setQueuePopoverController:[[[UIPopoverController alloc] initWithContentViewController:queueViewController] autorelease]];
-		[queuePopoverController setDelegate:self];
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+			[self setQueuePopoverController:[[[UIPopoverController alloc] initWithContentViewController:queueViewController] autorelease]];
+			[queuePopoverController setDelegate:self];
+		}
 	}
-	[queuePopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		[queuePopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	}
+	else {
+		[self.navigationController pushViewController:self.queueViewController animated:YES];
+	}
 }
 
 - (IBAction)voteAwesome
@@ -181,10 +188,17 @@
 	if (self.usersPopoverController == nil) {
 		self.usersViewController = [[[CUsersViewController alloc] initWithNibName:nil bundle:nil] autorelease];
 		self.usersViewController.room = self.room;
-		self.usersPopoverController = [[[UIPopoverController alloc] initWithContentViewController:self.usersViewController] autorelease];
-		self.usersPopoverController.delegate = self;
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+			self.usersPopoverController = [[[UIPopoverController alloc] initWithContentViewController:self.usersViewController] autorelease];
+			self.usersPopoverController.delegate = self;
+		}
 	}
-	[self.usersPopoverController presentPopoverFromBarButtonItem:usersButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		[self.usersPopoverController presentPopoverFromBarButtonItem:usersButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+	else {
+		[self.navigationController pushViewController:self.usersViewController animated:YES];
+	}
 }
 
 #pragma mark -

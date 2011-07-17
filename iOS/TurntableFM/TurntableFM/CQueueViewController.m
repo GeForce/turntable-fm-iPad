@@ -26,6 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+		self.title = @"Queue";
 		[[CTurntableFMModel sharedInstance] addObserver:self forKeyPath:@"songQueue" options:0 context:NULL];
     }
     return self;
