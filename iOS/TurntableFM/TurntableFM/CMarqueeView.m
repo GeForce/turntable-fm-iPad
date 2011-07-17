@@ -125,7 +125,7 @@
     
     CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
     theAnimation.toValue = [NSNumber numberWithFloat:-self.textSize.width * 0.5];
-    theAnimation.speed = 0.05;
+    theAnimation.speed = 0.02;
     theAnimation.delegate = self;
     
     [theTextLayer addAnimation:theAnimation forKey:@"scroll"];
