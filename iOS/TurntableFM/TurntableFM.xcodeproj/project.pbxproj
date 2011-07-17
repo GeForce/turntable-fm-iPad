@@ -85,6 +85,10 @@
 		453343E113D24002005AE115 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343E013D24002005AE115 /* AVFoundation.framework */; };
 		453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343EB13D24EE3005AE115 /* CoreMedia.framework */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
+		459F844913D2CFE6008A3C6A /* CSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F844813D2CFE5008A3C6A /* CSong.m */; };
+		459F844C13D2D3D9008A3C6A /* CMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F844B13D2D3D9008A3C6A /* CMarqueeView.m */; };
+		459F844E13D2D506008A3C6A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459F844D13D2D506008A3C6A /* CoreText.framework */; };
+		459F845113D2DD08008A3C6A /* CAAnimation_BlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F845013D2DD08008A3C6A /* CAAnimation_BlockExtensions.m */; };
 		45AC30D713D25D690082DB2F /* CRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30D613D25D690082DB2F /* CRoom.m */; };
 		45AC30DA13D25D740082DB2F /* CUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30D913D25D740082DB2F /* CUser.m */; };
 		45AC30DD13D25DC00082DB2F /* CTurntableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30DC13D25DC00082DB2F /* CTurntableObject.m */; };
@@ -525,6 +529,13 @@
 		453343EB13D24EE3005AE115 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
+		459F844713D2CFE5008A3C6A /* CSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSong.h; sourceTree = "<group>"; };
+		459F844813D2CFE5008A3C6A /* CSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSong.m; sourceTree = "<group>"; };
+		459F844A13D2D3D9008A3C6A /* CMarqueeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMarqueeView.h; sourceTree = "<group>"; };
+		459F844B13D2D3D9008A3C6A /* CMarqueeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMarqueeView.m; sourceTree = "<group>"; };
+		459F844D13D2D506008A3C6A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		459F844F13D2DCF6008A3C6A /* CAAnimation_BlockExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAnimation_BlockExtensions.h; sourceTree = "<group>"; };
+		459F845013D2DD08008A3C6A /* CAAnimation_BlockExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAAnimation_BlockExtensions.m; sourceTree = "<group>"; };
 		45AC30D513D25D690082DB2F /* CRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoom.h; sourceTree = "<group>"; };
 		45AC30D613D25D690082DB2F /* CRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoom.m; sourceTree = "<group>"; };
 		45AC30D813D25D740082DB2F /* CUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUser.h; sourceTree = "<group>"; };
@@ -825,6 +836,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459F844E13D2D506008A3C6A /* CoreText.framework in Frameworks */,
 				45BBC3DC13D2AFDC00DA64A6 /* QuartzCore.framework in Frameworks */,
 				453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */,
 				451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */,
@@ -843,6 +855,7 @@
 		4506235313D117F800086997 = {
 			isa = PBXGroup;
 			children = (
+				459F844D13D2D506008A3C6A /* CoreText.framework */,
 				45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
@@ -1226,6 +1239,10 @@
 		459F844413D2CA0D008A3C6A /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				459F844F13D2DCF6008A3C6A /* CAAnimation_BlockExtensions.h */,
+				459F845013D2DD08008A3C6A /* CAAnimation_BlockExtensions.m */,
+				459F844A13D2D3D9008A3C6A /* CMarqueeView.h */,
+				459F844B13D2D3D9008A3C6A /* CMarqueeView.m */,
 				451D469313D157EA00530A57 /* CWebSocket.h */,
 				451D469413D157EA00530A57 /* CWebSocket.m */,
 				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
@@ -1253,6 +1270,8 @@
 				45AC30D613D25D690082DB2F /* CRoom.m */,
 				45AC30D813D25D740082DB2F /* CUser.h */,
 				45AC30D913D25D740082DB2F /* CUser.m */,
+				459F844713D2CFE5008A3C6A /* CSong.h */,
+				459F844813D2CFE5008A3C6A /* CSong.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1929,6 +1948,9 @@
 				45BBC1C213D275C600DA64A6 /* CAvatarLibrary.m in Sources */,
 				752937FA13D2517700A328B4 /* CAvatar.m in Sources */,
 				979BB81913D2AC2D00D16D03 /* CFriendsViewController.m in Sources */,
+				459F844913D2CFE6008A3C6A /* CSong.m in Sources */,
+				459F844C13D2D3D9008A3C6A /* CMarqueeView.m in Sources */,
+				459F845113D2DD08008A3C6A /* CAAnimation_BlockExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

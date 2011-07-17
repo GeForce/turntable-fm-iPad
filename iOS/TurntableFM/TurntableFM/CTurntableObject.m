@@ -10,8 +10,6 @@
 
 @interface CTurntableObject ()
 
-@property (readwrite, nonatomic, retain) NSDictionary *parameters;
-
 @end
 
 @implementation CTurntableObject

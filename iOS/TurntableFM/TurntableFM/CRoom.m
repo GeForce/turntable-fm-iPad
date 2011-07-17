@@ -11,6 +11,7 @@
 #import "CTurntableFMModel.h"
 #import "CTurntableFMSocket.h"
 #import "CUser.h"
+#import "CSong.h"
 
 @interface CRoom ()
 @property (readwrite, nonatomic, retain) NSMutableDictionary *usersByUserID;
@@ -25,6 +26,7 @@
 @synthesize users;
 @synthesize DJs;
 @synthesize chatLog;
+@synthesize currentSong;
 
 - (void)didInitialize
     {
@@ -53,6 +55,15 @@
     
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:self.roomID forKey:@"roomid"];
     [[CTurntableFMModel sharedInstance].socket postMessage:@"room.info" dictionary:theDictionary handler:^(id inResult) {
+    
+        self.parameters = [inResult objectForKey:@"room"];
+
+        NSDictionary *theSongParameters = [self.parameters valueForKeyPath:@"metadata.current_song"];
+        if (theSongParameters)
+            {
+            self.currentSong = [[[CSong alloc] initWithParameters:theSongParameters] autorelease];
+            }
+    
         for (id theUserParameters in [inResult objectForKey:@"users"])
             {
             CUser *theUser = [[[CUser alloc] initWithParameters:theUserParameters] autorelease];
@@ -108,8 +119,6 @@
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
                 [self.DJs addObject:[self.usersByUserID objectForKey:theUserID]];
-                
-                
                 }
             } forCommand:@"add_dj"];
 
@@ -123,6 +132,21 @@
                     }]];
                 }
             } forCommand:@"rem_dj"];
+
+        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+            NSLog(@"OLD SONG: %@", self.currentSong.name);
+
+            self.parameters = [inParam objectForKey:@"room"];
+            NSDictionary *theSongParameters = [self.parameters valueForKeyPath:@"metadata.current_song"];
+            if (theSongParameters)
+                {
+                self.currentSong = [[[CSong alloc] initWithParameters:theSongParameters] autorelease];
+                }
+            NSLog(@"NEW SONG: %@", self.currentSong.name);
+//   now = "1310896173.28";
+            } forCommand:@"newsong"];
+
+
 
 //        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
 //            // We're ignoring this...

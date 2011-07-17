@@ -11,6 +11,7 @@
 @class CRoom;
 @class CChatViewController;
 @class CSongViewController;
+@class CMarqueeView;
 
 @interface CRoomViewController : UIViewController <UIPopoverControllerDelegate>
 {
@@ -32,6 +33,8 @@
 @property (nonatomic, retain) CSongViewController *songViewController;
 @property (readwrite, nonatomic, retain) IBOutlet UITextView *chatTextView;
 @property (readwrite, nonatomic, retain) IBOutlet UITextField *speakTextField;
+@property (readwrite, nonatomic, retain) IBOutlet CMarqueeView *marqueeView;
+
 
 - (id)initWithRoom:(CRoom *)inRoom;
 

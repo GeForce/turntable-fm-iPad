@@ -17,6 +17,8 @@
 #import "CTurntableFMModel.h"
 #import "CUser.h"
 #import "CRoom.h"
+#import "CSong.h"
+#import "CMarqueeView.h"
 
 @interface CRoomViewController () <UITextFieldDelegate>
 @end
@@ -31,6 +33,7 @@
 @synthesize chatViewController, songViewController;
 @synthesize chatTextView;
 @synthesize speakTextField;
+@synthesize marqueeView;
 
 - (id)initWithRoom:(CRoom *)inRoom;
     {
@@ -39,6 +42,9 @@
         room = [inRoom retain];
         [room subscribe];
         
+        NSLog(@"%@", room.currentSong.parameters);
+        
+        [self addObserver:self forKeyPath:@"room.currentSong" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
     
@@ -48,6 +54,7 @@
 
 - (void)dealloc
     {
+    [self removeObserver:self forKeyPath:@"room.currentSong"];
     [self removeObserver:self forKeyPath:@"room.chatLog"];
     [self removeObserver:self forKeyPath:@"room.users"];
 
@@ -77,6 +84,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.marqueeView.font = [UIFont boldSystemFontOfSize:30];
 
     self.title = self.room.name;
 	
@@ -147,7 +156,16 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
     {
-    if ([keyPath isEqualToString:@"room.chatLog"])
+    if ([keyPath isEqualToString:@"room.currentSong"])
+        {
+        CSong *theSong = [change objectForKey:NSKeyValueChangeNewKey];
+        if ((id)theSong == [NSNull null])
+            {
+            return;
+            }
+        self.marqueeView.text = theSong.name;
+        }
+    else if ([keyPath isEqualToString:@"room.chatLog"])
         {
         for (NSDictionary *theSpeakDictionary in [change objectForKey:@"new"])
             {
@@ -157,6 +175,8 @@
         }
     else if ([keyPath isEqualToString:@"room.users"])
         {
+        NSMutableArray *theNewLayers = [NSMutableArray array];
+
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
             CATextLayer *theLayer = [CATextLayer layer];
@@ -165,15 +185,47 @@
             
             theLayer.string = theUser.name;
             theLayer.bounds = (CGRect){ .size = {64, 64 } };
-            theLayer.position = (CGPoint){ arc4random() % 768, arc4random() % 768 };
+            theLayer.position = (CGPoint){ .x = arc4random() % (768 * 3) - 768, .y = arc4random() % 768 + 768 };
             [self.view.layer addSublayer:theLayer];
             
             objc_setAssociatedObject(theUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
+            
+            [theNewLayers addObject:theLayer];
             }
+
+        if (theNewLayers.count > 0)
+            {
+            double delayInSeconds = 0.1;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [CATransaction begin];
+                [CATransaction setAnimationDuration:0.5];
+                [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+
+                for (CALayer *theLayer in theNewLayers)
+                    {
+                    theLayer.position = (CGPoint){ .x = arc4random() % 768, .y = arc4random() % 768 };
+                    }
+
+                [CATransaction commit];
+                });
+            }
+
+
         for (CUser *theUser in [change objectForKey:@"old"])
             {
             CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
-            [theLayer removeFromSuperlayer];
+            
+            [CATransaction begin];
+            [CATransaction setAnimationDuration:0.5];
+            [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+            [CATransaction setCompletionBlock:^(void) {
+                [theLayer removeFromSuperlayer];
+                objc_setAssociatedObject(theUser, "layer", NULL, OBJC_ASSOCIATION_RETAIN);
+                }];
+            theLayer.position = (CGPoint){ .x = CGRectGetMaxX(theLayer.superlayer.bounds), .y = theLayer.position.y };
+
+            [CATransaction commit];
             }
         }
     }
