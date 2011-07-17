@@ -8,6 +8,12 @@
 
 #import "CQueueViewController.h"
 
+@interface CQueueViewController ()
+
+- (void)moveToTop:(UIButton *)sender;
+
+@end
+
 @implementation CQueueViewController
 
 @synthesize tableView;
@@ -65,9 +71,48 @@
 	return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return nil;
+	static NSString *Identifier = @"Cell";
+	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:Identifier];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Identifier] autorelease];
+		cell.indentationLevel = 4;
+		UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+		[button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+		[button addTarget:self action:@selector(moveToTop:) forControlEvents:UIControlEventTouchUpInside];
+		button.tag = indexPath.row;
+		[cell addSubview:button];
+		button.frame = CGRectMake(5.0, 7.0, 30.0, 30.0);
+	}
+	
+	cell.textLabel.text = @"Song title";
+	cell.detailTextLabel.text = @"Artist name";
+	
+	return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return @"Remove";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		// remove song
+	}
+}
+
+- (void)moveToTop:(UIButton *)sender
+{
+	NSInteger row = sender.tag;
+	NSLog(@"%d", row);
 }
 
 @end
