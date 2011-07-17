@@ -32,6 +32,7 @@
 - (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 
 - (void)fanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
+- (void)unfanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 - (void)stopSong;

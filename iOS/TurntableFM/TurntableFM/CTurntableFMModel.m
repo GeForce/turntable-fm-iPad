@@ -184,7 +184,18 @@ static CTurntableFMModel *gSharedInstance = NULL;
         }];
     }
 
+- (void)unfanUser:(CUser *)inUser handler:(void (^)(void))inHandler
+    {
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inUser.userID forKey:@"djid"];
+    [self.socket postMessage:@"user.remove_fan" dictionary:theDictionary handler:^(id inResult) {
+        if (inHandler)
+            {
+            inHandler();
+            }
+        }];
+    }
     
+
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {
 

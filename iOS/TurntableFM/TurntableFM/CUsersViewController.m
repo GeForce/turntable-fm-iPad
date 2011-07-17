@@ -8,8 +8,13 @@
 
 #import "CUsersViewController.h"
 
+#import "CTurntableFMModel.h"
 #import "CRoom.h"
 #import "CUser.h"
+
+@interface CUsersViewController () <UIActionSheetDelegate>
+
+@end
 
 @implementation CUsersViewController
 
@@ -58,7 +63,18 @@
 - (CGSize)contentSizeForViewInPopover
 {
 	CGFloat height = MIN(44.0 * self.room.users.count, 800.0);
+	height = MAX(height, 175.0);
 	return CGSizeMake(256.0, height);
+}
+
+- (void)setRoom:(CRoom *)rm
+{
+	if (rm != room) {
+		[room removeObserver:self forKeyPath:@"users"];
+		[room release];
+		room = [rm retain];
+		[room addObserver:self forKeyPath:@"users" options:0 context:NULL];
+	}
 }
 
 #pragma mark - UITableView
@@ -75,19 +91,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	// We really should be reloading the table when people leave or join, but that'd take more work
-	// so here's a hack to keep it from crashing
-	NSInteger row = indexPath.row;
-	if (row >= self.room.users.count) {
-		return 0.0;
-	}
-	else {
-		CUser *user = [self.room.users objectAtIndex:indexPath.row];
-		NSInteger avatarID = user.avatarID;
-		NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
-		UIImage *image = [UIImage imageNamed:imageName];
-		return image.size.height/2;
-	}
+	CUser *user = [self.room.users objectAtIndex:indexPath.row];
+	NSInteger avatarID = user.avatarID;
+	NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
+	UIImage *image = [UIImage imageNamed:imageName];
+	return image.size.height/2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,20 +107,11 @@
 		cell.textLabel.textAlignment = UITextAlignmentRight;
 	}
 	
-	// We really should be reloading the table when people leave or join, but that'd take more work
-	// so here's a hack to keep it from crashing
-	NSInteger row = indexPath.row;
-	if (row >= self.room.users.count) {
-		cell.textLabel.text = nil;
-		cell.imageView.image = nil;
-	}
-	else {
-		CUser *user = [self.room.users objectAtIndex:indexPath.row];
-		cell.textLabel.text = user.name;
-		NSInteger avatarID = user.avatarID;
-		NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
-		cell.imageView.image = [UIImage imageNamed:imageName];
-	}
+	CUser *user = [self.room.users objectAtIndex:indexPath.row];
+	cell.textLabel.text = user.name;
+	NSInteger avatarID = user.avatarID;
+	NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
+	cell.imageView.image = [UIImage imageNamed:imageName];
 	
 	return cell;
 }
@@ -132,6 +131,53 @@
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		// boot user
+	}
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+															 delegate:self
+													cancelButtonTitle:@"Cancel"
+											   destructiveButtonTitle:nil
+													otherButtonTitles:@"Fan", @"Profile", nil];
+	BOOL isPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+	if (isPhone) {
+		[actionSheet showInView:self.view];
+	}
+	else {
+		CGRect rect = [self.tableView rectForRowAtIndexPath:indexPath];
+		[actionSheet showFromRect:rect inView:self.tableView animated:YES];
+	}
+	[actionSheet release];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+		
+	}
+	else if (buttonIndex == actionSheet.firstOtherButtonIndex) {
+		CUser *user = [self.room.users objectAtIndex:indexPath.row];
+		[[CTurntableFMModel sharedInstance] fanUser:user handler:NULL];
+	}
+	else {
+		
+	}
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (object == self.room) {
+		if ([keyPath isEqualToString:@"users"]) {
+			[self.tableView reloadData];
+		}
 	}
 }
 

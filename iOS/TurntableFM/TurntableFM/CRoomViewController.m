@@ -97,7 +97,7 @@
 {
     [super viewDidLoad];
 
-    self.marqueeView.font = [UIFont boldSystemFontOfSize:30];
+	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 	
 	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
 						[NSNumber numberWithInt:30],// 1

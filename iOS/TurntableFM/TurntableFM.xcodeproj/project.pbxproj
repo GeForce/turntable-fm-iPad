@@ -399,6 +399,7 @@
 		97ABD56113D218500058B68E /* CLobbyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */; };
 		97F126F513D2E87B00349BC0 /* CQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F126F313D2E87A00349BC0 /* CQueueViewController.m */; };
 		97F126F613D2E87B00349BC0 /* CQueueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F126F413D2E87B00349BC0 /* CQueueViewController.xib */; };
+		A1422F8713D36D2200486765 /* dsdots.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1422F8613D36D2200486765 /* dsdots.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -893,6 +894,7 @@
 		97F126F213D2E87A00349BC0 /* CQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQueueViewController.h; sourceTree = "<group>"; };
 		97F126F313D2E87A00349BC0 /* CQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQueueViewController.m; sourceTree = "<group>"; };
 		97F126F413D2E87B00349BC0 /* CQueueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQueueViewController.xib; sourceTree = "<group>"; };
+		A1422F8613D36D2200486765 /* dsdots.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dsdots.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -980,8 +982,6 @@
 				979BB81813D2AC2D00D16D03 /* CFriendsViewController.xib */,
 				45BBC1C013D275C600DA64A6 /* CAvatarLibrary.h */,
 				45BBC1C113D275C600DA64A6 /* CAvatarLibrary.m */,
-				752937F813D2517700A328B4 /* CAvatar.h */,
-				752937F913D2517700A328B4 /* CAvatar.m */,
 				970AF76013D2D25000AA9067 /* CSideViewController.h */,
 				970AF76113D2D25000AA9067 /* CSideViewController.m */,
 				970AF76213D2D25000AA9067 /* CSideViewController.xib */,
@@ -1371,8 +1371,6 @@
 				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
 				45BBC1C013D275C600DA64A6 /* CAvatarLibrary.h */,
 				45BBC1C113D275C600DA64A6 /* CAvatarLibrary.m */,
-				752937F813D2517700A328B4 /* CAvatar.h */,
-				752937F913D2517700A328B4 /* CAvatar.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1397,6 +1395,7 @@
 		45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */ = {
 			isa = PBXGroup;
 			children = (
+				A1422F8613D36D2200486765 /* dsdots.ttf */,
 				4517667D13D3434800F50883 /* Stage */,
 				45BBC1CD13D2843300DA64A6 /* avatars_10_backtorso.png */,
 				45BBC1CE13D2843300DA64A6 /* avatars_10_fronttorso.png */,
@@ -2005,6 +2004,7 @@
 				451766AF13D3434800F50883 /* Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png in Resources */,
 				451766B013D3434800F50883 /* Spotlight-Setup_ComputerwithglowWin_0002_Layer-5.png in Resources */,
 				451766B113D3434800F50883 /* Table with wood and glisten on wood.png in Resources */,
+				A1422F8713D36D2200486765 /* dsdots.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2094,7 +2094,6 @@
 				45AC30DA13D25D740082DB2F /* CUser.m in Sources */,
 				45AC30DD13D25DC00082DB2F /* CTurntableObject.m in Sources */,
 				45BBC1C213D275C600DA64A6 /* CAvatarLibrary.m in Sources */,
-				752937FA13D2517700A328B4 /* CAvatar.m in Sources */,
 				979BB81913D2AC2D00D16D03 /* CFriendsViewController.m in Sources */,
 				970AF76313D2D25000AA9067 /* CSideViewController.m in Sources */,
 				970AF76913D2DC0D00AA9067 /* CUsersViewController.m in Sources */,
