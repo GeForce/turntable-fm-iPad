@@ -20,7 +20,6 @@
 @property (readwrite, nonatomic, retain) NSDictionary *userInfo;
 @property (readwrite, nonatomic, retain) NSArray *rooms;
 @property (readwrite, nonatomic, retain) CRoom *room;
-@property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
 @property (readwrite, nonatomic, retain) NSOperationQueue *queue;
 @property (readwrite, nonatomic, assign) NSTimeInterval roomTime;
 @property (readwrite, nonatomic, retain) AVPlayer *player;
@@ -31,11 +30,11 @@
 
 @implementation CTurntableFMModel
 
+@synthesize socket;
 @synthesize userInfo;
 @synthesize rooms;
 @synthesize room;
 
-@synthesize turntableFMSocket;
 @synthesize queue;
 @synthesize roomTime;
 @synthesize player;
@@ -69,36 +68,33 @@ static CTurntableFMModel *gSharedInstance = NULL;
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
     CURLOperation *theOperation = [[[CURLOperation alloc] initWithRequest:theRequest] autorelease];
     theOperation.completionBlock = ^(void) {
-        self.turntableFMSocket = [[[CTurntableFMSocket alloc] init] autorelease];
+        self.socket = [[[CTurntableFMSocket alloc] init] autorelease];
         for (NSHTTPCookie *theCookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:theURL])
             {
             if ([theCookie.name isEqualToString:@"turntableUserAuth"])
                 {
-                self.turntableFMSocket.userAuth = theCookie.value;
+                self.socket.userAuth = theCookie.value;
                 }
             else if ([theCookie.name isEqualToString:@"turntableUserId"])
                 {
-                self.turntableFMSocket.userID = theCookie.value;
+                self.socket.userID = theCookie.value;
                 }
             }
          
-        self.turntableFMSocket.didConnectHandler = ^(void) {
-            [self.turntableFMSocket postMessage:@"user.authenticate" dictionary:NULL handler:^(id inResult) {
-                NSLog(@"AUTHENTICATED? %@", inResult);
-                
-                [self.turntableFMSocket postMessage:@"user.info" dictionary:NULL handler:^(id inResult) {
-                    NSLog(@"USER INFO: %@", inResult);
+        self.socket.didConnectHandler = ^(void) {
+            [self.socket postMessage:@"user.authenticate" dictionary:NULL handler:^(id inResult) {
+                [self.socket postMessage:@"user.info" dictionary:NULL handler:^(id inResult) {
                     self.userInfo = inResult;
                     }];
                 
                 
-                [self.turntableFMSocket postMessage:@"room.list_rooms" dictionary:NULL handler:^(id inResult) {
+                [self.socket postMessage:@"room.list_rooms" dictionary:NULL handler:^(id inResult) {
                     self.rooms = [inResult objectForKey:@"rooms"];
                     }];
                 }];
             };
         
-        [self.turntableFMSocket main];
+        [self.socket main];
         
         };
 
@@ -111,10 +107,10 @@ static CTurntableFMModel *gSharedInstance = NULL;
         [inRoomDescription objectForKey:@"roomid"], @"roomid",
         NULL];
     
-    [self.turntableFMSocket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
+    [self.socket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
         self.room = [[[CRoom alloc] initWithParameters:inRoomDescription] autorelease];
     
-        [self.turntableFMSocket postMessage:@"room.now" dictionary:NULL handler:^(id inResult) {
+        [self.socket postMessage:@"room.now" dictionary:NULL handler:^(id inResult) {
             NSLog(@"ROOM.NOW: %@", inResult);
             
             self.roomTime = [[inResult objectForKey:@"now"] doubleValue];
@@ -136,7 +132,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
     
 - (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
     {
-    [self.turntableFMSocket postMessage:@"room.unregister" dictionary:NULL handler:^(id inResult) {
+    [self.socket postMessage:@"room.unregister" dictionary:NULL handler:^(id inResult) {
         NSLog(@"UNREGISTER");
         self.room = NULL;
 

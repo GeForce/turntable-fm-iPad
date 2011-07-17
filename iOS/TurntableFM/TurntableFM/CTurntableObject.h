@@ -12,6 +12,8 @@
 
 @property (readonly, nonatomic, retain) NSDictionary *parameters;
 
-- (id)initWithParameter:(NSDictionary *)inParameters;
+- (id)initWithParameters:(NSDictionary *)inParameters;
+
+- (void)didInitialize;
 
 @end

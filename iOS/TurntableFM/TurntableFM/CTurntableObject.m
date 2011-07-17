@@ -18,13 +18,19 @@
 
 @synthesize parameters;
 
-- (id)initWithParameter:(NSDictionary *)inDictionary;
+- (id)initWithParameters:(NSDictionary *)inParameters;
 	{
 	if ((self = [super init]) != NULL)
 		{
+        self.parameters = inParameters;
+        [self didInitialize];
 		}
 	return(self);
 	}
+
+- (void)didInitialize
+    {
+    }
 
 
 @end

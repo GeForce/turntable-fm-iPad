@@ -10,14 +10,9 @@
 
 @implementation CUser
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
+- (NSString *)userID
+    {
+    return([self.parameters objectForKey:@"userid"]);
     }
-    
-    return self;
-}
 
 @end

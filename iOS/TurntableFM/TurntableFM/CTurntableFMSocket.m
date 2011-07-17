@@ -13,6 +13,7 @@
 @interface CTurntableFMSocket ()
 @property (readwrite, nonatomic, assign) NSInteger nextMessageID;
 @property (readwrite, nonatomic, retain) NSMutableDictionary *blocksForMessageID;
+@property (readwrite, nonatomic, retain) NSMutableDictionary *handlerForCommands;
 @end
 
 @implementation CTurntableFMSocket
@@ -23,6 +24,7 @@
 
 @synthesize nextMessageID;
 @synthesize blocksForMessageID;
+@synthesize handlerForCommands;
 
 - (id)init
 	{
@@ -37,9 +39,25 @@
         clientID = [theClientID retain];
         
         blocksForMessageID = [[NSMutableDictionary alloc] init];
+        handlerForCommands = [[NSMutableDictionary alloc] init];
 		}
 	return(self);
 	}
+    
+- (void)dealloc
+    {
+    [super dealloc];
+    }
+
+- (void)addHandler:(void (^)(id))inHandler forCommand:(NSString *)inCommand
+    {
+    [self.handlerForCommands setObject:[[inHandler copy] autorelease] forKey:inCommand];    
+    }
+    
+- (void)removeHandler:(void (^)(id))inHandler forCommand:(NSString *)inCommand
+    {
+    [self.handlerForCommands removeObjectForKey:inCommand];    
+    }
 
 - (void)messageReceived:(id)inMessage;
     {
@@ -51,7 +69,7 @@
     NSDictionary *theDictionary = [[CJSONDeserializer deserializer] deserialize:inMessage error:&theError];
     
     NSNumber *theSuccess = [theDictionary objectForKey:@"success"];
-    if ([theSuccess intValue] != 1)
+    if (theSuccess != NULL && [theSuccess intValue] != 1)
         {
         NSLog(@"FAILURE!! %@", theDictionary);
         return;
@@ -64,11 +82,28 @@
         theBlock(theDictionary);
 
         [self.blocksForMessageID removeObjectForKey:theMessageID];
+        return;
         }
     else 
         {
-        NSLog(@"NO HANDLER FOR %@", theDictionary);
+        NSString *theCommand = [theDictionary objectForKey:@"command"];
+        if (theCommand)
+            {
+            void (^theHandler)(id) = [self.handlerForCommands objectForKey:theCommand];
+            if (theHandler)
+                {
+                theHandler(theDictionary);
+                return;
+                }
+            else
+                {
+                NSLog(@"No handler for: %@", theCommand);
+                return;
+                }
+            }
         }
+        
+    NSLog(@"Don't know how to deal with: %@", theDictionary);
     }
 
 - (void)postMessage:(NSString *)inAPI dictionary:(NSDictionary *)inDictionary handler:(void (^)(id inResult))inHandler;

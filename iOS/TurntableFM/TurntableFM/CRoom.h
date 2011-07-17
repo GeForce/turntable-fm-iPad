@@ -10,4 +10,8 @@
 
 @interface CRoom : CTurntableObject
 
+@property (readonly, nonatomic, retain) NSString *roomID;
+@property (readonly, nonatomic, retain) NSMutableDictionary *usersByUserID;
+@property (readwrite, nonatomic, retain) NSMutableArray *DJs;
+
 @end
