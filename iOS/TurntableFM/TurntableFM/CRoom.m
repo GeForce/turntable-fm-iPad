@@ -163,6 +163,7 @@
             [self.chatLog addObject:inParam];
             [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
 
+
             NSLog(@"CHAT COUNT: %d", self.chatLog.count);
             } forCommand:@"speak"];
         

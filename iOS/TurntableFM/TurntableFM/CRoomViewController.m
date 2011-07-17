@@ -171,6 +171,36 @@
             {
             self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@: %@\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary objectForKey:@"text"]];
             [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
+
+            NSString *theUserID = [theSpeakDictionary objectForKey:@"userid"];
+            
+            CUser *theUser = [self.room.usersByUserID objectForKey:theUserID];
+            
+            
+            CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
+
+            CABasicAnimation *thePulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            thePulseAnimation.duration = 0.2;
+            thePulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+            thePulseAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+            thePulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
+
+            [theLayer addAnimation:thePulseAnimation forKey:@"pulse"];
+            
+//            [CATransaction begin];
+//            [CATransaction setAnimationDuration:0.5];
+//            [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+//            [CATransaction setCompletionBlock:^(void) {
+//                [theLayer removeFromSuperlayer];
+//                objc_setAssociatedObject(theUser, "layer", NULL, OBJC_ASSOCIATION_RETAIN);
+//                }];
+//            theLayer.position = (CGPoint){ .x = CGRectGetMaxX(theLayer.superlayer.bounds), .y = theLayer.position.y };
+//
+//            [CATransaction commit];
+
+
+
+
             }
         }
     else if ([keyPath isEqualToString:@"room.users"])
