@@ -57,7 +57,7 @@
 
 - (CGSize)contentSizeForViewInPopover
 {
-	CGFloat height = MIN(44.0 * self.room.users.count, 704.0);
+	CGFloat height = MIN(44.0 * self.room.users.count, 800.0);
 	return CGSizeMake(256.0, height);
 }
 
@@ -73,6 +73,15 @@
 	return self.room.users.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	CUser *user = [self.room.users objectAtIndex:indexPath.row];
+	NSInteger avatarID = user.avatarID;
+	NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
+	UIImage *image = [UIImage imageNamed:imageName];
+	return image.size.height/2;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *Identifier = @"Cell";
@@ -83,6 +92,10 @@
 	
 	CUser *user = [self.room.users objectAtIndex:indexPath.row];
 	cell.textLabel.text = user.name;
+	cell.textLabel.textAlignment = UITextAlignmentRight;
+	NSInteger avatarID = user.avatarID;
+	NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
+	cell.imageView.image = [UIImage imageNamed:imageName];
 	
 	return cell;
 }
