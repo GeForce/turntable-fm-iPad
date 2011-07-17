@@ -13,6 +13,8 @@
 
 @implementation CAvatarLibrary
 
+@synthesize leftArmPointOffsets, torsoPointOffsets, rightArmPointOffsets, legsPointOffsets;
+
 
 static CAvatarLibrary *gSharedInstance = NULL;
 
@@ -31,6 +33,118 @@ static CAvatarLibrary *gSharedInstance = NULL;
     if (self) {
         // Initialization code here.
     }
+	
+	self.leftArmPointOffsets = [[NSMutableArray alloc] initWithObjects:
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 1 long brown hair
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 2
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 3 red fauxhawk pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 4 orange pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 5
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 6 red pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 7 brown hair kid
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 8
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 9
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 10 pin bear
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 11 green bear
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 12 evil drone bear
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 13
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 14
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 15
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 16 evil queen bear
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 17
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 18
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 19
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 20
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 21
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 22
+							   [NSValue valueWithCGPoint:CGPointMake(0, 40)],// 23 gorilla
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 24 red mouse
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 25 unused
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil];
+	
+	self.torsoPointOffsets = [[NSMutableArray alloc] initWithObjects:
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 1 long brown hair
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 2
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 3 red fauxhawk pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 4 orange pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 5
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 6 red pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 7 brown hair kid
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 8
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 9
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 10 pin bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 11 green bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 12 evil drone bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 13
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 14
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 15
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 16 evil queen bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 17
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 18
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 19
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 20
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 21
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 22
+							   [NSValue valueWithCGPoint:CGPointMake(-35, 0)],// 23 gorilla
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 24 red mouse
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 25 unused
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil];
+	
+	self.rightArmPointOffsets = [[NSMutableArray alloc] initWithObjects:
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 1 long brown hair
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 2
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 3 red fauxhawk pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 4 orange pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 5
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 6 red pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 7 brown hair kid
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 8
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 9
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 10 pin bear
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 11 green bear
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 12 evil drone bear
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 13
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 14
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 15
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 16 evil queen bear
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 17
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 18
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 19
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 20
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 21
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 22
+							   [NSValue valueWithCGPoint:CGPointMake(-70, 30)],// 23 gorilla
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 24 red mouse
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)], // 25 unused
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],nil];
+	
+	self.legsPointOffsets = [[NSMutableArray alloc] initWithObjects:
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 1 long brown hair
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 2
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 3 red fauxhawk pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 4 orange pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 5
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 6 red pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 7 brown hair kid
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 8
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 9
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 10 pin bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 11 green bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 12 evil drone bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 13
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 14
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 15
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 16 evil queen bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 17
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 18
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 19
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 20
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 21
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 22
+							   [NSValue valueWithCGPoint:CGPointMake(-3, 0)],// 23 gorilla
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 24 red mouse
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 25 unused
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil];
     
     return self;
 }
@@ -41,7 +155,6 @@ static CAvatarLibrary *gSharedInstance = NULL;
 	NSString *resourcePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/"];
 	NSString *filePath = [resourcePath stringByAppendingString:fileName];
 	
-//	NSLog(@"Resource path: %@", resourcePath);
 	
 	UIImage *headImage = nil;
 	UIImage *torsoImage = nil;	
@@ -51,6 +164,11 @@ static CAvatarLibrary *gSharedInstance = NULL;
 	UIImage *returnImage = nil;
 	
 	CGSize imageSize;
+	CGPoint leftArmOffset = [[leftArmPointOffsets objectAtIndex:inID - 1] CGPointValue];
+	CGPoint torsoOffset = [[torsoPointOffsets objectAtIndex:inID - 1] CGPointValue];
+	CGPoint rightArmOffset = [[rightArmPointOffsets objectAtIndex:inID - 1] CGPointValue];
+	CGPoint legsOffset = [[legsPointOffsets objectAtIndex:inID - 1] CGPointValue];
+
 	
 	BOOL exists;
 	
@@ -87,7 +205,7 @@ static CAvatarLibrary *gSharedInstance = NULL;
 				rightArmImage = [UIImage imageNamed:[fileName stringByAppendingString:@"rightarm.png"]];
 			}
 			
-			imageSize.width += leftArmImage.size.width + rightArmImage.size.width;
+			imageSize.width += leftArmImage.size.width + leftArmOffset.x + rightArmImage.size.width + rightArmOffset.y;
 			
 			// Load leg images if they exist
 			if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"frontlegs.png"]])
@@ -96,7 +214,7 @@ static CAvatarLibrary *gSharedInstance = NULL;
 				legsImage = [UIImage imageNamed:[fileName stringByAppendingString:@"legs.png"]];
 			
 			if (legsImage != nil)
-				imageSize.height += legsImage.size.height;
+				imageSize.height += legsImage.size.height + torsoOffset.y;
 		}
 		else
 		{
@@ -122,7 +240,7 @@ static CAvatarLibrary *gSharedInstance = NULL;
 				rightArmImage = [UIImage imageNamed:[fileName stringByAppendingString:@"rightarm.png"]];
 			}
 			
-			imageSize.width += leftArmImage.size.width + rightArmImage.size.width;
+			imageSize.width += leftArmImage.size.width + leftArmOffset.x + rightArmImage.size.width + rightArmOffset.y;
 			
 			// Load leg images if they exist
 			if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"backlegs.png"]])
@@ -131,17 +249,17 @@ static CAvatarLibrary *gSharedInstance = NULL;
 				legsImage = [UIImage imageNamed:[fileName stringByAppendingString:@"legs.png"]];
 			
 			if (legsImage != nil)
-				imageSize.height += legsImage.size.height;
+				imageSize.height += legsImage.size.height + torsoOffset.y;
 		}
 		
 		UIGraphicsBeginImageContext(imageSize);
-		[leftArmImage drawAtPoint:CGPointMake(0, 0)];
-		[rightArmImage drawAtPoint:CGPointMake(leftArmImage.size.width + torsoImage.size.width - contextOffset * 2, 0)];
+		[leftArmImage drawAtPoint:CGPointMake(leftArmOffset.x, leftArmOffset.y)];
+		[rightArmImage drawAtPoint:CGPointMake(leftArmImage.size.width + torsoImage.size.width + torsoOffset.x + rightArmOffset.x, rightArmOffset.y)];
 		
 		if (legsImage != nil)
-			[legsImage drawAtPoint:CGPointMake(imageSize.width / 2 - torsoImage.size.width / 2 - contextOffset, torsoImage.size.height - contextOffset)];
+			[legsImage drawAtPoint:CGPointMake(imageSize.width / 2 - torsoImage.size.width / 2 + legsOffset.x, torsoImage.size.height + legsOffset.y)];
 		
-		[torsoImage drawAtPoint:CGPointMake(leftArmImage.size.width - contextOffset, 0)];
+		[torsoImage drawAtPoint:CGPointMake(leftArmImage.size.width + torsoOffset.x, torsoOffset.y)];
 		
 		returnImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();

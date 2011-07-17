@@ -101,7 +101,7 @@
 
 	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 	
-	self.neckOffsets = [[[NSMutableArray alloc] initWithObjects:
+	/*self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
 						[NSNumber numberWithInt:30],// 1 long brown hair
 						[NSNumber numberWithInt:30],// 2
 						[NSNumber numberWithInt:40],// 3 red fauxhawk pig tails
@@ -124,10 +124,38 @@
 						[NSNumber numberWithInt:40],// 20
 						[NSNumber numberWithInt:30],// 21
 						[NSNumber numberWithInt:30],// 22
-						[NSNumber numberWithInt:0],// 23 gorilla
+						[NSNumber numberWithInt:-20],// 23 gorilla
 						[NSNumber numberWithInt:55],// 24 red mouse
 						[NSNumber numberWithInt:0], // 25 unused
-						[NSNumber numberWithInt:30],nil] autorelease];
+						[NSNumber numberWithInt:30],nil];*/
+	
+	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 1 long brown hair
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 2
+						[NSValue valueWithCGPoint:CGPointMake(0, -40)],// 3 red fauxhawk pig tails
+						[NSValue valueWithCGPoint:CGPointMake(0, -15)],// 4 orange pig tails
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 5
+						[NSValue valueWithCGPoint:CGPointMake(0, -10)],// 6 red pig tails
+						[NSValue valueWithCGPoint:CGPointMake(0, -15)],// 7 brown hair kid
+						[NSValue valueWithCGPoint:CGPointMake(0, -20)],// 8
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 9
+						[NSValue valueWithCGPoint:CGPointMake(0, -50)],// 10 pin bear
+						[NSValue valueWithCGPoint:CGPointMake(0, -15)],// 11 green bear
+						[NSValue valueWithCGPoint:CGPointMake(0, -25)],// 12 evil drone bear
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 13
+						[NSValue valueWithCGPoint:CGPointMake(0, -20)],// 14
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 15
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 16 evil queen bear
+						[NSValue valueWithCGPoint:CGPointMake(0, -20)],// 17
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 18
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 19
+						[NSValue valueWithCGPoint:CGPointMake(0, -40)],// 20
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 21
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 22
+						[NSValue valueWithCGPoint:CGPointMake(63, 50)],// 23 gorilla
+						[NSValue valueWithCGPoint:CGPointMake(0, -55)],// 24 red mouse
+						[NSValue valueWithCGPoint:CGPointMake(0, 0)], // 25 unused
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)],nil];
 
     self.title = self.room.name;
 	
@@ -211,7 +239,8 @@
         {
 
 		NSInteger avatarID = inUser.avatarID;
-		NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
+			CGPoint neckOffset = [[neckOffsets objectAtIndex:avatarID - 1] CGPointValue];
+		//NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
 		CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
 		UIImage *headImage = [library imageForAvatar:inUser.avatarID head:YES front:NO];
 		UIImage *bodyImage = [library imageForAvatar:inUser.avatarID head:NO front:NO];
@@ -221,7 +250,7 @@
 		CALayer *bodyImageLayer = [CALayer layer];
 		bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
 		bodyImageLayer.contents = (id)bodyImage.CGImage;
-		bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height - neck };
+		bodyImageLayer.position = (CGPoint){ .x = neckOffset.x, .y = headImage.size.height + neckOffset.y };
 		[theLayer addSublayer:bodyImageLayer];
             
 		CALayer *headImageLayer = [CALayer layer];
