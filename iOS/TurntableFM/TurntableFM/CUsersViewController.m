@@ -75,6 +75,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	// We really should be reloading the table when people leave or join, but that'd take more work
+	// so here's a hack to keep it from crashing
 	NSInteger row = indexPath.row;
 	if (row >= self.room.users.count) {
 		return 0.0;
@@ -97,6 +99,8 @@
 		cell.textLabel.textAlignment = UITextAlignmentRight;
 	}
 	
+	// We really should be reloading the table when people leave or join, but that'd take more work
+	// so here's a hack to keep it from crashing
 	NSInteger row = indexPath.row;
 	if (row >= self.room.users.count) {
 		cell.textLabel.text = nil;
