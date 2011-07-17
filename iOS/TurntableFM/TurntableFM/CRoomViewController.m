@@ -101,46 +101,18 @@
 
 	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 	
-	/*self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
-						[NSNumber numberWithInt:30],// 1 long brown hair
-						[NSNumber numberWithInt:30],// 2
-						[NSNumber numberWithInt:40],// 3 red fauxhawk pig tails
-						[NSNumber numberWithInt:15],// 4 orange pig tails
-						[NSNumber numberWithInt:30],// 5
-						[NSNumber numberWithInt:10],// 6 red pig tails
-						[NSNumber numberWithInt:15],// 7 brown hair kid
-						[NSNumber numberWithInt:20],// 8
-						[NSNumber numberWithInt:30],// 9
-						[NSNumber numberWithInt:50],// 10 pin bear
-						[NSNumber numberWithInt:15],// 11 green bear
-						[NSNumber numberWithInt:25],// 12 evil drone bear
-						[NSNumber numberWithInt:30],// 13
-						[NSNumber numberWithInt:20],// 14
-						[NSNumber numberWithInt:30],// 15
-						[NSNumber numberWithInt:30],// 16 evil queen bear
-						[NSNumber numberWithInt:20],// 17
-						[NSNumber numberWithInt:30],// 18
-						[NSNumber numberWithInt:30],// 19
-						[NSNumber numberWithInt:40],// 20
-						[NSNumber numberWithInt:30],// 21
-						[NSNumber numberWithInt:30],// 22
-						[NSNumber numberWithInt:-20],// 23 gorilla
-						[NSNumber numberWithInt:55],// 24 red mouse
-						[NSNumber numberWithInt:0], // 25 unused
-						[NSNumber numberWithInt:30],nil];*/
-	
 	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
 						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 1 long brown hair
 						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 2
-						[NSValue valueWithCGPoint:CGPointMake(0, -40)],// 3 red fauxhawk pig tails
+						[NSValue valueWithCGPoint:CGPointMake(0, -50)],// 3 red fauxhawk pig tails
 						[NSValue valueWithCGPoint:CGPointMake(0, -15)],// 4 orange pig tails
 						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 5
 						[NSValue valueWithCGPoint:CGPointMake(0, -10)],// 6 red pig tails
-						[NSValue valueWithCGPoint:CGPointMake(0, -15)],// 7 brown hair kid
+						[NSValue valueWithCGPoint:CGPointMake(0, -20)],// 7 brown hair kid
 						[NSValue valueWithCGPoint:CGPointMake(0, -20)],// 8
 						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 9
 						[NSValue valueWithCGPoint:CGPointMake(0, -50)],// 10 pin bear
-						[NSValue valueWithCGPoint:CGPointMake(0, -15)],// 11 green bear
+						[NSValue valueWithCGPoint:CGPointMake(0, -25)],// 11 green bear
 						[NSValue valueWithCGPoint:CGPointMake(0, -25)],// 12 evil drone bear
 						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 13
 						[NSValue valueWithCGPoint:CGPointMake(0, -20)],// 14
@@ -164,15 +136,6 @@
 		self.songButton = [[[UIBarButtonItem alloc] initWithTitle:@"Queue" style:UIBarButtonItemStyleBordered target:self action:@selector(launchQueuePopoverController)] autorelease];
 		[self.navigationItem setRightBarButtonItem:songButton];
 	}
-	
-	/*for (int i = 1; i < 25; i++)
-	{
-		CAvatarLibrary *lib = [[CAvatarLibrary alloc] init];
-		UIImage *image = [lib imageForAvatar:i head:NO front:NO];
-		UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(200, 200 + i * 100, image.size.width, image.size.height)];
-		[avatar setImage:image];
-		[self.view addSubview:avatar];
-	}*/
 }
 
 - (void)viewDidUnload
@@ -244,7 +207,6 @@
 
 		NSInteger avatarID = inUser.avatarID;
 			CGPoint neckOffset = [[neckOffsets objectAtIndex:avatarID - 1] CGPointValue];
-		//NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
 		CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
 		UIImage *headImage = [library imageForAvatar:inUser.avatarID head:YES front:NO];
 		UIImage *bodyImage = [library imageForAvatar:inUser.avatarID head:NO front:NO];
