@@ -13,7 +13,7 @@
 #import <objc/runtime.h>
 
 #import "CUsersViewController.h"
-#import "CSongViewController.h"
+#import "CQueueViewController.h"
 #import "CTurntableFMModel.h"
 #import "CUser.h"
 #import "CRoom.h"
@@ -24,9 +24,11 @@
 @interface CRoomViewController () <UITextFieldDelegate>
 
 @property (nonatomic, retain) UIPopoverController *usersPopoverController;
-@property (nonatomic, retain) UIPopoverController *songPopoverController;
+@property (nonatomic, retain) UIPopoverController *queuePopoverController;
 @property (nonatomic, retain) CUsersViewController *usersViewController;
-@property (nonatomic, retain) CSongViewController *songViewController;
+@property (nonatomic, retain) CQueueViewController *queueViewController;
+
+- (void)launchQueuePopoverController;
 
 @end
 
@@ -36,8 +38,8 @@
 
 @synthesize room;
 @synthesize usersButton, songButton;
-@synthesize usersPopoverController, songPopoverController;
-@synthesize usersViewController, songViewController;
+@synthesize usersPopoverController, queuePopoverController;
+@synthesize usersViewController, queueViewController;
 @synthesize avatarView;
 @synthesize chatTextView;
 @synthesize speakTextField;
@@ -72,9 +74,9 @@
     room = NULL;
     [usersButton release];
     [usersPopoverController release];
-	[songPopoverController release];
+	[queuePopoverController release];
 	[usersViewController release];
-	[songViewController release];
+	[queueViewController release];
 
 	[super dealloc];
     }
@@ -99,7 +101,7 @@
 	
 	if (songButton == nil)
 	{
-		self.songButton = [[UIBarButtonItem alloc] initWithTitle:@"Songs" style:UIBarButtonItemStyleBordered target:self action:@selector(launchSongPopoverViewController)];
+		self.songButton = [[[UIBarButtonItem alloc] initWithTitle:@"Queue" style:UIBarButtonItemStyleBordered target:self action:@selector(launchQueuePopoverController)] autorelease];
 		[self.navigationItem setRightBarButtonItem:songButton];
 	}
 	
@@ -124,32 +126,17 @@
 	return YES;
 }
 
-- (void)launchSongPopoverController
+- (void)launchQueuePopoverController
 {
-	if (songPopoverController == nil) 
+	if (queuePopoverController == nil) 
 	{
-		[self setSongViewController:[[CSongViewController alloc] initWithStyle:UITableViewStylePlain]];
-		[self setSongPopoverController:[[UIPopoverController alloc] initWithContentViewController:songViewController]];
-		[songPopoverController setDelegate:self];
+		[self setQueueViewController:[[[CQueueViewController alloc] initWithNibName:nil bundle:nil] autorelease]];
+		[self setQueuePopoverController:[[[UIPopoverController alloc] initWithContentViewController:queueViewController] autorelease]];
+		[queuePopoverController setDelegate:self];
 		CGSize popOverSize = CGSizeMake(240, 500);
-		[songPopoverController setPopoverContentSize:popOverSize];
+		[queuePopoverController setPopoverContentSize:popOverSize];
 	}
-	[songPopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-}
-
-- (void)launchChatPopoverController
-{
-	/*
-	if (chatPopoverController == nil) 
-	{
-		[self setChatViewController:[[CChatViewController alloc] initWithStyle:UITableViewStylePlain]];
-		[self setChatPopoverController:[[UIPopoverController alloc] initWithContentViewController:chatViewController]];
-		[chatPopoverController setDelegate:self];
-		CGSize popOverSize = CGSizeMake(240, 500);
-		[chatPopoverController setPopoverContentSize:popOverSize];
-	}
-	[chatPopoverController presentPopoverFromBarButtonItem:chatButton permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-	*/
+	[queuePopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (IBAction)voteAwesome
