@@ -130,6 +130,7 @@
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		[[CTurntableFMModel sharedInstance] removeSongFromPlaylist:indexPath.row handler:^(void) {
+			[self.songs removeObjectAtIndex:indexPath.row];
 			[self.tableView reloadData];
 		}];
 	}
