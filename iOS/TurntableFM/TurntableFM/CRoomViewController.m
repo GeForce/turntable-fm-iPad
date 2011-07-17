@@ -34,6 +34,8 @@
 
 @implementation CRoomViewController
 
+#define Neck 30
+
 @synthesize room;
 @synthesize usersButton, songButton;
 @synthesize usersPopoverController, songPopoverController;
@@ -42,6 +44,7 @@
 @synthesize chatTextView;
 @synthesize speakTextField;
 @synthesize marqueeView;
+@synthesize neckOffsets;
 
 - (id)initWithRoom:(CRoom *)inRoom;
     {
@@ -75,6 +78,7 @@
 	[songPopoverController release];
 	[usersViewController release];
 	[songViewController release];
+	[neckOffsets release];
 
 	[super dealloc];
     }
@@ -94,6 +98,34 @@
     [super viewDidLoad];
 
     self.marqueeView.font = [UIFont boldSystemFontOfSize:30];
+	
+	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
+						[NSNumber numberWithInt:30],// 1
+						[NSNumber numberWithInt:30],// 2
+						[NSNumber numberWithInt:60],// 3
+						[NSNumber numberWithInt:10],// 4 orange pig tails
+						[NSNumber numberWithInt:30],// 5
+						[NSNumber numberWithInt:30],// 6
+						[NSNumber numberWithInt:15],// 7 brown hair kid
+						[NSNumber numberWithInt:20],// 8
+						[NSNumber numberWithInt:30],// 9
+						[NSNumber numberWithInt:50],// 10 pin bear
+						[NSNumber numberWithInt:30],// 11
+						[NSNumber numberWithInt:30],// 12
+						[NSNumber numberWithInt:30],// 13
+						[NSNumber numberWithInt:20],// 14
+						[NSNumber numberWithInt:30],// 15
+						[NSNumber numberWithInt:20],// 16
+						[NSNumber numberWithInt:20],// 17
+						[NSNumber numberWithInt:30],// 18
+						[NSNumber numberWithInt:30],// 19
+						[NSNumber numberWithInt:40],// 20
+						[NSNumber numberWithInt:30],// 21
+						[NSNumber numberWithInt:30],// 22
+						[NSNumber numberWithInt:30],// 23
+						[NSNumber numberWithInt:30],// 24
+						[NSNumber numberWithInt:0], // 25 unused
+						[NSNumber numberWithInt:30],nil];
 
     self.title = self.room.name;
 	
@@ -228,6 +260,8 @@
 
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
+				NSInteger avatarID = theUser.avatarID;
+				NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
 				CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
 				UIImage *headImage = [library imageForAvatar:theUser.avatarID head:YES front:NO];
 				UIImage *bodyImage = [library imageForAvatar:theUser.avatarID head:NO front:NO];
@@ -235,19 +269,20 @@
 				CALayer *theLayer = [CALayer layer];
 				theLayer.bounds = (CGRect) { .size = 
 					(headImage.size.width > bodyImage.size.width) ? headImage.size.width : bodyImage.size.width,
-					headImage.size.height + bodyImage.size.height };
+					headImage.size.height + bodyImage.size.height - neck };
 					theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
             
+				CALayer *bodyImageLayer = [CALayer layer];
+				bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
+				bodyImageLayer.contents = (id)bodyImage.CGImage;
+				bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height - neck };
+				[theLayer addSublayer:bodyImageLayer];
+				
 				CALayer *headImageLayer = [CALayer layer];
 				headImageLayer.bounds = (CGRect){ .size = headImage.size };
 				headImageLayer.contents = (id)headImage.CGImage;
 				[theLayer addSublayer:headImageLayer];
 				
-				CALayer *bodyImageLayer = [CALayer layer];
-				bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
-				bodyImageLayer.contents = (id)bodyImage.CGImage;
-				bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height };
-				[theLayer addSublayer:bodyImageLayer];
             /*theImageLayer.bounds = (CGRect){ .size = { 130, 130 } };
             NSString *theImageName = [NSString stringWithFormat:@"avatars_%d_fullfront.png", theUser.avatarID];
             theImageLayer.contents = (id)[UIImage imageNamed:theImageName].CGImage;
