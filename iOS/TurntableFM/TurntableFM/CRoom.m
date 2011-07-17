@@ -77,7 +77,10 @@
             
         for (NSString *theDJUserID in [inResult valueForKeyPath:@"room.metadata.djs"])
             {
+            NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.DJs.count];
+            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"DJs"];
             [self.DJs addObject:[self.usersByUserID objectForKey:theDJUserID]];
+            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"DJs"];
             }
         
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
@@ -94,15 +97,16 @@
                 }
             } forCommand:@"registered"];
 
+        // USER DEREGISTRER ####################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
-
                 CUser *theUser = [self.usersByUserID objectForKey:theUserID];
 
                 NSInteger theIndex = [self.users indexOfObject:theUser];
                 NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:theIndex];
+
                 [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
                 [self.users removeObjectAtIndex:theIndex];
                 [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
@@ -114,28 +118,40 @@
                 }
             } forCommand:@"deregistered"];
 
+        // ADD DJ ##############################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
-                [self.DJs addObject:[self.usersByUserID objectForKey:theUserID]];
+                NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.DJs.count];
+                CUser *theUser = [self.usersByUserID objectForKey:theUserID];
+                [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"DJs"];
+                [self.DJs addObject:theUser];
+                [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"DJs"];
                 }
             } forCommand:@"add_dj"];
 
+        // REM DJ ##############################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
+                CUser *theUser = [self.usersByUserID objectForKey:theUserID];
                 
-                [self.DJs removeObjectAtIndex:[self.DJs indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-                    return([[obj userID] isEqualToString:theUserID]);
-                    }]];
-                }
+                NSInteger theIndex = [self.DJs indexOfObject:theUser];
+                if (theIndex != NSNotFound)
+                    {
+                    NSIndexSet *theIndexes = 
+                    [NSIndexSet indexSetWithIndex:theIndex];
+                    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"DJs"];
+                    [self.DJs removeObjectAtIndex:theIndex];
+                    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"DJs"];
+                    }
+                    }
             } forCommand:@"rem_dj"];
 
+        // NEW SONG ############################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-            NSLog(@"OLD SONG: %@", self.currentSong.name);
-
             self.parameters = [inParam objectForKey:@"room"];
             NSDictionary *theSongParameters = [self.parameters valueForKeyPath:@"metadata.current_song"];
             if (theSongParameters)

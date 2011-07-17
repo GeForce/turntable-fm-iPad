@@ -36,14 +36,18 @@
 
 @implementation CRoomViewController
 
+#define Neck 30
+
 @synthesize room;
 @synthesize usersButton, songButton;
 @synthesize usersPopoverController, queuePopoverController;
 @synthesize usersViewController, queueViewController;
 @synthesize avatarView;
+@synthesize DJView;
 @synthesize chatTextView;
 @synthesize speakTextField;
 @synthesize marqueeView;
+@synthesize neckOffsets;
 
 - (id)initWithRoom:(CRoom *)inRoom;
     {
@@ -52,12 +56,10 @@
         room = [inRoom retain];
         [room subscribe];
         
-        NSLog(@"%@", room.currentSong.parameters);
-        
         [self addObserver:self forKeyPath:@"room.currentSong" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
-    
+        [self addObserver:self forKeyPath:@"room.DJs" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL]            ;
         }
     return self;
     }
@@ -77,6 +79,7 @@
 	[queuePopoverController release];
 	[usersViewController release];
 	[queueViewController release];
+	[neckOffsets release];
 
 	[super dealloc];
     }
@@ -95,7 +98,35 @@
 {
     [super viewDidLoad];
 
-    self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
+	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
+	
+	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
+						[NSNumber numberWithInt:30],// 1 long brown hair
+						[NSNumber numberWithInt:30],// 2
+						[NSNumber numberWithInt:40],// 3 red fauxhawk pig tails
+						[NSNumber numberWithInt:15],// 4 orange pig tails
+						[NSNumber numberWithInt:30],// 5
+						[NSNumber numberWithInt:10],// 6 red pig tails
+						[NSNumber numberWithInt:15],// 7 brown hair kid
+						[NSNumber numberWithInt:20],// 8
+						[NSNumber numberWithInt:30],// 9
+						[NSNumber numberWithInt:50],// 10 pin bear
+						[NSNumber numberWithInt:15],// 11 green bear
+						[NSNumber numberWithInt:25],// 12 evil drone bear
+						[NSNumber numberWithInt:30],// 13
+						[NSNumber numberWithInt:20],// 14
+						[NSNumber numberWithInt:30],// 15
+						[NSNumber numberWithInt:30],// 16 evil queen bear
+						[NSNumber numberWithInt:20],// 17
+						[NSNumber numberWithInt:30],// 18
+						[NSNumber numberWithInt:30],// 19
+						[NSNumber numberWithInt:40],// 20
+						[NSNumber numberWithInt:30],// 21
+						[NSNumber numberWithInt:30],// 22
+						[NSNumber numberWithInt:0],// 23 gorilla
+						[NSNumber numberWithInt:55],// 24 red mouse
+						[NSNumber numberWithInt:0], // 25 unused
+						[NSNumber numberWithInt:30],nil];
 
     self.title = self.room.name;
 	
@@ -160,6 +191,97 @@
 
 #pragma mark -
 
+- (CALayer *)layerForUser:(CUser *)inUser
+    {
+    CALayer *theLayer = objc_getAssociatedObject(inUser, "layer");
+    if (theLayer == NULL)   
+        {
+
+		NSInteger avatarID = inUser.avatarID;
+		NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
+		CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
+		UIImage *headImage = [library imageForAvatar:inUser.avatarID head:YES front:NO];
+		UIImage *bodyImage = [library imageForAvatar:inUser.avatarID head:NO front:NO];
+				
+		theLayer = [CALayer layer];
+            
+		CALayer *bodyImageLayer = [CALayer layer];
+		bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
+		bodyImageLayer.contents = (id)bodyImage.CGImage;
+		bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height - neck };
+		[theLayer addSublayer:bodyImageLayer];
+				
+		CALayer *headImageLayer = [CALayer layer];
+		headImageLayer.bounds = (CGRect){ .size = headImage.size };
+		headImageLayer.contents = (id)headImage.CGImage;
+		[theLayer addSublayer:headImageLayer];
+
+        objc_setAssociatedObject(inUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
+        }
+    
+    return(theLayer);
+    }
+
+- (void)DJUser:(CUser *)inUser
+    {
+    NSLog(@"DJUSER");
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    
+    CGRect theDJViewBounds = self.DJView.layer.bounds;
+    
+    CALayer *theLayer = [self layerForUser:inUser];
+
+    for (CALayer *theSublayer in theLayer.sublayers)
+        {
+        theSublayer.borderWidth = 1.0;
+        theSublayer.borderColor = [UIColor greenColor].CGColor;
+        }
+
+    NSInteger theIndex = [self.room.DJs indexOfObject:inUser];
+    
+    theLayer.position = (CGPoint){ .x = CGRectGetMaxX(theDJViewBounds) * (theIndex / 5.0), .y = CGRectGetMidY(theDJViewBounds) };
+    
+    [self.DJView.layer addSublayer:theLayer];
+    
+    [CATransaction commit];
+    }
+
+- (void)UnDJUser:(CUser *)inUser
+    {
+    CGRect theDJViewBounds = self.DJView.layer.bounds;
+    CGRect theAvatarViewBounds = self.avatarView.layer.bounds;
+
+
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+
+    for (CUser *theDJ in self.room.DJs)
+        {
+        NSInteger theIndex = [self.room.DJs indexOfObject:theDJ];
+        CALayer *theDJLayer = [self layerForUser:theDJ];
+        theDJLayer.position = (CGPoint){ .x = CGRectGetMaxX(theDJViewBounds) * (theIndex / 5.0), .y = CGRectGetMidY(theDJViewBounds) };
+        }
+
+    CALayer *theLayer = [self layerForUser:inUser];
+
+    for (CALayer *theSublayer in theLayer.sublayers)
+        {
+        theSublayer.borderWidth = 1.0;
+        theSublayer.borderColor = [UIColor redColor].CGColor;
+        }
+
+
+    theLayer.position = (CGPoint){ .x = arc4random() % (int)theAvatarViewBounds.size.width, .y = arc4random() % (int)theAvatarViewBounds.size.height };
+    [self.avatarView.layer addSublayer:theLayer];
+
+    [CATransaction commit];
+
+    }
+
+#pragma mark -
+
 - (void)keyboardWillShowNotification:(NSNotification *)inNotification
     {
     self.speakTextField.inputAccessoryView = self.speakTextField;
@@ -173,10 +295,21 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
     {
-    if ([keyPath isEqualToString:@"room.currentSong"])
+    if ([keyPath isEqualToString:@"room.DJs"])
         {
-        NSLog(@"%@", change);
+        for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
+            {
+            [self DJUser:theUser];
+            }
+
+        for (CUser *theUser in [change objectForKey:NSKeyValueChangeOldKey])
+            {
+            [self UnDJUser:theUser];
+            }
         
+        }
+    else if ([keyPath isEqualToString:@"room.currentSong"])
+        {
         CSong *theSong = [change objectForKey:NSKeyValueChangeNewKey];
         if ((id)theSong == [NSNull null])
             {
@@ -195,8 +328,7 @@
             
             CUser *theUser = [self.room.usersByUserID objectForKey:theUserID];
             
-            
-            CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
+            CALayer *theLayer = [self layerForUser:theUser];
 
             CABasicAnimation *thePulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
             thePulseAnimation.duration = 0.2;
@@ -209,53 +341,21 @@
         }
     else if ([keyPath isEqualToString:@"room.users"])
         {
-        NSMutableArray *theNewLayers = [NSMutableArray array];
+        NSMutableArray *theNewUsers = [NSMutableArray array];
 
         CGRect theBounds = self.avatarView.layer.bounds;
 
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
-				CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
-				UIImage *headImage = [library imageForAvatar:theUser.avatarID head:YES front:NO];
-				UIImage *bodyImage = [library imageForAvatar:theUser.avatarID head:NO front:NO];
-				
-				CALayer *theLayer = [CALayer layer];
-				theLayer.bounds = (CGRect) { .size = 
-					(headImage.size.width > bodyImage.size.width) ? headImage.size.width : bodyImage.size.width,
-					headImage.size.height + bodyImage.size.height };
-					theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
-            
-				CALayer *headImageLayer = [CALayer layer];
-				headImageLayer.bounds = (CGRect){ .size = headImage.size };
-				headImageLayer.contents = (id)headImage.CGImage;
-				[theLayer addSublayer:headImageLayer];
-				
-				CALayer *bodyImageLayer = [CALayer layer];
-				bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
-				bodyImageLayer.contents = (id)bodyImage.CGImage;
-				bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height };
-				[theLayer addSublayer:bodyImageLayer];
-            /*theImageLayer.bounds = (CGRect){ .size = { 130, 130 } };
-            NSString *theImageName = [NSString stringWithFormat:@"avatars_%d_fullfront.png", theUser.avatarID];
-            theImageLayer.contents = (id)[UIImage imageNamed:theImageName].CGImage;
-            [theLayer addSublayer:theImageLayer];*/			
-            
-            
-//            CATextLayer *theTextLayer = [CATextLayer layer];
-//            theTextLayer.bounds = (CGRect){ .size = {64, 64 } };
-//            theTextLayer.borderColor = [UIColor colorWithHue:(CGFloat)theUser.avatarID / 26.0 saturation:1.0 brightness:1.0 alpha:1.0].CGColor;
-//            theTextLayer.borderWidth = 1.0;
-//            theTextLayer.string = theUser.name;
-//            [theLayer addSublayer:theTextLayer];
-
-            [self.avatarView.layer addSublayer:theLayer];
-            
-            objc_setAssociatedObject(theUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
-            
-            [theNewLayers addObject:theLayer];
+            if ([self.room.DJs containsObject:theUser] == NO)
+                {
+                CALayer *theLayer = [self layerForUser:theUser];
+                [self.avatarView.layer addSublayer:theLayer];
+                [theNewUsers addObject:theUser];
+                }
             }
 
-        if (theNewLayers.count > 0)
+        if (theNewUsers.count > 0)
             {
             double delayInSeconds = 0.1;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
@@ -264,9 +364,13 @@
                 [CATransaction setAnimationDuration:0.5];
                 [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
 
-                for (CALayer *theLayer in theNewLayers)
+                for (CUser *theUser in theNewUsers)
                     {
-                    theLayer.position = (CGPoint){ .x = arc4random() % (int)theBounds.size.width, .y = arc4random() % (int)theBounds.size.height };
+                    if ([self.room.DJs containsObject:theUser] == NO)
+                        {
+                        CALayer *theLayer = [self layerForUser:theUser];
+                        theLayer.position = (CGPoint){ .x = arc4random() % (int)theBounds.size.width, .y = arc4random() % (int)theBounds.size.height };
+                        }
                     }
 
                 [CATransaction commit];
@@ -276,7 +380,7 @@
 
         for (CUser *theUser in [change objectForKey:@"old"])
             {
-            CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
+            CALayer *theLayer = [self layerForUser:theUser];
             
             [CATransaction begin];
             [CATransaction setAnimationDuration:0.5];

@@ -20,6 +20,7 @@
 @property (readonly, nonatomic, retain) NSDictionary *userInfo;
 @property (readonly, nonatomic, retain) NSArray *rooms;
 @property (readonly, nonatomic, retain) CRoom *room;
+@property (readonly, nonatomic, retain) NSArray *songQueue;
 @property (readonly, nonatomic) BOOL playing;
 
 + (CTurntableFMModel *)sharedInstance;
@@ -36,5 +37,7 @@
 
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 - (void)stopSong;
+
+- (void)fetchPlaylist:(void (^)(void))inHandler;
 
 @end
