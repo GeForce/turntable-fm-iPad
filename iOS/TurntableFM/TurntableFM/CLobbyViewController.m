@@ -97,7 +97,7 @@
 	NSIndexPath *path = [self.tableView indexPathForSelectedRow];
 	if (path != nil) {
 		CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
-		[model unregisterWithRoom:self.roomDescription handler:^(void) {
+		[model unregisterWithRoom:self.roomDescription handler:^(CRoom *inRoom) {
 			[self.tableView deselectRowAtIndexPath:path animated:YES];
 			UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
 			cell.accessoryView = nil;
@@ -166,8 +166,8 @@
 		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 		cell.accessoryView = spinner;
 		[spinner release];
-		[[CTurntableFMModel sharedInstance] registerWithRoom:self.roomDescription handler:^(void) {
-			CRoomViewController *rvc = [[CRoomViewController alloc] initWithNibName:nil bundle:nil];
+		[[CTurntableFMModel sharedInstance] registerWithRoom:self.roomDescription handler:^(CRoom *inRoom) {
+			CRoomViewController *rvc = [[CRoomViewController alloc] initWithRoom:inRoom];
 			[self.navigationController pushViewController:rvc animated:YES];
 			[rvc release];
 		}];

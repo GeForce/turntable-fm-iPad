@@ -15,8 +15,7 @@
 @property (readwrite, nonatomic, retain) NSString *userAuth;
 
 - (void)addHandler:(void (^)(id))inHandler forCommand:(NSString *)inCommand;
-- (void)removeHandler:(void (^)(id))inHandler forCommand:(NSString *)inCommand;
-
+- (void)removeHandlerForCommand:(NSString *)inCommand;
 
 - (void)postMessage:(NSString *)inAPI dictionary:(NSDictionary *)inDictionary handler:(void (^)(id inResult))inHandler;
 

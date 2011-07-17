@@ -85,6 +85,10 @@
 		453343E113D24002005AE115 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343E013D24002005AE115 /* AVFoundation.framework */; };
 		453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343EB13D24EE3005AE115 /* CoreMedia.framework */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
+		459F844913D2CFE6008A3C6A /* CSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F844813D2CFE5008A3C6A /* CSong.m */; };
+		459F844C13D2D3D9008A3C6A /* CMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F844B13D2D3D9008A3C6A /* CMarqueeView.m */; };
+		459F844E13D2D506008A3C6A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459F844D13D2D506008A3C6A /* CoreText.framework */; };
+		459F845113D2DD08008A3C6A /* CAAnimation_BlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F845013D2DD08008A3C6A /* CAAnimation_BlockExtensions.m */; };
 		45AC30D713D25D690082DB2F /* CRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30D613D25D690082DB2F /* CRoom.m */; };
 		45AC30DA13D25D740082DB2F /* CUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30D913D25D740082DB2F /* CUser.m */; };
 		45AC30DD13D25DC00082DB2F /* CTurntableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30DC13D25DC00082DB2F /* CTurntableObject.m */; };
@@ -529,6 +533,13 @@
 		453343EB13D24EE3005AE115 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
+		459F844713D2CFE5008A3C6A /* CSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSong.h; sourceTree = "<group>"; };
+		459F844813D2CFE5008A3C6A /* CSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSong.m; sourceTree = "<group>"; };
+		459F844A13D2D3D9008A3C6A /* CMarqueeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMarqueeView.h; sourceTree = "<group>"; };
+		459F844B13D2D3D9008A3C6A /* CMarqueeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMarqueeView.m; sourceTree = "<group>"; };
+		459F844D13D2D506008A3C6A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		459F844F13D2DCF6008A3C6A /* CAAnimation_BlockExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAnimation_BlockExtensions.h; sourceTree = "<group>"; };
+		459F845013D2DD08008A3C6A /* CAAnimation_BlockExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAAnimation_BlockExtensions.m; sourceTree = "<group>"; };
 		45AC30D513D25D690082DB2F /* CRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoom.h; sourceTree = "<group>"; };
 		45AC30D613D25D690082DB2F /* CRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoom.m; sourceTree = "<group>"; };
 		45AC30D813D25D740082DB2F /* CUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUser.h; sourceTree = "<group>"; };
@@ -835,6 +846,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459F844E13D2D506008A3C6A /* CoreText.framework in Frameworks */,
 				45BBC3DC13D2AFDC00DA64A6 /* QuartzCore.framework in Frameworks */,
 				453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */,
 				451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */,
@@ -853,7 +865,7 @@
 		4506235313D117F800086997 = {
 			isa = PBXGroup;
 			children = (
-				45BBC3DB13D2AFDC00DA64A6 /* QuartzCore.framework */,
+				459F844D13D2D506008A3C6A /* CoreText.framework */,
 				45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
@@ -874,6 +886,7 @@
 		4506236113D117F800086997 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45BBC3DB13D2AFDC00DA64A6 /* QuartzCore.framework */,
 				453343EB13D24EE3005AE115 /* CoreMedia.framework */,
 				453343E013D24002005AE115 /* AVFoundation.framework */,
 				451D468E13D1340F00530A57 /* CFNetwork.framework */,
@@ -892,22 +905,7 @@
 			children = (
 				4506237113D117F800086997 /* CApplicationController.h */,
 				4506237213D117F800086997 /* CApplicationController.m */,
-				451D469313D157EA00530A57 /* CWebSocket.h */,
-				451D469413D157EA00530A57 /* CWebSocket.m */,
-				45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */,
-				45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */,
-				45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */,
-				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
-				45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */,
-				45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */,
-				45AC30DB13D25DC00082DB2F /* CTurntableObject.h */,
-				45AC30DC13D25DC00082DB2F /* CTurntableObject.m */,
-				45AC30D513D25D690082DB2F /* CRoom.h */,
-				45AC30D613D25D690082DB2F /* CRoom.m */,
-				45AC30D813D25D740082DB2F /* CUser.h */,
-				45AC30D913D25D740082DB2F /* CUser.m */,
-				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
-				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
+				459F844613D2CA34008A3C6A /* Model */,
 				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
 				979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */,
 				97ABD55713D212010058B68E /* CLobbyViewController.h */,
@@ -938,6 +936,7 @@
 				970AF76613D2DC0C00AA9067 /* CUsersViewController.h */,
 				970AF76713D2DC0C00AA9067 /* CUsersViewController.m */,
 				970AF76813D2DC0C00AA9067 /* CUsersViewController.xib */,
+				459F844413D2CA0D008A3C6A /* Support */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -1255,6 +1254,46 @@
 				451D462F13D133B700530A57 /* CNumberToStringValueTransformer.m */,
 			);
 			path = ValueTransformers;
+			sourceTree = "<group>";
+		};
+		459F844413D2CA0D008A3C6A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				459F844F13D2DCF6008A3C6A /* CAAnimation_BlockExtensions.h */,
+				459F845013D2DD08008A3C6A /* CAAnimation_BlockExtensions.m */,
+				459F844A13D2D3D9008A3C6A /* CMarqueeView.h */,
+				459F844B13D2D3D9008A3C6A /* CMarqueeView.m */,
+				451D469313D157EA00530A57 /* CWebSocket.h */,
+				451D469413D157EA00530A57 /* CWebSocket.m */,
+				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
+				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
+				45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */,
+				45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */,
+				45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */,
+				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
+				45BBC1C013D275C600DA64A6 /* CAvatarLibrary.h */,
+				45BBC1C113D275C600DA64A6 /* CAvatarLibrary.m */,
+				752937F813D2517700A328B4 /* CAvatar.h */,
+				752937F913D2517700A328B4 /* CAvatar.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		459F844613D2CA34008A3C6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */,
+				45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */,
+				45AC30DB13D25DC00082DB2F /* CTurntableObject.h */,
+				45AC30DC13D25DC00082DB2F /* CTurntableObject.m */,
+				45AC30D513D25D690082DB2F /* CRoom.h */,
+				45AC30D613D25D690082DB2F /* CRoom.m */,
+				45AC30D813D25D740082DB2F /* CUser.h */,
+				45AC30D913D25D740082DB2F /* CUser.m */,
+				459F844713D2CFE5008A3C6A /* CSong.h */,
+				459F844813D2CFE5008A3C6A /* CSong.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */ = {
@@ -1933,6 +1972,9 @@
 				979BB81913D2AC2D00D16D03 /* CFriendsViewController.m in Sources */,
 				970AF76313D2D25000AA9067 /* CSideViewController.m in Sources */,
 				970AF76913D2DC0D00AA9067 /* CUsersViewController.m in Sources */,
+				459F844913D2CFE6008A3C6A /* CSong.m in Sources */,
+				459F844C13D2D3D9008A3C6A /* CMarqueeView.m in Sources */,
+				459F845113D2DD08008A3C6A /* CAAnimation_BlockExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2011,9 +2053,14 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				INFOPLIST_FILE = "TurntableFM/TurntableFM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2024,9 +2071,14 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				INFOPLIST_FILE = "TurntableFM/TurntableFM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

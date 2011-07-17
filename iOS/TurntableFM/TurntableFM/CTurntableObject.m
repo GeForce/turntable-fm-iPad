@@ -10,8 +10,6 @@
 
 @interface CTurntableObject ()
 
-@property (readwrite, nonatomic, retain) NSDictionary *parameters;
-
 @end
 
 @implementation CTurntableObject
@@ -27,6 +25,14 @@
 		}
 	return(self);
 	}
+
+- (void)dealloc
+    {
+    // TODO
+    //
+    [super dealloc];
+    }
+
 
 - (void)didInitialize
     {

@@ -54,7 +54,7 @@
     [self.handlerForCommands setObject:[[inHandler copy] autorelease] forKey:inCommand];    
     }
     
-- (void)removeHandler:(void (^)(id))inHandler forCommand:(NSString *)inCommand
+- (void)removeHandlerForCommand:(NSString *)inCommand
     {
     [self.handlerForCommands removeObjectForKey:inCommand];    
     }

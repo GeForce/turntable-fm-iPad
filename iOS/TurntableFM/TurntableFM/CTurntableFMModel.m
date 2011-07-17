@@ -60,6 +60,12 @@ static CTurntableFMModel *gSharedInstance = NULL;
 	return(self);
 	}
 
+- (void)dealloc
+    {
+    // TODO
+    //
+    [super dealloc];
+    }
 
 - (void)loginWithFacebookAccessToken:(NSString *)inFacebookAccessToken;
     {
@@ -103,7 +109,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
     [self.queue addOperation:theOperation];
     }
 
-- (void)registerWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler
+- (void)registerWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(CRoom *))inHandler;
     {
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
         [inRoomDescription objectForKey:@"roomid"], @"roomid",
@@ -113,31 +119,26 @@ static CTurntableFMModel *gSharedInstance = NULL;
         self.room = [[[CRoom alloc] initWithParameters:inRoomDescription] autorelease];
     
         [self.socket postMessage:@"room.now" dictionary:NULL handler:^(id inResult) {
-            NSLog(@"ROOM.NOW: %@", inResult);
-            
             self.roomTime = [[inResult objectForKey:@"now"] doubleValue];
             
             NSDictionary *theSong = [self.room valueForKeyPath:@"parameters.metadata.current_song"];
-            NSLog(@"%@", theSong);
-            
             [self playSong:theSong preview:NO];
             
             if (inHandler)
                 {
-                inHandler();
+                inHandler(self.room);
                 }
             }];
         }];
     }
     
-- (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
+- (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(CRoom *))inHandler;
     {
     [self.socket postMessage:@"room.deregister" dictionary:NULL handler:^(id inResult) {
-        NSLog(@"UNREGISTER");
-        self.room = NULL;
 		if (inHandler) {
-			inHandler();
+			inHandler(self.room);
 		}
+        self.room = NULL;
         }];
     
     }
@@ -199,7 +200,6 @@ static CTurntableFMModel *gSharedInstance = NULL;
         {
         NSTimeInterval theStartTime = [[inSong objectForKey:@"starttime"] doubleValue];
         int64_t theOffsetSeconds = floor((self.roomTime - theStartTime) * 1000.0);
-        NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
         CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
         [self.player seekToTime:theOffset];
         }

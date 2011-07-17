@@ -17,6 +17,8 @@
 #import "CTurntableFMModel.h"
 #import "CUser.h"
 #import "CRoom.h"
+#import "CSong.h"
+#import "CMarqueeView.h"
 
 @interface CRoomViewController () <UITextFieldDelegate>
 
@@ -33,30 +35,49 @@
 
 @implementation CRoomViewController
 
+@synthesize room;
 @synthesize usersButton, songButton;
 @synthesize usersPopoverController, songPopoverController;
 @synthesize usersViewController, songViewController;
 @synthesize chatTextView;
 @synthesize speakTextField;
+@synthesize marqueeView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+- (id)initWithRoom:(CRoom *)inRoom;
+    {
+    if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
+        {
+        room = [inRoom retain];
+        [room subscribe];
+        
+        NSLog(@"%@", room.currentSong.parameters);
+        
+        [self addObserver:self forKeyPath:@"room.currentSong" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
+        [self addObserver:self forKeyPath:@"room.chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
+        [self addObserver:self forKeyPath:@"room.users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+    
+        }
     return self;
-}
+    }
 
 - (void)dealloc
+
 {
-	[usersButton release];
+    [self removeObserver:self forKeyPath:@"room.currentSong"];
+    [self removeObserver:self forKeyPath:@"room.chatLog"];
+    [self removeObserver:self forKeyPath:@"room.users"];
+
+    [room unsubscribe];
+    [room release];
+    room = NULL;
+    [usersButton release];
     [usersPopoverController release];
 	[songPopoverController release];
 	[usersViewController release];
 	[songViewController release];
+
 	[super dealloc];
-}
+    }
 
 - (void)didReceiveMemoryWarning
 {
@@ -66,22 +87,16 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (CRoom *)room
-    {
-    return([CTurntableFMModel sharedInstance].room);
-    }
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.marqueeView.font = [UIFont boldSystemFontOfSize:30];
+
+    self.title = self.room.name;
 	
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:NULL];
-    
-    [self.room addObserver:self forKeyPath:@"chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
-    [self.room addObserver:self forKeyPath:@"users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
-    
 	if (songButton == nil)
 	{
 		self.songButton = [[UIBarButtonItem alloc] initWithTitle:@"Songs" style:UIBarButtonItemStyleBordered target:self action:@selector(launchSongPopoverViewController)];
@@ -90,11 +105,9 @@
 }
 
 - (void)viewDidUnload
-{
+    {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+    }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -164,56 +177,108 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
     {
-    if ([keyPath isEqualToString:@"chatLog"])
+    if ([keyPath isEqualToString:@"room.currentSong"])
+        {
+        CSong *theSong = [change objectForKey:NSKeyValueChangeNewKey];
+        if ((id)theSong == [NSNull null])
+            {
+            return;
+            }
+        self.marqueeView.text = theSong.name;
+        }
+    else if ([keyPath isEqualToString:@"room.chatLog"])
         {
         for (NSDictionary *theSpeakDictionary in [change objectForKey:@"new"])
             {
             self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@: %@\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary objectForKey:@"text"]];
             [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
+
+            NSString *theUserID = [theSpeakDictionary objectForKey:@"userid"];
+            
+            CUser *theUser = [self.room.usersByUserID objectForKey:theUserID];
+            
+            
+            CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
+
+            CABasicAnimation *thePulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            thePulseAnimation.duration = 0.2;
+            thePulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+            thePulseAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+            thePulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
+
+            [theLayer addAnimation:thePulseAnimation forKey:@"pulse"];
+            
+//            [CATransaction begin];
+//            [CATransaction setAnimationDuration:0.5];
+//            [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+//            [CATransaction setCompletionBlock:^(void) {
+//                [theLayer removeFromSuperlayer];
+//                objc_setAssociatedObject(theUser, "layer", NULL, OBJC_ASSOCIATION_RETAIN);
+//                }];
+//            theLayer.position = (CGPoint){ .x = CGRectGetMaxX(theLayer.superlayer.bounds), .y = theLayer.position.y };
+//
+//            [CATransaction commit];
+
+
+
+
             }
         }
-    else if ([keyPath isEqualToString:@"users"])
+    else if ([keyPath isEqualToString:@"room.users"])
         {
-
-//    indexes = "<NSIndexSet: 0x559e3b0>[number of indexes: 1 (in 1 ranges), indexes: (22)]";
-//    kind = 2;
-//    new =     (
-//        "<CUser: 0x553eb40>"
-//    );
-
-//2011-07-16 23:10:37.267 TurntableFM[26276:cb03] {
-//    indexes = "<NSIndexSet: 0x558c960>[number of indexes: 1 (in 1 ranges), indexes: (13)]";
-//    kind = 3;
-//    old =     (
-//        "<CUser: 0x55fb740>"
-//    );
-//}
+        NSMutableArray *theNewLayers = [NSMutableArray array];
 
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
-            NSLog(@"NEW USER: %@", theUser.name);
             CATextLayer *theLayer = [CATextLayer layer];
             theLayer.borderColor = [UIColor colorWithHue:(CGFloat)theUser.avatarID / 26.0 saturation:1.0 brightness:1.0 alpha:1.0].CGColor;
             theLayer.borderWidth = 1.0;
             
             theLayer.string = theUser.name;
             theLayer.bounds = (CGRect){ .size = {64, 64 } };
-            theLayer.position = (CGPoint){ arc4random() % 768, arc4random() % 768 };
+            theLayer.position = (CGPoint){ .x = arc4random() % (768 * 3) - 768, .y = arc4random() % 768 + 768 };
             [self.view.layer addSublayer:theLayer];
             
             objc_setAssociatedObject(theUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
+            
+            [theNewLayers addObject:theLayer];
             }
+
+        if (theNewLayers.count > 0)
+            {
+            double delayInSeconds = 0.1;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [CATransaction begin];
+                [CATransaction setAnimationDuration:0.5];
+                [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+
+                for (CALayer *theLayer in theNewLayers)
+                    {
+                    theLayer.position = (CGPoint){ .x = arc4random() % 768, .y = arc4random() % 768 };
+                    }
+
+                [CATransaction commit];
+                });
+            }
+
+
         for (CUser *theUser in [change objectForKey:@"old"])
             {
-            NSLog(@"REMOVED USER: %@", theUser.name);
-
             CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
-            [theLayer removeFromSuperlayer];
+            
+            [CATransaction begin];
+            [CATransaction setAnimationDuration:0.5];
+            [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+            [CATransaction setCompletionBlock:^(void) {
+                [theLayer removeFromSuperlayer];
+                objc_setAssociatedObject(theUser, "layer", NULL, OBJC_ASSOCIATION_RETAIN);
+                }];
+            theLayer.position = (CGPoint){ .x = CGRectGetMaxX(theLayer.superlayer.bounds), .y = theLayer.position.y };
+
+            [CATransaction commit];
             }
         }
-    
-    
-    
     }
 
 @end

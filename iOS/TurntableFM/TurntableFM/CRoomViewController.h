@@ -8,14 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class CRoom;
+@class CMarqueeView;
+
 @interface CRoomViewController : UIViewController <UIPopoverControllerDelegate>
 {
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *usersButton;
+@property (readonly, nonatomic, retain) CRoom *room;
 @property (nonatomic, retain) UIBarButtonItem *songButton;
 @property (readwrite, nonatomic, retain) IBOutlet UITextView *chatTextView;
 @property (readwrite, nonatomic, retain) IBOutlet UITextField *speakTextField;
+@property (readwrite, nonatomic, retain) IBOutlet CMarqueeView *marqueeView;
+
+
+- (id)initWithRoom:(CRoom *)inRoom;
 
 - (void)launchSongPopoverController;
 - (void)launchChatPopoverController;
