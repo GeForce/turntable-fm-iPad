@@ -363,6 +363,8 @@
 		75B86F4413D23095001280FC /* CChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4213D23095001280FC /* CChatViewController.xib */; };
 		75B86F4913D23124001280FC /* CSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B86F4713D23124001280FC /* CSongViewController.m */; };
 		75B86F4A13D23124001280FC /* CSongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4813D23124001280FC /* CSongViewController.xib */; };
+		979BB81413D28D6500D16D03 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */; };
+		979BB81513D28D6500D16D03 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */; };
 		97ABD55A13D212010058B68E /* CLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55813D212010058B68E /* CLobbyViewController.m */; };
 		97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD55913D212010058B68E /* CLobbyViewController.xib */; };
 		97ABD55F13D218310058B68E /* CLobbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55E13D218310058B68E /* CLobbyTableViewCell.m */; };
@@ -821,6 +823,7 @@
 		75B86F4613D23124001280FC /* CSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSongViewController.h; sourceTree = "<group>"; };
 		75B86F4713D23124001280FC /* CSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSongViewController.m; sourceTree = "<group>"; };
 		75B86F4813D23124001280FC /* CSongViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSongViewController.xib; sourceTree = "<group>"; };
+		979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		97ABD55713D212010058B68E /* CLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyViewController.h; sourceTree = "<group>"; };
 		97ABD55813D212010058B68E /* CLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyViewController.m; sourceTree = "<group>"; };
 		97ABD55913D212010058B68E /* CLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyViewController.xib; sourceTree = "<group>"; };
@@ -918,6 +921,7 @@
 				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
 				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
 				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
+				979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */,
 				97ABD55713D212010058B68E /* CLobbyViewController.h */,
 				97ABD55813D212010058B68E /* CLobbyViewController.m */,
 				97ABD55913D212010058B68E /* CLobbyViewController.xib */,
@@ -1887,6 +1891,7 @@
 				45BBC3D013D2843300DA64A6 /* speaker_rspeaker1.png in Resources */,
 				45BBC3D113D2843300DA64A6 /* speaker_rspeaker2.png in Resources */,
 				45BBC3D213D2843300DA64A6 /* speaker_rspeaker3.png in Resources */,
+				979BB81413D28D6500D16D03 /* MainWindow_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1896,6 +1901,7 @@
 			files = (
 				4506239513D117F800086997 /* InfoPlist.strings in Resources */,
 				4506239713D117F800086997 /* TurntableFMTests.h in Resources */,
+				979BB81513D28D6500D16D03 /* MainWindow_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2065,7 +2071,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -2085,7 +2091,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
