@@ -88,11 +88,11 @@
 	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:Identifier];
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier] autorelease];
+		cell.textLabel.textAlignment = UITextAlignmentRight;
 	}
 	
 	CUser *user = [self.room.users objectAtIndex:indexPath.row];
 	cell.textLabel.text = user.name;
-	cell.textLabel.textAlignment = UITextAlignmentRight;
 	NSInteger avatarID = user.avatarID;
 	NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
 	cell.imageView.image = [UIImage imageNamed:imageName];
