@@ -75,11 +75,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	CUser *user = [self.room.users objectAtIndex:indexPath.row];
-	NSInteger avatarID = user.avatarID;
-	NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
-	UIImage *image = [UIImage imageNamed:imageName];
-	return image.size.height/2;
+	NSInteger row = indexPath.row;
+	if (row >= self.room.users.count) {
+		return 0.0;
+	}
+	else {
+		CUser *user = [self.room.users objectAtIndex:indexPath.row];
+		NSInteger avatarID = user.avatarID;
+		NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
+		UIImage *image = [UIImage imageNamed:imageName];
+		return image.size.height/2;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,11 +97,18 @@
 		cell.textLabel.textAlignment = UITextAlignmentRight;
 	}
 	
-	CUser *user = [self.room.users objectAtIndex:indexPath.row];
-	cell.textLabel.text = user.name;
-	NSInteger avatarID = user.avatarID;
-	NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
-	cell.imageView.image = [UIImage imageNamed:imageName];
+	NSInteger row = indexPath.row;
+	if (row >= self.room.users.count) {
+		cell.textLabel.text = nil;
+		cell.imageView.image = nil;
+	}
+	else {
+		CUser *user = [self.room.users objectAtIndex:indexPath.row];
+		cell.textLabel.text = user.name;
+		NSInteger avatarID = user.avatarID;
+		NSString *imageName = [NSString stringWithFormat:@"avatars_%d_headfront.png", avatarID];
+		cell.imageView.image = [UIImage imageNamed:imageName];
+	}
 	
 	return cell;
 }
