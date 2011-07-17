@@ -11,6 +11,7 @@
 @class CTurntableFMSocket;
 
 @class CRoom;
+@class CUser;
 
 @interface CTurntableFMModel : NSObject
 
@@ -28,6 +29,8 @@
 - (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
 
 - (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
+
+- (void)fanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 - (void)stopSong;

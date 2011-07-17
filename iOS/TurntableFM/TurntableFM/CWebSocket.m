@@ -103,9 +103,10 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
             {
 //            NSLog(@"WebSocketState_RequestSent: %d", theData.length);
             self.state = WebSocketState_ResponseReceived;
+
+            [self readPacket];
             }
 
-        [self readPacket];
         }
     else if (self.state == WebSocketState_ResponseReceived)
         {
@@ -116,9 +117,10 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
             self.state = WebSocketState_Transceiving;
             
             [self didConnect];
+
+            [self readPacket];
             }
 
-        [self readPacket];
         }
     else if (self.state == WebSocketState_Transceiving)
         {
@@ -137,9 +139,10 @@ static void MyCFWriteStreamClientCallBack(CFWriteStreamRef stream, CFStreamEvent
                 {
                 NSLog(@"HUH? %@", theData);
                 }
+
+            [self readPacket];
             }
 
-        [self readPacket];
         }
     }
 

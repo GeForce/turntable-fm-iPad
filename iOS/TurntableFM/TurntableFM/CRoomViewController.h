@@ -27,6 +27,8 @@
 @property (nonatomic, retain) UIPopoverController *songPopoverController;
 @property (nonatomic, retain) CChatViewController *chatViewController;
 @property (nonatomic, retain) CSongViewController *songViewController;
+@property (readwrite, nonatomic, retain) IBOutlet UITextView *chatTextView;
+@property (readwrite, nonatomic, retain) IBOutlet UITextField *speakTextField;
 
 - (void)launchSongPopoverController;
 - (void)launchChatPopoverController;

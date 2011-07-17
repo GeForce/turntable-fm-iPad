@@ -16,6 +16,7 @@
 #import "NSData_DigestExtensions.h"
 #import "NSData_Extensions.h"
 #import "CRoom.h"
+#import "CUser.h"
 
 @interface CTurntableFMModel () <AVAudioPlayerDelegate>
 @property (readwrite, nonatomic, retain) NSDictionary *userInfo;
@@ -170,6 +171,18 @@ static CTurntableFMModel *gSharedInstance = NULL;
         }
     return(theURL);
     }
+
+- (void)fanUser:(CUser *)inUser handler:(void (^)(void))inHandler
+    {
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inUser.userID forKey:@"djid"];
+    [self.socket postMessage:@"user.become_fan" dictionary:theDictionary handler:^(id inResult) {
+        if (inHandler)
+            {
+            inHandler();
+            }
+        }];
+    }
+
     
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {

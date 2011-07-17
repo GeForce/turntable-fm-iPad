@@ -19,5 +19,10 @@
     {
     return([self.parameters objectForKey:@"name"]);
     }
+    
+- (NSInteger)avatarID
+    {
+    return([[self.parameters objectForKey:@"avatarid"] integerValue]);
+    }
 
 @end
