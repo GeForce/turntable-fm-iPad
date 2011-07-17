@@ -89,6 +89,17 @@
             } forCommand:@"rem_dj"];
 
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+            // We're ignoring this...
+            } forCommand:@"update_user"];
+
+        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+            NSLog(@"%@", inParam);
+            } forCommand:@"update_votes"];
+
+
+
+
+        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             [self.chatLog addObject:inParam];
             } forCommand:@"speak"];
         
