@@ -93,7 +93,7 @@
 {
     [super viewDidLoad];
 
-    self.marqueeView.font = [UIFont boldSystemFontOfSize:30];
+    self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 
     self.title = self.room.name;
 	
