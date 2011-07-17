@@ -130,7 +130,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		// boot user
+		CUser *user = [self.room.users objectAtIndex:indexPath.row];
+		[[CTurntableFMModel sharedInstance] bootUser:user handler:NULL];
 	}
 }
 

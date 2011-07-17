@@ -55,6 +55,12 @@
 						<int key="IBUIBarStyle">1</int>
 						<object class="NSMutableArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIBarButtonItem" id="148488847">
+								<string key="IBUITitle">Go DJ</string>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIStyle">1</int>
+								<reference key="IBUIToolbar" ref="118810528"/>
+							</object>
 							<object class="IBUIBarButtonItem" id="453031474">
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<reference key="IBUIToolbar" ref="118810528"/>
@@ -109,7 +115,7 @@
 								<string key="NSFrame">{{209, 203}, {429, 105}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="570703828"/>
+								<reference key="NSNextKeyView" ref="900094567"/>
 								<string key="NSReuseIdentifierKey">_NS:49</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="138604110">
 									<int key="NSColorSpace">3</int>
@@ -123,7 +129,7 @@
 								<string key="NSFrame">{{131, 320}, {507, 137}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="700182085"/>
+								<reference key="NSNextKeyView" ref="570703828"/>
 								<string key="NSReuseIdentifierKey">_NS:364</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -175,7 +181,7 @@
 								<string key="NSFrame">{{131, 245}, {148, 110}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="900094567"/>
+								<reference key="NSNextKeyView" ref="700182085"/>
 								<string key="NSReuseIdentifierKey">_NS:364</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -357,6 +363,14 @@
 					</object>
 					<int key="connectionID">56</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">djTapped:</string>
+						<reference key="source" ref="148488847"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">65</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -398,6 +412,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="587814202"/>
 							<reference ref="453031474"/>
+							<reference ref="148488847"/>
 						</object>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -502,6 +517,11 @@
 						<reference key="object" ref="469121563"/>
 						<reference key="parent" ref="744009980"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">63</int>
+						<reference key="object" ref="148488847"/>
+						<reference key="parent" ref="118810528"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -529,6 +549,7 @@
 					<string>60.IBPluginDependency</string>
 					<string>61.IBPluginDependency</string>
 					<string>62.IBPluginDependency</string>
+					<string>63.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -557,6 +578,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -571,7 +593,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">62</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -591,12 +613,14 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>djTapped:</string>
 							<string>usersTapped:</string>
 							<string>voteAwesome</string>
 							<string>voteLame</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -606,12 +630,17 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>djTapped:</string>
 							<string>usersTapped:</string>
 							<string>voteAwesome</string>
 							<string>voteLame</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">djTapped:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">usersTapped:</string>
 								<string key="candidateClassName">id</string>
