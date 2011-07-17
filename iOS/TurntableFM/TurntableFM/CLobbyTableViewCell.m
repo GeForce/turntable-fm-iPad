@@ -84,7 +84,7 @@
 
 - (void)preview:(id)sender
 {
-	
+	[[CTurntableFMModel sharedInstance] playSong:[self.room objectAtIndex:0] preview:YES];
 }
 
 #pragma mark - NSURLConnectionDelegate
