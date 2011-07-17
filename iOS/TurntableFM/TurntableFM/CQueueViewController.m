@@ -13,6 +13,8 @@
 
 @interface CQueueViewController ()
 
+@property(nonatomic, retain) NSMutableArray *songs;
+
 - (void)moveToTop:(UIButton *)sender;
 
 @end
@@ -21,12 +23,14 @@
 
 @synthesize tableView;
 @synthesize room;
+@synthesize songs;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 		self.title = @"Queue";
+		self.songs = [[[[CTurntableFMModel sharedInstance] songQueue] mutableCopy] autorelease];
 		[[CTurntableFMModel sharedInstance] addObserver:self forKeyPath:@"songQueue" options:0 context:NULL];
     }
     return self;
@@ -38,6 +42,7 @@
 	
 	self.tableView = nil;
 	self.room = nil;
+	self.songs = nil;
 	
 	[super dealloc];
 }
@@ -66,7 +71,7 @@
 
 - (CGSize)contentSizeForViewInPopover
 {
-	CGFloat height = MIN(44.0 * [[CTurntableFMModel sharedInstance] songQueue].count, 800.0);
+	CGFloat height = MIN(44.0 * self.songs.count, 800.0);
 	return CGSizeMake(320.0, height);
 }
 
@@ -79,7 +84,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [[CTurntableFMModel sharedInstance] songQueue].count;
+	return self.songs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,7 +102,7 @@
 		button.frame = CGRectMake(5.0, 7.0, 30.0, 30.0);
 	}
 	
-	CSong *song = [[[CTurntableFMModel sharedInstance] songQueue] objectAtIndex:indexPath.row];
+	CSong *song = [self.songs objectAtIndex:indexPath.row];
 	cell.textLabel.text = song.name;
 	cell.detailTextLabel.text = song.artist;
 	UIButton *button = (UIButton *)[cell viewWithTag:1];
@@ -132,7 +137,11 @@
 {
 	UITableViewCell *cell = (UITableViewCell *)[sender superview];
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-	CSong *song = [[[CTurntableFMModel sharedInstance] songQueue] objectAtIndex:indexPath.row];
+	CSong *song = [self.songs objectAtIndex:indexPath.row];
+	NSIndexPath *top = [NSIndexPath indexPathForRow:0 inSection:0];
+	[self.songs removeObjectAtIndex:indexPath.row];
+	[self.songs insertObject:song atIndex:top.row];
+	[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
 }
 
 #pragma mark - KVO
@@ -141,6 +150,7 @@
 {
 	if (object == [CTurntableFMModel sharedInstance]) {
 		if ([keyPath isEqualToString:@"songQueue"]) {
+			self.songs = [[[[CTurntableFMModel sharedInstance] songQueue] mutableCopy] autorelease];
 			[self.tableView reloadData];
 		}
 	}
