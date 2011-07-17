@@ -210,17 +210,13 @@
     if (theLayer == NULL)   
         {
 
-		NSInteger avatarID = theUser.avatarID;
+		NSInteger avatarID = inUser.avatarID;
 		NSInteger neck = [[neckOffsets objectAtIndex:avatarID - 1] intValue];
 		CAvatarLibrary *library = [CAvatarLibrary sharedInstance];
-		UIImage *headImage = [library imageForAvatar:theUser.avatarID head:YES front:NO];
-		UIImage *bodyImage = [library imageForAvatar:theUser.avatarID head:NO front:NO];
+		UIImage *headImage = [library imageForAvatar:inUser.avatarID head:YES front:NO];
+		UIImage *bodyImage = [library imageForAvatar:inUser.avatarID head:NO front:NO];
 				
 		CALayer *theLayer = [CALayer layer];
-		theLayer.bounds = (CGRect) { .size = 
-			(headImage.size.width > bodyImage.size.width) ? headImage.size.width : bodyImage.size.width,
-			headImage.size.height + bodyImage.size.height - neck };
-			theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
             
 		CALayer *bodyImageLayer = [CALayer layer];
 		bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
