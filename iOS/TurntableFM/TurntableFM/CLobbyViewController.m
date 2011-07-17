@@ -86,6 +86,13 @@
 	return YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
 #pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -135,8 +142,15 @@
 	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
 	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
 	NSDictionary *theRoomDescription = [room objectAtIndex:0];
-
+		
+		UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		[spinner startAnimating];
+		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+		cell.accessoryView = spinner;
+		[spinner release];
     [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomDescription handler:^(void) {
+		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+		cell.accessoryView = nil;
 		CRoomViewController *rvc = [[CRoomViewController alloc] initWithNibName:nil bundle:nil];
 		[self.navigationController pushViewController:rvc animated:YES];
 		[rvc release];
