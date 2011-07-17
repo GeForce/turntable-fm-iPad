@@ -8,29 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
-@class CChatViewController;
-@class CSongViewController;
+@class CRoom;
+@class CMarqueeView;
 
 @interface CRoomViewController : UIViewController <UIPopoverControllerDelegate>
 {
-    IBOutlet UIBarButtonItem *chatButton;
-	UIBarButtonItem *songButton;
-	UIPopoverController *chatPopoverController;
-	UIPopoverController *songPopoverController;	
-	CChatViewController *chatViewController;
-	CSongViewController *songViewController;
 }
 
-@property (nonatomic, retain) UIBarButtonItem *chatButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *usersButton;
+@property (readonly, nonatomic, retain) CRoom *room;
 @property (nonatomic, retain) UIBarButtonItem *songButton;
-@property (nonatomic, retain) UIPopoverController *chatPopoverController;
-@property (nonatomic, retain) UIPopoverController *songPopoverController;
-@property (nonatomic, retain) CChatViewController *chatViewController;
-@property (nonatomic, retain) CSongViewController *songViewController;
+@property (readwrite, nonatomic, retain) IBOutlet UIView *avatarView;
+@property (readwrite, nonatomic, retain) IBOutlet UITextView *chatTextView;
+@property (readwrite, nonatomic, retain) IBOutlet UITextField *speakTextField;
+@property (readwrite, nonatomic, retain) IBOutlet CMarqueeView *marqueeView;
+
+
+- (id)initWithRoom:(CRoom *)inRoom;
 
 - (void)launchSongPopoverController;
 - (void)launchChatPopoverController;
 - (IBAction)voteAwesome;
 - (IBAction)voteLame;
+- (IBAction)usersTapped:(id)sender;
 
 @end

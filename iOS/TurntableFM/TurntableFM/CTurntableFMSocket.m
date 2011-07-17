@@ -54,7 +54,7 @@
     [self.handlerForCommands setObject:[[inHandler copy] autorelease] forKey:inCommand];    
     }
     
-- (void)removeHandler:(void (^)(id))inHandler forCommand:(NSString *)inCommand
+- (void)removeHandlerForCommand:(NSString *)inCommand
     {
     [self.handlerForCommands removeObjectForKey:inCommand];    
     }
@@ -66,7 +66,10 @@
         inMessage = [inMessage dataUsingEncoding:NSUTF8StringEncoding];
         }
     NSError *theError = NULL;
-    NSDictionary *theDictionary = [[CJSONDeserializer deserializer] deserialize:inMessage error:&theError];
+    
+    CJSONDeserializer *theDeserializer = [CJSONDeserializer deserializer];
+    theDeserializer.nullObject = NULL;
+    NSDictionary *theDictionary = [theDeserializer deserialize:inMessage error:&theError];
     
     NSNumber *theSuccess = [theDictionary objectForKey:@"success"];
     if (theSuccess != NULL && [theSuccess intValue] != 1)

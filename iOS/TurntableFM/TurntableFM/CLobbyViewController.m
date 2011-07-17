@@ -11,6 +11,7 @@
 #import "CTurntableFMModel.h"
 #import "CLobbyTableViewCell.h"
 #import "CRoomViewController.h"
+#import "CFriendsViewController.h"
 
 @interface CLobbyViewController ()
 
@@ -96,7 +97,7 @@
 	NSIndexPath *path = [self.tableView indexPathForSelectedRow];
 	if (path != nil) {
 		CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
-		[model unregisterWithRoom:self.roomDescription handler:^(void) {
+		[model unregisterWithRoom:self.roomDescription handler:^(CRoom *inRoom) {
 			[self.tableView deselectRowAtIndexPath:path animated:YES];
 			UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
 			cell.accessoryView = nil;
@@ -165,8 +166,8 @@
 		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 		cell.accessoryView = spinner;
 		[spinner release];
-		[[CTurntableFMModel sharedInstance] registerWithRoom:self.roomDescription handler:^(void) {
-			CRoomViewController *rvc = [[CRoomViewController alloc] initWithNibName:nil bundle:nil];
+		[[CTurntableFMModel sharedInstance] registerWithRoom:self.roomDescription handler:^(CRoom *inRoom) {
+			CRoomViewController *rvc = [[CRoomViewController alloc] initWithRoom:inRoom];
 			[self.navigationController pushViewController:rvc animated:YES];
 			[rvc release];
 		}];
@@ -193,6 +194,17 @@
 	});
 }
 
+- (IBAction)friends:(UIButton *)sender
+{
+	/*
+	UITableViewCell *cell = (UITableViewCell *)[[sender superview] superview];
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+	CFriendsViewController *fvc = [[CFriendsViewController alloc] initWithNibName:nil bundle:nil];
+	fvc.room = [[CTurntableFMModel sharedInstance].rooms objectAtIndex:indexPath.row];
+	UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:fvc];
+	[popover presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	*/
+}
 
 
 #pragma mark - KVO

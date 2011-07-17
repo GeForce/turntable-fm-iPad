@@ -10,7 +10,7 @@
 
 @interface CTurntableObject : NSObject
 
-@property (readonly, nonatomic, retain) NSDictionary *parameters;
+@property (readwrite, nonatomic, retain) NSDictionary *parameters;
 
 - (id)initWithParameters:(NSDictionary *)inParameters;
 
