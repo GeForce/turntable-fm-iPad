@@ -97,7 +97,7 @@
 
     NSLog(@"CHANGING LAYER");
 
-    CTFontRef theFont = CTFontCreateWithName((CFStringRef)objc_unretainedPointer(self.font.fontName), self.font.pointSize, NULL);
+    CTFontRef theFont = CTFontCreateWithName((CFStringRef)self.font.fontName, self.font.pointSize, NULL);
 
     NSDictionary *theAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
         objc_unretainedObject(theFont), kCTFontAttributeName,
