@@ -20,6 +20,7 @@
 @property (readonly, nonatomic, retain) NSDictionary *userInfo;
 @property (readonly, nonatomic, retain) NSArray *rooms;
 @property (readonly, nonatomic, retain) CRoom *room;
+@property (readonly, nonatomic) BOOL playing;
 
 + (CTurntableFMModel *)sharedInstance;
 

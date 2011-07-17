@@ -216,5 +216,10 @@ static CTurntableFMModel *gSharedInstance = NULL;
 	self.player = nil;
 }
 
+- (BOOL)playing
+{
+	return (self.player.rate != 0.0);
+}
+
     
 @end
