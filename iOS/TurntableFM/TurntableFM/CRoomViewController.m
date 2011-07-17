@@ -230,6 +230,7 @@
 		[theLayer addSublayer:headImageLayer];
 
         theLayer.headLayer = headImageLayer;
+        theLayer.bodyLayer = bodyImageLayer;
 
         objc_setAssociatedObject(inUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
         }
@@ -246,13 +247,16 @@
     
     CGRect theDJViewBounds = self.DJView.layer.bounds;
     
-    CALayer *theLayer = [self layerForUser:inUser];
+    CAvatarLayer *theLayer = [self layerForUser:inUser];
+    theLayer.headLayer.contents = (id)[[CAvatarLibrary sharedInstance] imageForAvatar:inUser.avatarID head:YES front:YES].CGImage;
+    theLayer.bodyLayer.contents = (id)[[CAvatarLibrary sharedInstance] imageForAvatar:inUser.avatarID head:NO front:YES].CGImage;
+;
 
-    for (CALayer *theSublayer in theLayer.sublayers)
-        {
-        theSublayer.borderWidth = 1.0;
-        theSublayer.borderColor = [UIColor greenColor].CGColor;
-        }
+//    for (CALayer *theSublayer in theLayer.sublayers)
+//        {
+//        theSublayer.borderWidth = 1.0;
+//        theSublayer.borderColor = [UIColor greenColor].CGColor;
+//        }
 
     NSInteger theIndex = [self.room.DJs indexOfObject:inUser];
     
@@ -279,13 +283,15 @@
         theDJLayer.position = (CGPoint){ .x = CGRectGetMaxX(theDJViewBounds) * (theIndex / 5.0), .y = CGRectGetMidY(theDJViewBounds) };
         }
 
-    CALayer *theLayer = [self layerForUser:inUser];
+    CAvatarLayer *theLayer = [self layerForUser:inUser];
+    theLayer.headLayer.contents = (id)[[CAvatarLibrary sharedInstance] imageForAvatar:inUser.avatarID head:YES front:NO].CGImage;
+    theLayer.bodyLayer.contents = (id)[[CAvatarLibrary sharedInstance] imageForAvatar:inUser.avatarID head:NO front:NO].CGImage;
 
-    for (CALayer *theSublayer in theLayer.sublayers)
-        {
-        theSublayer.borderWidth = 1.0;
-        theSublayer.borderColor = [UIColor redColor].CGColor;
-        }
+//    for (CALayer *theSublayer in theLayer.sublayers)
+//        {
+//        theSublayer.borderWidth = 1.0;
+//        theSublayer.borderColor = [UIColor redColor].CGColor;
+//        }
 
 
     theLayer.position = (CGPoint){ .x = arc4random() % (int)theAvatarViewBounds.size.width, .y = arc4random() % (int)theAvatarViewBounds.size.height };

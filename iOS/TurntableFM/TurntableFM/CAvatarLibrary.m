@@ -60,15 +60,8 @@ static CAvatarLibrary *gSharedInstance = NULL;
 			headImage = [UIImage imageNamed:[fileName stringByAppendingString:@"headfront.png"]];
 		else
 			headImage = [UIImage imageNamed:[fileName stringByAppendingString:@"headback.png"]];
-		
-		imageSize = headImage.size;
-		
-		UIGraphicsBeginImageContext(imageSize);
-		[headImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-		returnImage = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-		
-		return returnImage;
+            
+		return headImage;
 	}
 	else
 	{		
