@@ -33,23 +33,29 @@
 @synthesize speakTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) != NULL)
+        {
+        [self addObserver:self forKeyPath:@"room.chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
+        [self addObserver:self forKeyPath:@"room.users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+    
+        }
     return self;
-}
+    }
 
 - (void)dealloc
-{
+    {
+    [self removeObserver:self forKeyPath:@"room.chatLog"];
+    [self removeObserver:self forKeyPath:@"room.users"];
+
 	[chatButton release];
     [chatPopoverController release];
 	[songPopoverController release];
 	[chatViewController release];
 	[songViewController release];
+
 	[super dealloc];
-}
+    }
 
 - (void)didReceiveMemoryWarning
 {
@@ -69,10 +75,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.title = self.room.name;
 	
-    [self.room addObserver:self forKeyPath:@"chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
-    [self.room addObserver:self forKeyPath:@"users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
-    
 	if (songButton == nil)
 	{
 		self.songButton = [[UIBarButtonItem alloc] initWithTitle:@"Songs" style:UIBarButtonItemStyleBordered target:self action:@selector(launchSongPopoverViewController)];
@@ -81,11 +86,9 @@
 }
 
 - (void)viewDidUnload
-{
+    {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+    }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -142,7 +145,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
     {
-    if ([keyPath isEqualToString:@"chatLog"])
+    if ([keyPath isEqualToString:@"room.chatLog"])
         {
         for (NSDictionary *theSpeakDictionary in [change objectForKey:@"new"])
             {
@@ -150,23 +153,8 @@
             [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
             }
         }
-    else if ([keyPath isEqualToString:@"users"])
+    else if ([keyPath isEqualToString:@"room.users"])
         {
-
-//    indexes = "<NSIndexSet: 0x559e3b0>[number of indexes: 1 (in 1 ranges), indexes: (22)]";
-//    kind = 2;
-//    new =     (
-//        "<CUser: 0x553eb40>"
-//    );
-
-//2011-07-16 23:10:37.267 TurntableFM[26276:cb03] {
-//    indexes = "<NSIndexSet: 0x558c960>[number of indexes: 1 (in 1 ranges), indexes: (13)]";
-//    kind = 3;
-//    old =     (
-//        "<CUser: 0x55fb740>"
-//    );
-//}
-
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
             NSLog(@"NEW USER: %@", theUser.name);

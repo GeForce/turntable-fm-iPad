@@ -37,6 +37,11 @@
     return([self.parameters objectForKey:@"roomid"]);
     }
 
+- (NSString *)name
+    {
+    return([self.parameters objectForKey:@"name"]);
+    }
+
 #pragma mark -
 
 - (void)subscribe
