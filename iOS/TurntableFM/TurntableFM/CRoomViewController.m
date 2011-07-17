@@ -19,23 +19,26 @@
 #import "CRoom.h"
 
 @interface CRoomViewController () <UITextFieldDelegate>
-@property (readonly, nonatomic, retain) CRoom *room;
 @end
 
 #pragma mark -
 
 @implementation CRoomViewController
 
+@synthesize room;
 @synthesize chatButton, songButton;
 @synthesize chatPopoverController, songPopoverController;
 @synthesize chatViewController, songViewController;
 @synthesize chatTextView;
 @synthesize speakTextField;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithRoom:(CRoom *)inRoom;
     {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) != NULL)
+    if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
         {
+        room = [inRoom retain];
+        [room subscribe];
+        
         [self addObserver:self forKeyPath:@"room.chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
     
@@ -47,6 +50,10 @@
     {
     [self removeObserver:self forKeyPath:@"room.chatLog"];
     [self removeObserver:self forKeyPath:@"room.users"];
+
+    [room unsubscribe];
+    [room release];
+    room = NULL;
 
 	[chatButton release];
     [chatPopoverController release];
@@ -64,11 +71,6 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
-
-- (CRoom *)room
-    {
-    return([CTurntableFMModel sharedInstance].room);
-    }
 
 #pragma mark - View lifecycle
 
@@ -157,7 +159,6 @@
         {
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
-            NSLog(@"NEW USER: %@", theUser.name);
             CATextLayer *theLayer = [CATextLayer layer];
             theLayer.borderColor = [UIColor colorWithHue:(CGFloat)theUser.avatarID / 26.0 saturation:1.0 brightness:1.0 alpha:1.0].CGColor;
             theLayer.borderWidth = 1.0;
@@ -171,15 +172,10 @@
             }
         for (CUser *theUser in [change objectForKey:@"old"])
             {
-            NSLog(@"REMOVED USER: %@", theUser.name);
-
             CALayer *theLayer = objc_getAssociatedObject(theUser, "layer");
             [theLayer removeFromSuperlayer];
             }
         }
-    
-    
-    
     }
 
 @end

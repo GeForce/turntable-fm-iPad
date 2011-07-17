@@ -25,8 +25,8 @@
 
 - (void)loginWithFacebookAccessToken:(NSString *)inFacebookAccessToken;
 
-- (void)registerWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
-- (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(void))inHandler;
+- (void)registerWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(CRoom *))inHandler;
+- (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(CRoom *))inHandler;
 
 - (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 

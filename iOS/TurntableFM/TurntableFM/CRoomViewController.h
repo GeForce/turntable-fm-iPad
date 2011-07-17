@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class CRoom;
 @class CChatViewController;
 @class CSongViewController;
 
@@ -21,6 +22,8 @@
 	CSongViewController *songViewController;
 }
 
+@property (readonly, nonatomic, retain) CRoom *room;
+
 @property (nonatomic, retain) UIBarButtonItem *chatButton;
 @property (nonatomic, retain) UIBarButtonItem *songButton;
 @property (nonatomic, retain) UIPopoverController *chatPopoverController;
@@ -29,6 +32,8 @@
 @property (nonatomic, retain) CSongViewController *songViewController;
 @property (readwrite, nonatomic, retain) IBOutlet UITextView *chatTextView;
 @property (readwrite, nonatomic, retain) IBOutlet UITextField *speakTextField;
+
+- (id)initWithRoom:(CRoom *)inRoom;
 
 - (void)launchSongPopoverController;
 - (void)launchChatPopoverController;
