@@ -203,7 +203,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
 - (void)bootUser:(CUser *)inUser handler:(void (^)(void))inHandler
 {
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inUser.userID forKey:@"target_userid"];
-    [self.socket postMessage:@"user.boot_user" dictionary:theDictionary handler:^(id inResult) {
+    [self.socket postMessage:@"room.boot_user" dictionary:theDictionary handler:^(id inResult) {
         if (inHandler)
         {
             inHandler();
@@ -216,7 +216,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
 {
    // NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inTeger forKey:@"index"];
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"default", @"playlist",
+                                   @"default", @"playlist_name",
                                    [NSNumber numberWithInteger:inTeger], @"index",
                                    NULL];
     [self.socket postMessage:@"playlist.remove" dictionary:theDictionary handler:^(id inResult) {
@@ -230,7 +230,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
 - (void)becomeDJ
 {
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:self.room.roomID forKey:@"roomid"];
-    [self.socket postMessage:@"user.add_dj" dictionary:theDictionary handler:^(id inResult) {
+    [self.socket postMessage:@"room.add_dj" dictionary:theDictionary handler:^(id inResult) {
     }];
 }
 
