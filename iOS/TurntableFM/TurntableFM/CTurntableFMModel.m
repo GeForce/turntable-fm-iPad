@@ -14,12 +14,12 @@
 #import "CURLOperation.h"
 #import "NSData_DigestExtensions.h"
 #import "NSData_Extensions.h"
+#import "CRoom.h"
 
 @interface CTurntableFMModel () <AVAudioPlayerDelegate>
 @property (readwrite, nonatomic, retain) NSDictionary *userInfo;
 @property (readwrite, nonatomic, retain) NSArray *rooms;
-@property (readwrite, nonatomic, retain) NSDictionary *room;
-
+@property (readwrite, nonatomic, retain) CRoom *room;
 @property (readwrite, nonatomic, retain) CTurntableFMSocket *turntableFMSocket;
 @property (readwrite, nonatomic, retain) NSOperationQueue *queue;
 @property (readwrite, nonatomic, assign) NSTimeInterval roomTime;
@@ -112,7 +112,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
         NULL];
     
     [self.turntableFMSocket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
-        self.room = inRoomDescription;
+        self.room = [[[CRoom alloc] initWithParameters:inRoomDescription] autorelease];
     
         [self.turntableFMSocket postMessage:@"room.now" dictionary:NULL handler:^(id inResult) {
             NSLog(@"ROOM.NOW: %@", inResult);
@@ -120,7 +120,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
             self.roomTime = [[inResult objectForKey:@"now"] doubleValue];
             
             
-            NSDictionary *theSong = [self.room valueForKeyPath:@"metadata.current_song"];
+            NSDictionary *theSong = [self.room valueForKeyPath:@"parameters.metadata.current_song"];
             NSLog(@"%@", theSong);
             
             [self playSong:theSong preview:NO];

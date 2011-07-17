@@ -10,11 +10,13 @@
 
 @class CTurntableFMSocket;
 
+@class CRoom;
+
 @interface CTurntableFMModel : NSObject
 
 @property (readonly, nonatomic, retain) NSDictionary *userInfo;
 @property (readonly, nonatomic, retain) NSArray *rooms;
-@property (readonly, nonatomic, retain) NSDictionary *room;
+@property (readonly, nonatomic, retain) CRoom *room;
 
 + (CTurntableFMModel *)sharedInstance;
 

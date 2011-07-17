@@ -92,6 +92,9 @@
 		453343E113D24002005AE115 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343E013D24002005AE115 /* AVFoundation.framework */; };
 		453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343EB13D24EE3005AE115 /* CoreMedia.framework */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
+		45AC30D713D25D690082DB2F /* CRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30D613D25D690082DB2F /* CRoom.m */; };
+		45AC30DA13D25D740082DB2F /* CUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30D913D25D740082DB2F /* CUser.m */; };
+		45AC30DD13D25DC00082DB2F /* CTurntableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AC30DC13D25DC00082DB2F /* CTurntableObject.m */; };
 		45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */; };
 		45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */; };
 		45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */; };
@@ -496,6 +499,12 @@
 		453343EB13D24EE3005AE115 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
+		45AC30D513D25D690082DB2F /* CRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoom.h; sourceTree = "<group>"; };
+		45AC30D613D25D690082DB2F /* CRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoom.m; sourceTree = "<group>"; };
+		45AC30D813D25D740082DB2F /* CUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUser.h; sourceTree = "<group>"; };
+		45AC30D913D25D740082DB2F /* CUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUser.m; sourceTree = "<group>"; };
+		45AC30DB13D25DC00082DB2F /* CTurntableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableObject.h; sourceTree = "<group>"; };
+		45AC30DC13D25DC00082DB2F /* CTurntableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTurntableObject.m; sourceTree = "<group>"; };
 		45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSocketIO.h; sourceTree = "<group>"; };
 		45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSocketIO.m; sourceTree = "<group>"; };
 		45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMSocket.h; sourceTree = "<group>"; };
@@ -818,6 +827,12 @@
 				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
 				45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */,
 				45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */,
+				45AC30DB13D25DC00082DB2F /* CTurntableObject.h */,
+				45AC30DC13D25DC00082DB2F /* CTurntableObject.m */,
+				45AC30D513D25D690082DB2F /* CRoom.h */,
+				45AC30D613D25D690082DB2F /* CRoom.m */,
+				45AC30D813D25D740082DB2F /* CUser.h */,
+				45AC30D913D25D740082DB2F /* CUser.m */,
 				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
 				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
 				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
@@ -2060,6 +2075,9 @@
 				75B86F4313D23095001280FC /* CChatViewController.m in Sources */,
 				75B86F4913D23124001280FC /* CSongViewController.m in Sources */,
 				97ABD55F13D218310058B68E /* CLobbyTableViewCell.m in Sources */,
+				45AC30D713D25D690082DB2F /* CRoom.m in Sources */,
+				45AC30DA13D25D740082DB2F /* CUser.m in Sources */,
+				45AC30DD13D25DC00082DB2F /* CTurntableObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

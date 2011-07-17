@@ -10,7 +10,6 @@
 #import "CChatViewController.h"
 #import "CSongViewController.h"
 
-
 @implementation CRoomViewController
 
 @synthesize chatButton, songButton;
