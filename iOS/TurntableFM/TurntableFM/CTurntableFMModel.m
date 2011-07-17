@@ -135,7 +135,9 @@ static CTurntableFMModel *gSharedInstance = NULL;
     [self.socket postMessage:@"room.deregister" dictionary:NULL handler:^(id inResult) {
         NSLog(@"UNREGISTER");
         self.room = NULL;
-
+		if (inHandler) {
+			inHandler();
+		}
         }];
     
     }
@@ -196,8 +198,12 @@ static CTurntableFMModel *gSharedInstance = NULL;
 
 
     }
-    
-#pragma mark -
+
+- (void)stopSong
+{
+	self.player.rate = 0.0;
+	self.player = nil;
+}
 
     
 @end

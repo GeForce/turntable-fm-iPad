@@ -14,6 +14,8 @@
 
 @interface CLobbyViewController ()
 
+@property(nonatomic, retain) NSDictionary *roomDescription;
+
 - (void)setUp;
 - (void)refresh:(id)sender;
 
@@ -24,6 +26,7 @@
 @synthesize searchBar;
 @synthesize tableView;
 @synthesize lobbyCell;
+@synthesize roomDescription;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -86,11 +89,21 @@
 	return YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
+	[super viewWillAppear:animated];
 	
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+	NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+	if (path != nil) {
+		CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
+		[model unregisterWithRoom:self.roomDescription handler:^(void) {
+			[self.tableView deselectRowAtIndexPath:path animated:YES];
+			UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
+			cell.accessoryView = nil;
+			self.roomDescription = nil;
+			[model stopSong];
+		}];
+	}
 }
 
 #pragma mark - UITableView
@@ -131,24 +144,32 @@
 	return [CLobbyTableViewCell cellHeight];
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (self.roomDescription == nil) {
+		return indexPath;
+	}
+	else {
+		return nil;
+	}
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
     {
 	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
 	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
-	NSDictionary *theRoomDescription = [room objectAtIndex:0];
+	self.roomDescription = [room objectAtIndex:0];
 		
 		UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 		[spinner startAnimating];
 		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 		cell.accessoryView = spinner;
 		[spinner release];
-    [[CTurntableFMModel sharedInstance] registerWithRoom:theRoomDescription handler:^(void) {
-		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-		cell.accessoryView = nil;
-		CRoomViewController *rvc = [[CRoomViewController alloc] initWithNibName:nil bundle:nil];
-		[self.navigationController pushViewController:rvc animated:YES];
-		[rvc release];
-	}];
+		[[CTurntableFMModel sharedInstance] registerWithRoom:self.roomDescription handler:^(void) {
+			CRoomViewController *rvc = [[CRoomViewController alloc] initWithNibName:nil bundle:nil];
+			[self.navigationController pushViewController:rvc animated:YES];
+			[rvc release];
+		}];
     }
 
 #pragma mark - Private

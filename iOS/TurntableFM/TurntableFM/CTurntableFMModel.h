@@ -30,5 +30,6 @@
 - (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
+- (void)stopSong;
 
 @end
