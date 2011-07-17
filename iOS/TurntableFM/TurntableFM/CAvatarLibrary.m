@@ -41,7 +41,7 @@ static CAvatarLibrary *gSharedInstance = NULL;
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 4 orange pig tails
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 5
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 6 red pig tails
-							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 7 brown hair kid
+							   [NSValue valueWithCGPoint:CGPointMake(0, 3)],// 7 brown hair kid
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 8
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 9
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 10 pin bear
@@ -97,7 +97,7 @@ static CAvatarLibrary *gSharedInstance = NULL;
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 4 orange pig tails
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 5
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 6 red pig tails
-							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 7 brown hair kid
+							   [NSValue valueWithCGPoint:CGPointMake(-10, 3)],// 7 brown hair kid
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 8
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 9
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 10 pin bear
@@ -119,32 +119,32 @@ static CAvatarLibrary *gSharedInstance = NULL;
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],nil];
 	
 	self.legsPointOffsets = [[NSMutableArray alloc] initWithObjects:
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 1 long brown hair
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 2
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 3 red fauxhawk pig tails
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 4 orange pig tails
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 5
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 6 red pig tails
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 7 brown hair kid
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 8
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 9
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 10 pin bear
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 11 green bear
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 12 evil drone bear
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 13
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 14
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 15
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 16 evil queen bear
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 17
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 18
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 19
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 20
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 21
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 22
-							   [NSValue valueWithCGPoint:CGPointMake(-3, 0)],// 23 gorilla
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 24 red mouse
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 25 unused
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil];
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 1 long brown hair
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 2
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 3 red fauxhawk pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 4 orange pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 5
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 6 red pig tails
+							   [NSValue valueWithCGPoint:CGPointMake(-4, -4)],// 7 brown hair kid
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 8
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 9
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 10 pin bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 11 green bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 12 evil drone bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 13
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 14
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 15
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 16 evil queen bear
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 17
+							   [NSValue valueWithCGPoint:CGPointMake(-25, -2)],// 18 grey cat
+							   [NSValue valueWithCGPoint:CGPointMake(-25, -2)],// 19 green cat
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 20
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 21
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 22
+							   [NSValue valueWithCGPoint:CGPointMake(-3, -4)],// 23 gorilla
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 24 red mouse
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)], // 25 unused
+							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],nil];
     
     return self;
 }
