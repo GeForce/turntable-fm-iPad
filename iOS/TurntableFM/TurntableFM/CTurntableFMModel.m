@@ -60,6 +60,12 @@ static CTurntableFMModel *gSharedInstance = NULL;
 	return(self);
 	}
 
+- (void)dealloc
+    {
+    // TODO
+    //
+    [super dealloc];
+    }
 
 - (void)loginWithFacebookAccessToken:(NSString *)inFacebookAccessToken;
     {
@@ -111,6 +117,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
     
     [self.socket postMessage:@"room.register" dictionary:theDictionary handler:^(id inResult) {
         self.room = [[[CRoom alloc] initWithParameters:inRoomDescription] autorelease];
+        [self.room subscribe];
     
         [self.socket postMessage:@"room.now" dictionary:NULL handler:^(id inResult) {
             NSLog(@"ROOM.NOW: %@", inResult);
@@ -134,6 +141,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
     {
     [self.socket postMessage:@"room.deregister" dictionary:NULL handler:^(id inResult) {
         NSLog(@"UNREGISTER");
+        [self.room unsubscribe];
         self.room = NULL;
 		if (inHandler) {
 			inHandler();

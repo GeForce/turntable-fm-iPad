@@ -70,8 +70,6 @@
 {
     [super viewDidLoad];
 	
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:NULL];
-    
     [self.room addObserver:self forKeyPath:@"chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
     [self.room addObserver:self forKeyPath:@"users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
     

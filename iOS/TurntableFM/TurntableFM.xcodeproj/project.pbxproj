@@ -843,7 +843,6 @@
 		4506235313D117F800086997 = {
 			isa = PBXGroup;
 			children = (
-				45BBC3DB13D2AFDC00DA64A6 /* QuartzCore.framework */,
 				45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
@@ -864,6 +863,7 @@
 		4506236113D117F800086997 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45BBC3DB13D2AFDC00DA64A6 /* QuartzCore.framework */,
 				453343EB13D24EE3005AE115 /* CoreMedia.framework */,
 				453343E013D24002005AE115 /* AVFoundation.framework */,
 				451D468E13D1340F00530A57 /* CFNetwork.framework */,
@@ -882,22 +882,7 @@
 			children = (
 				4506237113D117F800086997 /* CApplicationController.h */,
 				4506237213D117F800086997 /* CApplicationController.m */,
-				451D469313D157EA00530A57 /* CWebSocket.h */,
-				451D469413D157EA00530A57 /* CWebSocket.m */,
-				45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */,
-				45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */,
-				45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */,
-				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
-				45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */,
-				45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */,
-				45AC30DB13D25DC00082DB2F /* CTurntableObject.h */,
-				45AC30DC13D25DC00082DB2F /* CTurntableObject.m */,
-				45AC30D513D25D690082DB2F /* CRoom.h */,
-				45AC30D613D25D690082DB2F /* CRoom.m */,
-				45AC30D813D25D740082DB2F /* CUser.h */,
-				45AC30D913D25D740082DB2F /* CUser.m */,
-				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
-				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
+				459F844613D2CA34008A3C6A /* Model */,
 				450623B213D11B1D00086997 /* MainWindow_iPad.xib */,
 				979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */,
 				97ABD55713D212010058B68E /* CLobbyViewController.h */,
@@ -918,10 +903,7 @@
 				979BB81613D2AC2C00D16D03 /* CFriendsViewController.h */,
 				979BB81713D2AC2C00D16D03 /* CFriendsViewController.m */,
 				979BB81813D2AC2D00D16D03 /* CFriendsViewController.xib */,
-				45BBC1C013D275C600DA64A6 /* CAvatarLibrary.h */,
-				45BBC1C113D275C600DA64A6 /* CAvatarLibrary.m */,
-				752937F813D2517700A328B4 /* CAvatar.h */,
-				752937F913D2517700A328B4 /* CAvatar.m */,
+				459F844413D2CA0D008A3C6A /* Support */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -1239,6 +1221,40 @@
 				451D462F13D133B700530A57 /* CNumberToStringValueTransformer.m */,
 			);
 			path = ValueTransformers;
+			sourceTree = "<group>";
+		};
+		459F844413D2CA0D008A3C6A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				451D469313D157EA00530A57 /* CWebSocket.h */,
+				451D469413D157EA00530A57 /* CWebSocket.m */,
+				456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */,
+				456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */,
+				45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */,
+				45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */,
+				45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */,
+				45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */,
+				45BBC1C013D275C600DA64A6 /* CAvatarLibrary.h */,
+				45BBC1C113D275C600DA64A6 /* CAvatarLibrary.m */,
+				752937F813D2517700A328B4 /* CAvatar.h */,
+				752937F913D2517700A328B4 /* CAvatar.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		459F844613D2CA34008A3C6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45FD2CEE13D2167E00F88C0F /* CTurntableFMModel.h */,
+				45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */,
+				45AC30DB13D25DC00082DB2F /* CTurntableObject.h */,
+				45AC30DC13D25DC00082DB2F /* CTurntableObject.m */,
+				45AC30D513D25D690082DB2F /* CRoom.h */,
+				45AC30D613D25D690082DB2F /* CRoom.m */,
+				45AC30D813D25D740082DB2F /* CUser.h */,
+				45AC30D913D25D740082DB2F /* CUser.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */ = {
@@ -1991,9 +2007,14 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				INFOPLIST_FILE = "TurntableFM/TurntableFM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2004,9 +2025,14 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				INFOPLIST_FILE = "TurntableFM/TurntableFM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

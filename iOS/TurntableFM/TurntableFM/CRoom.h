@@ -16,4 +16,7 @@
 @property (readwrite, nonatomic, retain) NSMutableArray *DJs;
 @property (readwrite, nonatomic, retain) NSMutableArray *chatLog;
 
+- (void)subscribe;
+- (void)unsubscribe;
+
 @end

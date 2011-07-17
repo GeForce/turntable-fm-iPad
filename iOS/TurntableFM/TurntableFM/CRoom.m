@@ -28,6 +28,19 @@
 
 - (void)didInitialize
     {
+    }
+
+#pragma mark -
+
+- (NSString *)roomID
+    {
+    return([self.parameters objectForKey:@"roomid"]);
+    }
+
+#pragma mark -
+
+- (void)subscribe
+    {
     self.usersByUserID = [NSMutableDictionary dictionary];
     self.users = [NSMutableArray array];
     self.DJs = [NSMutableArray array];
@@ -106,13 +119,13 @@
                 }
             } forCommand:@"rem_dj"];
 
-        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-            // We're ignoring this...
-            } forCommand:@"update_user"];
-
-        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-            NSLog(@"%@", inParam);
-            } forCommand:@"update_votes"];
+//        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+//            // We're ignoring this...
+//            } forCommand:@"update_user"];
+//
+//        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+//            NSLog(@"%@", inParam);
+//            } forCommand:@"update_votes"];
 
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
 
@@ -127,9 +140,13 @@
         }];
     }
 
-- (NSString *)roomID
+- (void)unsubscribe
     {
-    return([self.parameters objectForKey:@"roomid"]);
+    [[CTurntableFMModel sharedInstance].socket removeHandlerForCommand:@"registered"];
+    [[CTurntableFMModel sharedInstance].socket removeHandlerForCommand:@"deregistered"];
+    [[CTurntableFMModel sharedInstance].socket removeHandlerForCommand:@"add_dj"];
+    [[CTurntableFMModel sharedInstance].socket removeHandlerForCommand:@"rem_dj"];
     }
+
 
 @end
