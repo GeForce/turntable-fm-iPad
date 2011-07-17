@@ -151,7 +151,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
         }
     else
         {
-        NSString *theRoomID = [self.room objectForKey:@"roomid"];
+        NSString *theRoomID = self.room.roomID;
         NSString *theRandom = [NSString stringWithFormat:@"%d", arc4random()];
         NSData *theData = [[NSString stringWithFormat:@"%@%@", theRoomID, theSongID] dataUsingEncoding:NSUTF8StringEncoding];
         NSString *theDownloadKey = [[theData SHA1Digest] hexString];
