@@ -358,7 +358,6 @@
 		45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */; };
 		750344BC13D2297D0070495B /* CRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750344BA13D2297D0070495B /* CRoomViewController.m */; };
 		750344BD13D2297D0070495B /* CRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750344BB13D2297D0070495B /* CRoomViewController.xib */; };
-		752937FA13D2517700A328B4 /* CAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 752937F913D2517700A328B4 /* CAvatar.m */; };
 		75B86F4313D23095001280FC /* CChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B86F4113D23095001280FC /* CChatViewController.m */; };
 		75B86F4413D23095001280FC /* CChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4213D23095001280FC /* CChatViewController.xib */; };
 		75B86F4913D23124001280FC /* CSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B86F4713D23124001280FC /* CSongViewController.m */; };
@@ -813,8 +812,6 @@
 		750344B913D2297D0070495B /* CRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoomViewController.h; sourceTree = "<group>"; };
 		750344BA13D2297D0070495B /* CRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoomViewController.m; sourceTree = "<group>"; };
 		750344BB13D2297D0070495B /* CRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CRoomViewController.xib; sourceTree = "<group>"; };
-		752937F813D2517700A328B4 /* CAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAvatar.h; sourceTree = "<group>"; };
-		752937F913D2517700A328B4 /* CAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAvatar.m; sourceTree = "<group>"; };
 		75B86F4013D23095001280FC /* CChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CChatViewController.h; sourceTree = "<group>"; };
 		75B86F4113D23095001280FC /* CChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CChatViewController.m; sourceTree = "<group>"; };
 		75B86F4213D23095001280FC /* CChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CChatViewController.xib; sourceTree = "<group>"; };
@@ -935,8 +932,6 @@
 				97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */,
 				45BBC1C013D275C600DA64A6 /* CAvatarLibrary.h */,
 				45BBC1C113D275C600DA64A6 /* CAvatarLibrary.m */,
-				752937F813D2517700A328B4 /* CAvatar.h */,
-				752937F913D2517700A328B4 /* CAvatar.m */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -2001,7 +1996,6 @@
 				45AC30DA13D25D740082DB2F /* CUser.m in Sources */,
 				45AC30DD13D25DC00082DB2F /* CTurntableObject.m in Sources */,
 				45BBC1C213D275C600DA64A6 /* CAvatarLibrary.m in Sources */,
-				752937FA13D2517700A328B4 /* CAvatar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
