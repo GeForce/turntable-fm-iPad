@@ -111,6 +111,7 @@
 		453343E113D24002005AE115 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343E013D24002005AE115 /* AVFoundation.framework */; };
 		453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453343EB13D24EE3005AE115 /* CoreMedia.framework */; };
 		456AFB9513D1D19B00F577F3 /* CCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */; };
+		457C003E13D397C1000D2EAC /* CAvatarLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C003D13D397C1000D2EAC /* CAvatarLayer.m */; };
 		459F844913D2CFE6008A3C6A /* CSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F844813D2CFE5008A3C6A /* CSong.m */; };
 		459F844C13D2D3D9008A3C6A /* CMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F844B13D2D3D9008A3C6A /* CMarqueeView.m */; };
 		459F844E13D2D506008A3C6A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459F844D13D2D506008A3C6A /* CoreText.framework */; };
@@ -588,6 +589,8 @@
 		453343EB13D24EE3005AE115 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		456AFB9313D1D19B00F577F3 /* CCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCircularBuffer.h; sourceTree = "<group>"; };
 		456AFB9413D1D19B00F577F3 /* CCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCircularBuffer.m; sourceTree = "<group>"; };
+		457C003C13D397C1000D2EAC /* CAvatarLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAvatarLayer.h; sourceTree = "<group>"; };
+		457C003D13D397C1000D2EAC /* CAvatarLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAvatarLayer.m; sourceTree = "<group>"; };
 		459F844713D2CFE5008A3C6A /* CSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSong.h; sourceTree = "<group>"; };
 		459F844813D2CFE5008A3C6A /* CSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSong.m; sourceTree = "<group>"; };
 		459F844A13D2D3D9008A3C6A /* CMarqueeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMarqueeView.h; sourceTree = "<group>"; };
@@ -1352,6 +1355,8 @@
 				750344B913D2297D0070495B /* CRoomViewController.h */,
 				750344BA13D2297D0070495B /* CRoomViewController.m */,
 				750344BB13D2297D0070495B /* CRoomViewController.xib */,
+				457C003C13D397C1000D2EAC /* CAvatarLayer.h */,
+				457C003D13D397C1000D2EAC /* CAvatarLayer.m */,
 			);
 			name = RoomViewController;
 			sourceTree = "<group>";
@@ -2113,6 +2118,7 @@
 				459F844C13D2D3D9008A3C6A /* CMarqueeView.m in Sources */,
 				459F845113D2DD08008A3C6A /* CAAnimation_BlockExtensions.m in Sources */,
 				97F126F513D2E87B00349BC0 /* CQueueViewController.m in Sources */,
+				457C003E13D397C1000D2EAC /* CAvatarLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

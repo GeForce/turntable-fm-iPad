@@ -13,7 +13,6 @@
 @property (readonly, nonatomic, retain) NSString *userID;
 @property (readonly, nonatomic, retain) NSString *name;
 @property (readonly, nonatomic, assign) NSInteger avatarID;
-
-- (void)fetchPlaylist;
+@property (readwrite, nonatomic, assign) BOOL bobbing;
 
 @end

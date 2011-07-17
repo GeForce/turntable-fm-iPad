@@ -20,6 +20,7 @@
 #import "CSong.h"
 #import "CMarqueeView.h"
 #import "CAvatarLibrary.h"
+#import "CAvatarLayer.h"
 
 @interface CRoomViewController () <UITextFieldDelegate>
 
@@ -203,9 +204,9 @@
 
 #pragma mark -
 
-- (CALayer *)layerForUser:(CUser *)inUser
+- (CAvatarLayer *)layerForUser:(CUser *)inUser
     {
-    CALayer *theLayer = objc_getAssociatedObject(inUser, "layer");
+    CAvatarLayer *theLayer = objc_getAssociatedObject(inUser, "layer");
     if (theLayer == NULL)   
         {
 
@@ -215,18 +216,20 @@
 		UIImage *headImage = [library imageForAvatar:inUser.avatarID head:YES front:NO];
 		UIImage *bodyImage = [library imageForAvatar:inUser.avatarID head:NO front:NO];
 				
-		theLayer = [CALayer layer];
+		theLayer = [CAvatarLayer layer];
             
 		CALayer *bodyImageLayer = [CALayer layer];
 		bodyImageLayer.bounds = (CGRect){ .size = bodyImage.size };
 		bodyImageLayer.contents = (id)bodyImage.CGImage;
 		bodyImageLayer.position = (CGPoint){ .x = 0, .y = headImage.size.height - neck };
 		[theLayer addSublayer:bodyImageLayer];
-				
+            
 		CALayer *headImageLayer = [CALayer layer];
 		headImageLayer.bounds = (CGRect){ .size = headImage.size };
 		headImageLayer.contents = (id)headImage.CGImage;
 		[theLayer addSublayer:headImageLayer];
+
+        theLayer.headLayer = headImageLayer;
 
         objc_setAssociatedObject(inUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
         }

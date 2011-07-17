@@ -8,7 +8,14 @@
 
 #import "CUser.h"
 
+#import <objc/runtime.h>
+#import <QuartzCore/QuartzCore.h>
+
+#import "CAvatarLayer.h"
+
 @implementation CUser
+
+@synthesize bobbing;
 
 - (NSString *)userID
     {
@@ -25,5 +32,14 @@
     return([[self.parameters objectForKey:@"avatarid"] integerValue]);
     }
 
+- (void)setBobbing:(BOOL)inBobbing
+    {
+    bobbing = inBobbing;
+
+    CAvatarLayer *theLayer = objc_getAssociatedObject(self, "layer");
+    NSLog(@"%@", theLayer);
+
+    theLayer.bobbing = inBobbing;
+    }
 
 @end
