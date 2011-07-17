@@ -13,6 +13,7 @@
 
 @interface CMarqueeView ()
 @property (readwrite, nonatomic, assign) CGSize textSize;
+@property (readwrite, nonatomic, retain) CALayer *scrollingLayer; 
 
 - (void)prepareLayer;
 @end
@@ -23,6 +24,7 @@
 @synthesize font;
 
 @synthesize textSize;
+@synthesize scrollingLayer;
 
 - (id)initWithFrame:(CGRect)frame
     {
@@ -51,6 +53,9 @@
         [text release];
         text = [inText retain];
         
+        
+        
+        
         [self prepareLayer];
         }
     }
@@ -72,8 +77,8 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag;
     {
-    CALayer *theLayer = [anim valueForKey:@"layer"];
-    [theLayer removeFromSuperlayer];
+    [self.scrollingLayer removeFromSuperlayer];
+    self.scrollingLayer = NULL;
     
     if (flag == YES)
         {
@@ -83,11 +88,18 @@
 
 - (void)prepareLayer
     {
+
+    [self.scrollingLayer removeFromSuperlayer];
+    self.scrollingLayer = NULL;
+
     if (self.text.length == 0)
         {
         return;
         }
     
+
+
+
     CTFontRef theFont = CTFontCreateWithName((CFStringRef)objc_unretainedPointer(self.font.fontName), self.font.pointSize, NULL);
 
     NSDictionary *theAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -124,9 +136,10 @@
     theAnimation.toValue = [NSNumber numberWithFloat:-self.textSize.width * 0.5];
     theAnimation.speed = 0.05;
     theAnimation.delegate = self;
-    [theAnimation setValue:theTextLayer forKey:@"layer"];
     
     [theTextLayer addAnimation:theAnimation forKey:@"scroll"];
+    
+    self.scrollingLayer = theTextLayer;
     }
 
 @end

@@ -14,6 +14,32 @@
 		4506236F13D117F800086997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506236E13D117F800086997 /* main.m */; };
 		4506237313D117F800086997 /* CApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4506237213D117F800086997 /* CApplicationController.m */; };
 		450623B313D11B1E00086997 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450623B213D11B1D00086997 /* MainWindow_iPad.xib */; };
+		4517669813D3434800F50883 /* Floor with curtain shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517667E13D3434800F50883 /* Floor with curtain shadow.png */; };
+		4517669913D3434800F50883 /* Floor with curtain shadow_nospiral.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517667F13D3434800F50883 /* Floor with curtain shadow_nospiral.png */; };
+		4517669A13D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0000_Layer-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668013D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0000_Layer-6.png */; };
+		4517669B13D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0001_Layer-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668113D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0001_Layer-7.png */; };
+		4517669C13D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0002_Layer-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668213D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0002_Layer-5.png */; };
+		4517669D13D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0003_Layer-7-copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668313D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0003_Layer-7-copy.png */; };
+		4517669E13D3434800F50883 /* Spotlight-Setup_0001s_0000s_0000_Layer-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668413D3434800F50883 /* Spotlight-Setup_0001s_0000s_0000_Layer-2.png */; };
+		4517669F13D3434800F50883 /* Spotlight-Setup_0001s_0000s_0005_Layer-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668513D3434800F50883 /* Spotlight-Setup_0001s_0000s_0005_Layer-4.png */; };
+		451766A013D3434800F50883 /* Spotlight-Setup_0001s_0000s_0006_Layer-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668613D3434800F50883 /* Spotlight-Setup_0001s_0000s_0006_Layer-1.png */; };
+		451766A113D3434800F50883 /* Spotlight-Setup_0002_Layer-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668713D3434800F50883 /* Spotlight-Setup_0002_Layer-10.png */; };
+		451766A213D3434800F50883 /* Spotlight-Setup_0003_Layer-13.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668813D3434800F50883 /* Spotlight-Setup_0003_Layer-13.png */; };
+		451766A313D3434800F50883 /* Spotlight-Setup_0004_Layer-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668913D3434800F50883 /* Spotlight-Setup_0004_Layer-15.png */; };
+		451766A413D3434800F50883 /* Spotlight-Setup_0005_Layer-14.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668A13D3434800F50883 /* Spotlight-Setup_0005_Layer-14.png */; };
+		451766A513D3434800F50883 /* Spotlight-Setup_0006_Layer-12.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668B13D3434800F50883 /* Spotlight-Setup_0006_Layer-12.png */; };
+		451766A613D3434800F50883 /* Spotlight-Setup_0007_Layer-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668C13D3434800F50883 /* Spotlight-Setup_0007_Layer-9.png */; };
+		451766A713D3434800F50883 /* Spotlight-Setup_0008_Layer-11.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668D13D3434800F50883 /* Spotlight-Setup_0008_Layer-11.png */; };
+		451766A813D3434800F50883 /* Spotlight-Setup_0009_Layer-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668E13D3434800F50883 /* Spotlight-Setup_0009_Layer-17.png */; };
+		451766A913D3434800F50883 /* Spotlight-Setup_0010_Layer-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517668F13D3434800F50883 /* Spotlight-Setup_0010_Layer-20.png */; };
+		451766AA13D3434800F50883 /* Spotlight-Setup_0011_Layer-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669013D3434800F50883 /* Spotlight-Setup_0011_Layer-19.png */; };
+		451766AB13D3434800F50883 /* Spotlight-Setup_0012_Layer-18.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669113D3434800F50883 /* Spotlight-Setup_0012_Layer-18.png */; };
+		451766AC13D3434800F50883 /* Spotlight-Setup_0013_Layer-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669213D3434800F50883 /* Spotlight-Setup_0013_Layer-16.png */; };
+		451766AD13D3434800F50883 /* Spotlight-Setup_0014_Layer-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669313D3434800F50883 /* Spotlight-Setup_0014_Layer-3.png */; };
+		451766AE13D3434800F50883 /* Spotlight-Setup_0015_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669413D3434800F50883 /* Spotlight-Setup_0015_Background.png */; };
+		451766AF13D3434800F50883 /* Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669513D3434800F50883 /* Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png */; };
+		451766B013D3434800F50883 /* Spotlight-Setup_ComputerwithglowWin_0002_Layer-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669613D3434800F50883 /* Spotlight-Setup_ComputerwithglowWin_0002_Layer-5.png */; };
+		451766B113D3434800F50883 /* Table with wood and glisten on wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 4517669713D3434800F50883 /* Table with wood and glisten on wood.png */; };
 		451D43CC13D11DCE00530A57 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D430113D11DCD00530A57 /* CDataScanner.m */; };
 		451D43CD13D11DCE00530A57 /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D430413D11DCD00530A57 /* CFilteringJSONSerializer.m */; };
 		451D43CE13D11DCE00530A57 /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D430613D11DCD00530A57 /* CJSONDeserializer_BlocksExtensions.m */; };
@@ -393,6 +419,32 @@
 		4506239613D117F800086997 /* TurntableFMTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurntableFMTests.h; sourceTree = "<group>"; };
 		4506239813D117F800086997 /* TurntableFMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurntableFMTests.m; sourceTree = "<group>"; };
 		450623B213D11B1D00086997 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
+		4517667E13D3434800F50883 /* Floor with curtain shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Floor with curtain shadow.png"; sourceTree = "<group>"; };
+		4517667F13D3434800F50883 /* Floor with curtain shadow_nospiral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Floor with curtain shadow_nospiral.png"; sourceTree = "<group>"; };
+		4517668013D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0000_Layer-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup---ComputersMac_0000s_0000_Layer-6.png"; sourceTree = "<group>"; };
+		4517668113D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0001_Layer-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup---ComputersMac_0000s_0001_Layer-7.png"; sourceTree = "<group>"; };
+		4517668213D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0002_Layer-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup---ComputersWindows_0000s_0002_Layer-5.png"; sourceTree = "<group>"; };
+		4517668313D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0003_Layer-7-copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup---ComputersWindows_0000s_0003_Layer-7-copy.png"; sourceTree = "<group>"; };
+		4517668413D3434800F50883 /* Spotlight-Setup_0001s_0000s_0000_Layer-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0001s_0000s_0000_Layer-2.png"; sourceTree = "<group>"; };
+		4517668513D3434800F50883 /* Spotlight-Setup_0001s_0000s_0005_Layer-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0001s_0000s_0005_Layer-4.png"; sourceTree = "<group>"; };
+		4517668613D3434800F50883 /* Spotlight-Setup_0001s_0000s_0006_Layer-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0001s_0000s_0006_Layer-1.png"; sourceTree = "<group>"; };
+		4517668713D3434800F50883 /* Spotlight-Setup_0002_Layer-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0002_Layer-10.png"; sourceTree = "<group>"; };
+		4517668813D3434800F50883 /* Spotlight-Setup_0003_Layer-13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0003_Layer-13.png"; sourceTree = "<group>"; };
+		4517668913D3434800F50883 /* Spotlight-Setup_0004_Layer-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0004_Layer-15.png"; sourceTree = "<group>"; };
+		4517668A13D3434800F50883 /* Spotlight-Setup_0005_Layer-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0005_Layer-14.png"; sourceTree = "<group>"; };
+		4517668B13D3434800F50883 /* Spotlight-Setup_0006_Layer-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0006_Layer-12.png"; sourceTree = "<group>"; };
+		4517668C13D3434800F50883 /* Spotlight-Setup_0007_Layer-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0007_Layer-9.png"; sourceTree = "<group>"; };
+		4517668D13D3434800F50883 /* Spotlight-Setup_0008_Layer-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0008_Layer-11.png"; sourceTree = "<group>"; };
+		4517668E13D3434800F50883 /* Spotlight-Setup_0009_Layer-17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0009_Layer-17.png"; sourceTree = "<group>"; };
+		4517668F13D3434800F50883 /* Spotlight-Setup_0010_Layer-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0010_Layer-20.png"; sourceTree = "<group>"; };
+		4517669013D3434800F50883 /* Spotlight-Setup_0011_Layer-19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0011_Layer-19.png"; sourceTree = "<group>"; };
+		4517669113D3434800F50883 /* Spotlight-Setup_0012_Layer-18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0012_Layer-18.png"; sourceTree = "<group>"; };
+		4517669213D3434800F50883 /* Spotlight-Setup_0013_Layer-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0013_Layer-16.png"; sourceTree = "<group>"; };
+		4517669313D3434800F50883 /* Spotlight-Setup_0014_Layer-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0014_Layer-3.png"; sourceTree = "<group>"; };
+		4517669413D3434800F50883 /* Spotlight-Setup_0015_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_0015_Background.png"; sourceTree = "<group>"; };
+		4517669513D3434800F50883 /* Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png"; sourceTree = "<group>"; };
+		4517669613D3434800F50883 /* Spotlight-Setup_ComputerwithglowWin_0002_Layer-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight-Setup_ComputerwithglowWin_0002_Layer-5.png"; sourceTree = "<group>"; };
+		4517669713D3434800F50883 /* Table with wood and glisten on wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Table with wood and glisten on wood.png"; sourceTree = "<group>"; };
 		451D430013D11DCD00530A57 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		451D430113D11DCD00530A57 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		451D430313D11DCD00530A57 /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -980,6 +1032,39 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4517667D13D3434800F50883 /* Stage */ = {
+			isa = PBXGroup;
+			children = (
+				4517667E13D3434800F50883 /* Floor with curtain shadow.png */,
+				4517667F13D3434800F50883 /* Floor with curtain shadow_nospiral.png */,
+				4517668013D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0000_Layer-6.png */,
+				4517668113D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0001_Layer-7.png */,
+				4517668213D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0002_Layer-5.png */,
+				4517668313D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0003_Layer-7-copy.png */,
+				4517668413D3434800F50883 /* Spotlight-Setup_0001s_0000s_0000_Layer-2.png */,
+				4517668513D3434800F50883 /* Spotlight-Setup_0001s_0000s_0005_Layer-4.png */,
+				4517668613D3434800F50883 /* Spotlight-Setup_0001s_0000s_0006_Layer-1.png */,
+				4517668713D3434800F50883 /* Spotlight-Setup_0002_Layer-10.png */,
+				4517668813D3434800F50883 /* Spotlight-Setup_0003_Layer-13.png */,
+				4517668913D3434800F50883 /* Spotlight-Setup_0004_Layer-15.png */,
+				4517668A13D3434800F50883 /* Spotlight-Setup_0005_Layer-14.png */,
+				4517668B13D3434800F50883 /* Spotlight-Setup_0006_Layer-12.png */,
+				4517668C13D3434800F50883 /* Spotlight-Setup_0007_Layer-9.png */,
+				4517668D13D3434800F50883 /* Spotlight-Setup_0008_Layer-11.png */,
+				4517668E13D3434800F50883 /* Spotlight-Setup_0009_Layer-17.png */,
+				4517668F13D3434800F50883 /* Spotlight-Setup_0010_Layer-20.png */,
+				4517669013D3434800F50883 /* Spotlight-Setup_0011_Layer-19.png */,
+				4517669113D3434800F50883 /* Spotlight-Setup_0012_Layer-18.png */,
+				4517669213D3434800F50883 /* Spotlight-Setup_0013_Layer-16.png */,
+				4517669313D3434800F50883 /* Spotlight-Setup_0014_Layer-3.png */,
+				4517669413D3434800F50883 /* Spotlight-Setup_0015_Background.png */,
+				4517669513D3434800F50883 /* Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png */,
+				4517669613D3434800F50883 /* Spotlight-Setup_ComputerwithglowWin_0002_Layer-5.png */,
+				4517669713D3434800F50883 /* Table with wood and glisten on wood.png */,
+			);
+			path = Stage;
+			sourceTree = "<group>";
+		};
 		451D427013D11DCD00530A57 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
@@ -1307,6 +1392,7 @@
 		45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */ = {
 			isa = PBXGroup;
 			children = (
+				4517667D13D3434800F50883 /* Stage */,
 				45BBC1CD13D2843300DA64A6 /* avatars_10_backtorso.png */,
 				45BBC1CE13D2843300DA64A6 /* avatars_10_fronttorso.png */,
 				45BBC1CF13D2843300DA64A6 /* avatars_10_fullfront.png */,
@@ -1888,6 +1974,32 @@
 				970AF76413D2D25000AA9067 /* CSideViewController.xib in Resources */,
 				970AF76A13D2DC0D00AA9067 /* CUsersViewController.xib in Resources */,
 				97F126F613D2E87B00349BC0 /* CQueueViewController.xib in Resources */,
+				4517669813D3434800F50883 /* Floor with curtain shadow.png in Resources */,
+				4517669913D3434800F50883 /* Floor with curtain shadow_nospiral.png in Resources */,
+				4517669A13D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0000_Layer-6.png in Resources */,
+				4517669B13D3434800F50883 /* Spotlight-Setup---ComputersMac_0000s_0001_Layer-7.png in Resources */,
+				4517669C13D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0002_Layer-5.png in Resources */,
+				4517669D13D3434800F50883 /* Spotlight-Setup---ComputersWindows_0000s_0003_Layer-7-copy.png in Resources */,
+				4517669E13D3434800F50883 /* Spotlight-Setup_0001s_0000s_0000_Layer-2.png in Resources */,
+				4517669F13D3434800F50883 /* Spotlight-Setup_0001s_0000s_0005_Layer-4.png in Resources */,
+				451766A013D3434800F50883 /* Spotlight-Setup_0001s_0000s_0006_Layer-1.png in Resources */,
+				451766A113D3434800F50883 /* Spotlight-Setup_0002_Layer-10.png in Resources */,
+				451766A213D3434800F50883 /* Spotlight-Setup_0003_Layer-13.png in Resources */,
+				451766A313D3434800F50883 /* Spotlight-Setup_0004_Layer-15.png in Resources */,
+				451766A413D3434800F50883 /* Spotlight-Setup_0005_Layer-14.png in Resources */,
+				451766A513D3434800F50883 /* Spotlight-Setup_0006_Layer-12.png in Resources */,
+				451766A613D3434800F50883 /* Spotlight-Setup_0007_Layer-9.png in Resources */,
+				451766A713D3434800F50883 /* Spotlight-Setup_0008_Layer-11.png in Resources */,
+				451766A813D3434800F50883 /* Spotlight-Setup_0009_Layer-17.png in Resources */,
+				451766A913D3434800F50883 /* Spotlight-Setup_0010_Layer-20.png in Resources */,
+				451766AA13D3434800F50883 /* Spotlight-Setup_0011_Layer-19.png in Resources */,
+				451766AB13D3434800F50883 /* Spotlight-Setup_0012_Layer-18.png in Resources */,
+				451766AC13D3434800F50883 /* Spotlight-Setup_0013_Layer-16.png in Resources */,
+				451766AD13D3434800F50883 /* Spotlight-Setup_0014_Layer-3.png in Resources */,
+				451766AE13D3434800F50883 /* Spotlight-Setup_0015_Background.png in Resources */,
+				451766AF13D3434800F50883 /* Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png in Resources */,
+				451766B013D3434800F50883 /* Spotlight-Setup_ComputerwithglowWin_0002_Layer-5.png in Resources */,
+				451766B113D3434800F50883 /* Table with wood and glisten on wood.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
