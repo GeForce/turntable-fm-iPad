@@ -1,3 +1,4 @@
+;
 //
 //  CTurntableFMModel.m
 //  TurntableFM
@@ -115,12 +116,10 @@ static CTurntableFMModel *gSharedInstance = NULL;
             
             self.roomTime = [[inResult objectForKey:@"now"] doubleValue];
             
-            
             NSDictionary *theSong = [self.room valueForKeyPath:@"parameters.metadata.current_song"];
             NSLog(@"%@", theSong);
             
             [self playSong:theSong preview:NO];
-
             
             if (inHandler)
                 {
@@ -174,16 +173,8 @@ static CTurntableFMModel *gSharedInstance = NULL;
     
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {
-    NSTimeInterval theStartTime = [[inSong objectForKey:@"starttime"] doubleValue];
-    int64_t theOffsetSeconds = floor((self.roomTime - theStartTime) * 1000.0);
-    NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
 
 #if TARGET_IPHONE_SIMULATOR == 0
-
-
-    CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
-
-
     NSURL *theSongURL = [self URLForSong:inSong preview:inPreview];
 
     AVPlayerItem *thePlayerItem = [[[AVPlayerItem alloc] initWithURL:theSongURL] autorelease];
@@ -191,8 +182,15 @@ static CTurntableFMModel *gSharedInstance = NULL;
     AVPlayer *thePlayer = [[[AVPlayer alloc] initWithPlayerItem:thePlayerItem] autorelease];
     self.player = thePlayer;
 
-    [self.player seekToTime:theOffset];
-
+    if (inPreview == NO)
+        {
+        NSTimeInterval theStartTime = [[inSong objectForKey:@"starttime"] doubleValue];
+        int64_t theOffsetSeconds = floor((self.roomTime - theStartTime) * 1000.0);
+        NSLog(@"OFFSET %lld", theOffsetSeconds / 1000);
+        CMTime theOffset = CMTimeMake(theOffsetSeconds, 1000);
+        [self.player seekToTime:theOffset];
+        }
+        
     self.player.rate = 1.0;
 #endif
 
