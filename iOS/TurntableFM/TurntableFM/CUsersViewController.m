@@ -64,7 +64,7 @@
 {
 	CGFloat height = MIN(44.0 * self.room.users.count, 800.0);
 	height = MAX(height, 175.0);
-	return CGSizeMake(256.0, height);
+	return CGSizeMake(320.0, height);
 }
 
 - (void)setRoom:(CRoom *)rm

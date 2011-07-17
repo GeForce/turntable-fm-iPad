@@ -100,7 +100,7 @@
 
 	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 	
-	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
+	self.neckOffsets = [[[NSMutableArray alloc] initWithObjects:
 						[NSNumber numberWithInt:30],// 1 long brown hair
 						[NSNumber numberWithInt:30],// 2
 						[NSNumber numberWithInt:40],// 3 red fauxhawk pig tails
@@ -126,7 +126,7 @@
 						[NSNumber numberWithInt:0],// 23 gorilla
 						[NSNumber numberWithInt:55],// 24 red mouse
 						[NSNumber numberWithInt:0], // 25 unused
-						[NSNumber numberWithInt:30],nil];
+						[NSNumber numberWithInt:30],nil] autorelease];
 
     self.title = self.room.name;
 	
@@ -164,8 +164,6 @@
 		[self setQueueViewController:[[[CQueueViewController alloc] initWithNibName:nil bundle:nil] autorelease]];
 		[self setQueuePopoverController:[[[UIPopoverController alloc] initWithContentViewController:queueViewController] autorelease]];
 		[queuePopoverController setDelegate:self];
-		CGSize popOverSize = CGSizeMake(240, 500);
-		[queuePopoverController setPopoverContentSize:popOverSize];
 	}
 	[queuePopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }

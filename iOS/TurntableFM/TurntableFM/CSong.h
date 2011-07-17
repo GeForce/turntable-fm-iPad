@@ -10,7 +10,9 @@
 
 @interface CSong : CTurntableObject
 
+@property (readonly, nonatomic, retain) NSString *songID;
 @property (readonly, nonatomic, retain) NSString *name;
+@property (readonly, nonatomic, retain) NSString *artist;
 
 
 @end
