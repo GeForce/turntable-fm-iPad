@@ -141,8 +141,10 @@
             if (theSongParameters)
                 {
                 self.currentSong = [[[CSong alloc] initWithParameters:theSongParameters] autorelease];
+                
+                [[CTurntableFMModel sharedInstance] playSong:self.currentSong.parameters preview:NO];
+                
                 }
-            NSLog(@"NEW SONG: %@", self.currentSong.name);
 //   now = "1310896173.28";
             } forCommand:@"newsong"];
 
@@ -164,7 +166,6 @@
             [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
 
 
-            NSLog(@"CHAT COUNT: %d", self.chatLog.count);
             } forCommand:@"speak"];
         
         }];

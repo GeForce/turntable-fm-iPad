@@ -52,10 +52,7 @@
         {
         [text release];
         text = [inText retain];
-        
-        
-        
-        
+                
         [self prepareLayer];
         }
     }
@@ -77,17 +74,18 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag;
     {
-    [self.scrollingLayer removeFromSuperlayer];
-    self.scrollingLayer = NULL;
-    
     if (flag == YES)
         {
+        [self.scrollingLayer removeFromSuperlayer];
+        self.scrollingLayer = NULL;
+
         [self prepareLayer];
         }
     }
 
 - (void)prepareLayer
     {
+    NSLog(@"NEW TEXT: %@", self.text);
 
     [self.scrollingLayer removeFromSuperlayer];
     self.scrollingLayer = NULL;
@@ -96,9 +94,8 @@
         {
         return;
         }
-    
 
-
+    NSLog(@"CHANGING LAYER");
 
     CTFontRef theFont = CTFontCreateWithName((CFStringRef)objc_unretainedPointer(self.font.fontName), self.font.pointSize, NULL);
 
@@ -130,8 +127,6 @@
     
     CFRelease(theFont);
     
-    [self.layer addSublayer:theTextLayer];
-    
     CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
     theAnimation.toValue = [NSNumber numberWithFloat:-self.textSize.width * 0.5];
     theAnimation.speed = 0.05;
@@ -139,7 +134,11 @@
     
     [theTextLayer addAnimation:theAnimation forKey:@"scroll"];
     
+    [self.layer addSublayer:theTextLayer];
+    
     self.scrollingLayer = theTextLayer;
+    
+    NSLog(@"DONEE WITH CHANGE LAYER");
     }
 
 @end

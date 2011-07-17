@@ -187,6 +187,8 @@
     {
     if ([keyPath isEqualToString:@"room.currentSong"])
         {
+        NSLog(@"%@", change);
+        
         CSong *theSong = [change objectForKey:NSKeyValueChangeNewKey];
         if ((id)theSong == [NSNull null])
             {

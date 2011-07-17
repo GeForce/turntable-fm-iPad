@@ -965,9 +965,7 @@
 				97ABD55713D212010058B68E /* CLobbyViewController.h */,
 				97ABD55813D212010058B68E /* CLobbyViewController.m */,
 				97ABD55913D212010058B68E /* CLobbyViewController.xib */,
-				750344B913D2297D0070495B /* CRoomViewController.h */,
-				750344BA13D2297D0070495B /* CRoomViewController.m */,
-				750344BB13D2297D0070495B /* CRoomViewController.xib */,
+				4577600F13D363FE00969E5D /* RoomViewController */,
 				75B86F4013D23095001280FC /* CChatViewController.h */,
 				75B86F4113D23095001280FC /* CChatViewController.m */,
 				75B86F4213D23095001280FC /* CChatViewController.xib */,
@@ -1344,6 +1342,16 @@
 				451D462F13D133B700530A57 /* CNumberToStringValueTransformer.m */,
 			);
 			path = ValueTransformers;
+			sourceTree = "<group>";
+		};
+		4577600F13D363FE00969E5D /* RoomViewController */ = {
+			isa = PBXGroup;
+			children = (
+				750344B913D2297D0070495B /* CRoomViewController.h */,
+				750344BA13D2297D0070495B /* CRoomViewController.m */,
+				750344BB13D2297D0070495B /* CRoomViewController.xib */,
+			);
+			name = RoomViewController;
 			sourceTree = "<group>";
 		};
 		459F844413D2CA0D008A3C6A /* Support */ = {
