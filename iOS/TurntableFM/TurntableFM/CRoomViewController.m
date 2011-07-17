@@ -13,7 +13,7 @@
 #import "CRoom.h"
 
 @interface CRoomViewController () <UITextFieldDelegate>
-@property (readwrite, nonatomic, retain) CRoom *room;
+@property (readonly, nonatomic, retain) CRoom *room;
 @end
 
 #pragma mark -
