@@ -8,8 +8,11 @@
 
 #import "CLobbyTableViewCell.h"
 
+#import "CTurntableFMModel.h"
+
 @interface CLobbyTableViewCell ()
 
+@property(nonatomic, copy) NSString *coverArt;
 @property(nonatomic, retain) NSMutableData *data;
 
 @end
@@ -21,6 +24,7 @@
 @synthesize songTitle;
 @synthesize previewButton;
 @synthesize coverArt;
+@synthesize room;
 @synthesize data;
 
 + (NSString *)reuseIdentifier
@@ -37,6 +41,29 @@
 + (CGFloat)cellHeight
 {
 	return 50.0;
+}
+
+- (void)setRoom:(NSArray *)aRoom
+{
+	if (room != aRoom) {
+		[room release];
+		room = [aRoom retain];
+		
+		NSDictionary *description = [room objectAtIndex:0];
+		NSDictionary *metadata = [description objectForKey:@"metadata"];
+		self.number.text = [[metadata objectForKey:@"listeners"] stringValue];
+		self.roomName.text = [description objectForKey:@"name"];
+		NSDictionary *song = [metadata objectForKey:@"current_song"];
+		metadata = [song objectForKey:@"metadata"];
+		self.songTitle.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:@"song"], [metadata objectForKey:@"artist"]];
+		NSString *ca = [metadata objectForKey:@"coverart"];
+		if (ca.length != 0) {
+			self.coverArt = ca;
+		}
+		else {
+			self.coverArt = nil;
+		}
+	}
 }
 
 - (void)setCoverArt:(NSString *)ca
@@ -67,9 +94,9 @@
 	self.data = [NSMutableData data];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)dt
 {
-	[self.data appendData:data];
+	[self.data appendData:dt];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection

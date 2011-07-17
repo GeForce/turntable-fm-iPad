@@ -15,7 +15,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *songTitle;
 @property(nonatomic, retain) IBOutlet UIButton *previewButton;
 
-@property(nonatomic, copy) NSString *coverArt;
+@property(nonatomic, retain) NSArray *room;
 
 + (NSString *)reuseIdentifier;
 + (CGFloat)cellHeight;
