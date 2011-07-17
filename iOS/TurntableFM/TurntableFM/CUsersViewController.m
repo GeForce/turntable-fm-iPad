@@ -89,6 +89,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	// check whether we have the ability to boot
 	return YES;
 }
 

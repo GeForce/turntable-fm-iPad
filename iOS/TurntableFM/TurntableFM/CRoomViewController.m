@@ -27,8 +27,6 @@
 @property (nonatomic, retain) CUsersViewController *usersViewController;
 @property (nonatomic, retain) CSongViewController *songViewController;
 
-@property (readonly, nonatomic, retain) CRoom *room;
-
 @end
 
 #pragma mark -
