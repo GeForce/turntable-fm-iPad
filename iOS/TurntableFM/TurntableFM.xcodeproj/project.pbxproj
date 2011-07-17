@@ -1496,7 +1496,6 @@
 				45BBC2B313D2843300DA64A6 /* images_room_songlist_play.png */,
 				45BBC2B413D2843300DA64A6 /* images_room_top_yellow_bar.png */,
 				45BBC2B513D2843300DA64A6 /* images_room_upload_music_sprite.png */,
-				45BBC2B613D2843300DA64A6 /* iOS */,
 				45BBC2BA13D2843300DA64A6 /* props_add_queue.png */,
 				45BBC2BB13D2843300DA64A6 /* props_become_dj.png */,
 				45BBC2BC13D2843300DA64A6 /* props_dj_table.png */,
@@ -1523,37 +1522,6 @@
 				45BBC2D113D2843300DA64A6 /* speaker_rspeaker3.png */,
 			);
 			path = TurntableFMStaticAssets;
-			sourceTree = "<group>";
-		};
-		45BBC2B613D2843300DA64A6 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				45BBC2B713D2843300DA64A6 /* TurntableFM */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		45BBC2B713D2843300DA64A6 /* TurntableFM */ = {
-			isa = PBXGroup;
-			children = (
-				45BBC2B813D2843300DA64A6 /* Externals */,
-			);
-			path = TurntableFM;
-			sourceTree = "<group>";
-		};
-		45BBC2B813D2843300DA64A6 /* Externals */ = {
-			isa = PBXGroup;
-			children = (
-				45BBC2B913D2843300DA64A6 /* facebook-ios-sdk */,
-			);
-			path = Externals;
-			sourceTree = "<group>";
-		};
-		45BBC2B913D2843300DA64A6 /* facebook-ios-sdk */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "facebook-ios-sdk";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -9,12 +9,22 @@
 #import "CRoomViewController.h"
 #import "CChatViewController.h"
 #import "CSongViewController.h"
+#import "CTurntableFMModel.h"
+#import "CRoom.h"
+
+@interface CRoomViewController () <UITextFieldDelegate>
+@property (readwrite, nonatomic, retain) CRoom *room;
+@end
+
+#pragma mark -
 
 @implementation CRoomViewController
 
 @synthesize chatButton, songButton;
 @synthesize chatPopoverController, songPopoverController;
 @synthesize chatViewController, songViewController;
+@synthesize chatTextView;
+@synthesize speakTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,13 +53,21 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (CRoom *)room
+    {
+    return([CTurntableFMModel sharedInstance].room);
+    }
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 	
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:NULL];
+    
+    [self.room addObserver:self forKeyPath:@"chatLog" options:NSKeyValueObservingOptionNew context:NULL];
+    
 	if (songButton == nil)
 	{
 		self.songButton = [[UIBarButtonItem alloc] initWithTitle:@"Songs" style:UIBarButtonItemStyleBordered target:self action:@selector(launchSongPopoverViewController)];
@@ -105,5 +123,29 @@
 {
 	
 }
+
+#pragma mark -
+
+- (void)keyboardWillShowNotification:(NSNotification *)inNotification
+    {
+    self.speakTextField.inputAccessoryView = self.speakTextField;
+    
+    }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+    {
+    return(YES);
+    }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
+    {
+    for (NSDictionary *theSpeakDictionary in [change objectForKey:@"new"])
+        {
+        self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@: %@\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary objectForKey:@"text"]];
+        [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
+        }
+    
+    
+    }
 
 @end

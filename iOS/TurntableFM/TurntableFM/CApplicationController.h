@@ -15,7 +15,6 @@
 
 @property (readwrite, nonatomic, retain) NSString *facebookAccessToken;
 
-
 + (CApplicationController *)sharedInstance;
 
 @end

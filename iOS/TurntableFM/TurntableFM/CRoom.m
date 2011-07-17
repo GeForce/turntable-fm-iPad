@@ -46,7 +46,6 @@
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
-                NSLog(@"USER ADDED");
                 CUser *theUser = [[[CUser alloc] initWithParameters:theUserParameters] autorelease];
                 [self.usersByUserID setObject:theUser forKey:theUser.userID];
                 }
@@ -58,24 +57,20 @@
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
                 if ([self.usersByUserID objectForKey:theUserID])
                     {
-                    NSLog(@"USER REMOVED");
                     [self.usersByUserID removeObjectForKey:theUserID];
                     }
                 }
             } forCommand:@"deregistered"];
 
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-            NSLog(@"ADD_DJ");
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
                 [self.DJs addObject:[self.usersByUserID objectForKey:theUserID]];
                 }
-            NSLog(@"DJs: %@", [self.DJs valueForKey:@"name"]);
             } forCommand:@"add_dj"];
 
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-            NSLog(@"REM_DJ");
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
@@ -83,8 +78,6 @@
                 [self.DJs removeObjectAtIndex:[self.DJs indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
                     return([[obj userID] isEqualToString:theUserID]);
                     }]];
-                NSLog(@"%@", self.DJs);
-                NSLog(@"DJs: %@", [self.DJs valueForKey:@"name"]);
                 }
             } forCommand:@"rem_dj"];
 
@@ -96,11 +89,14 @@
             NSLog(@"%@", inParam);
             } forCommand:@"update_votes"];
 
-
-
-
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+
+            NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.chatLog.count];
+            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
             [self.chatLog addObject:inParam];
+            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
+
+            NSLog(@"CHAT COUNT: %d", self.chatLog.count);
             } forCommand:@"speak"];
         
         }];
