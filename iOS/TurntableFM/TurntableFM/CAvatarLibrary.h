@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface CAvatarLibrary : NSObject
+{
+	NSMutableArray *leftShoulderPoint;
+	NSMutableArray *rightShoulderPoint;
+	NSMutableArray *legsPoint;
+}
+
+@property (nonatomic, retain) NSMutableArray *leftShoulderPoint;
+@property (nonatomic, retain) NSMutableArray *rightShoulderPoint;
+@property (nonatomic, retain) NSMutableArray *legsPoint;
 
 + (CAvatarLibrary *)sharedInstance;
 - (UIImage *)imageForAvatar:(NSInteger)inID head:(BOOL)inHead front:(BOOL)inFront;

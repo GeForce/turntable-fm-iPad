@@ -99,30 +99,30 @@
 	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 	
 	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
-						[NSNumber numberWithInt:30],// 1
+						[NSNumber numberWithInt:30],// 1 long brown hair
 						[NSNumber numberWithInt:30],// 2
-						[NSNumber numberWithInt:60],// 3
-						[NSNumber numberWithInt:10],// 4 orange pig tails
+						[NSNumber numberWithInt:40],// 3 red fauxhawk pig tails
+						[NSNumber numberWithInt:15],// 4 orange pig tails
 						[NSNumber numberWithInt:30],// 5
-						[NSNumber numberWithInt:30],// 6
+						[NSNumber numberWithInt:10],// 6 red pig tails
 						[NSNumber numberWithInt:15],// 7 brown hair kid
 						[NSNumber numberWithInt:20],// 8
 						[NSNumber numberWithInt:30],// 9
 						[NSNumber numberWithInt:50],// 10 pin bear
-						[NSNumber numberWithInt:30],// 11
-						[NSNumber numberWithInt:30],// 12
+						[NSNumber numberWithInt:15],// 11 green bear
+						[NSNumber numberWithInt:25],// 12 evil drone bear
 						[NSNumber numberWithInt:30],// 13
 						[NSNumber numberWithInt:20],// 14
 						[NSNumber numberWithInt:30],// 15
-						[NSNumber numberWithInt:20],// 16
+						[NSNumber numberWithInt:30],// 16 evil queen bear
 						[NSNumber numberWithInt:20],// 17
 						[NSNumber numberWithInt:30],// 18
 						[NSNumber numberWithInt:30],// 19
 						[NSNumber numberWithInt:40],// 20
 						[NSNumber numberWithInt:30],// 21
 						[NSNumber numberWithInt:30],// 22
-						[NSNumber numberWithInt:30],// 23
-						[NSNumber numberWithInt:30],// 24
+						[NSNumber numberWithInt:0],// 23 gorilla
+						[NSNumber numberWithInt:55],// 24 red mouse
 						[NSNumber numberWithInt:0], // 25 unused
 						[NSNumber numberWithInt:30],nil];
 
