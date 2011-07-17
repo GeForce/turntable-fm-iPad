@@ -11,7 +11,15 @@
 @implementation CAvatarLayer
 
 @synthesize headLayer;
+@synthesize bodyLayer;
+@synthesize DJing;
 @synthesize bobbing;
+
+- (void)setDJing:(BOOL)inDJing
+    {
+    DJing = inDJing;
+    }
+
 
 - (void)setBobbing:(BOOL)inBobbing
     {

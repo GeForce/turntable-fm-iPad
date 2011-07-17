@@ -10,14 +10,16 @@
 
 @interface CAvatarLibrary : NSObject
 {
-	NSMutableArray *leftShoulderPoint;
-	NSMutableArray *rightShoulderPoint;
-	NSMutableArray *legsPoint;
+	NSMutableArray *leftArmPointOffsets;
+	NSMutableArray *torsoPointOffsets;
+	NSMutableArray *rightArmPointOffsets;
+	NSMutableArray *legsPointOffsets;
 }
 
-@property (nonatomic, retain) NSMutableArray *leftShoulderPoint;
-@property (nonatomic, retain) NSMutableArray *rightShoulderPoint;
-@property (nonatomic, retain) NSMutableArray *legsPoint;
+@property (nonatomic, retain) NSMutableArray *leftArmPointOffsets;
+@property (nonatomic, retain) NSMutableArray *torsoPointOffsets;
+@property (nonatomic, retain) NSMutableArray *rightArmPointOffsets;
+@property (nonatomic, retain) NSMutableArray *legsPointOffsets;
 
 + (CAvatarLibrary *)sharedInstance;
 - (UIImage *)imageForAvatar:(NSInteger)inID head:(BOOL)inHead front:(BOOL)inFront;

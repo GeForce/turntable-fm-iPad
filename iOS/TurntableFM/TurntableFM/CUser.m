@@ -37,8 +37,6 @@
     bobbing = inBobbing;
 
     CAvatarLayer *theLayer = objc_getAssociatedObject(self, "layer");
-    NSLog(@"%@", theLayer);
-
     theLayer.bobbing = inBobbing;
     }
 
