@@ -15,4 +15,9 @@
     return([self.parameters objectForKey:@"userid"]);
     }
 
+- (NSString *)name
+    {
+    return([self.parameters objectForKey:@"name"]);
+    }
+
 @end

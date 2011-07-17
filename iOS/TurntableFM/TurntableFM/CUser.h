@@ -11,6 +11,7 @@
 @interface CUser : CTurntableObject
 
 @property (readonly, nonatomic, retain) NSString *userID;
+@property (readonly, nonatomic, retain) NSString *name;
 
 
 @end

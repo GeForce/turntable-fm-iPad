@@ -30,11 +30,15 @@
     
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:self.roomID forKey:@"roomid"];
     [[CTurntableFMModel sharedInstance].socket postMessage:@"room.info" dictionary:theDictionary handler:^(id inResult) {
-        NSLog(@"%@", inResult);
         for (id theUserParameters in [inResult objectForKey:@"users"])
             {
             CUser *theUser = [[[CUser alloc] initWithParameters:theUserParameters] autorelease];
             [self.usersByUserID setObject:theUser forKey:theUser.userID];
+            }
+            
+        for (NSString *theDJUserID in [inResult valueForKeyPath:@"room.metadata.djs"])
+            {
+            [self.DJs addObject:[self.usersByUserID objectForKey:theDJUserID]];
             }
         
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
@@ -59,11 +63,27 @@
             } forCommand:@"deregistered"];
 
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-            NSLog(@"ADD_DJ: %@", inParam);
+            NSLog(@"ADD_DJ");
+            for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
+                {
+                NSString *theUserID = [theUserParameters objectForKey:@"userid"];
+                [self.DJs addObject:[self.usersByUserID objectForKey:theUserID]];
+                }
+            NSLog(@"DJs: %@", [self.DJs valueForKey:@"name"]);
             } forCommand:@"add_dj"];
 
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-            NSLog(@"REM_DJ: %@", inParam);
+            NSLog(@"REM_DJ");
+            for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
+                {
+                NSString *theUserID = [theUserParameters objectForKey:@"userid"];
+                
+                [self.DJs removeObjectAtIndex:[self.DJs indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                    return([[obj userID] isEqualToString:theUserID]);
+                    }]];
+                NSLog(@"%@", self.DJs);
+                NSLog(@"DJs: %@", [self.DJs valueForKey:@"name"]);
+                }
             } forCommand:@"rem_dj"];
         
         }];
