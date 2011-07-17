@@ -100,8 +100,14 @@
 
 - (void)preview:(id)sender
 {
-    id theSong = [[self.room objectAtIndex:0] valueForKeyPath:@"metadata.current_song"];
-	[[CTurntableFMModel sharedInstance] playSong:theSong preview:YES];
+	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
+	if (model.playing) {
+		[model stopSong];
+	}
+	else {
+		id theSong = [[self.room objectAtIndex:0] valueForKeyPath:@"metadata.current_song"];
+		[model playSong:theSong preview:YES];
+	}
 }
 
 #pragma mark - NSURLConnectionDelegate
