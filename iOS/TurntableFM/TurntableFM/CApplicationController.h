@@ -10,8 +10,8 @@
 
 @interface CApplicationController : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) IBOutlet UIWindow *window;
-@property (strong, nonatomic) IBOutlet UINavigationController *controller;
+@property (readwrite, nonatomic, retain) IBOutlet UIWindow *window;
+@property (readwrite, nonatomic, retain) IBOutlet UINavigationController *controller;
 
 @property (readwrite, nonatomic, retain) NSString *facebookAccessToken;
 
