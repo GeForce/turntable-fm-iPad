@@ -17,11 +17,13 @@
 #import "NSData_Extensions.h"
 #import "CRoom.h"
 #import "CUser.h"
+#import "CSong.h"
 
 @interface CTurntableFMModel () <AVAudioPlayerDelegate>
 @property (readwrite, nonatomic, retain) NSDictionary *userInfo;
 @property (readwrite, nonatomic, retain) NSArray *rooms;
 @property (readwrite, nonatomic, retain) CRoom *room;
+@property (readwrite, nonatomic, retain) NSArray *songQueue;
 @property (readwrite, nonatomic, retain) NSOperationQueue *queue;
 @property (readwrite, nonatomic, assign) NSTimeInterval roomTime;
 @property (readwrite, nonatomic, retain) AVPlayer *player;
@@ -36,6 +38,7 @@
 @synthesize userInfo;
 @synthesize rooms;
 @synthesize room;
+@synthesize songQueue;
 
 @synthesize queue;
 @synthesize roomTime;
@@ -130,6 +133,8 @@ static CTurntableFMModel *gSharedInstance = NULL;
                 }
             }];
         }];
+        
+    [self fetchPlaylist:NULL];
     }
     
 - (void)unregisterWithRoom:(NSDictionary *)inRoomDescription handler:(void (^)(CRoom *))inHandler;
@@ -195,7 +200,6 @@ static CTurntableFMModel *gSharedInstance = NULL;
         }];
     }
     
-
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {
 
@@ -217,15 +221,41 @@ static CTurntableFMModel *gSharedInstance = NULL;
         
     self.player.rate = 1.0;
 #endif
-
-
     }
 
 - (void)stopSong
-{
+    {
 	self.player.rate = 0.0;
 	self.player = nil;
-}
+    }
+
+- (void)fetchPlaylist:(void (^)(void))inHandler
+    {
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"default", @"playlist_name",
+        NULL];
+    
+    [[CTurntableFMModel sharedInstance].socket postMessage:@"playlist.all" dictionary:theDictionary handler:^(id inResult) {
+        NSLog(@"I HAZ PLAYLIST: %@", inResult);
+
+        NSMutableArray *theSongs = [NSMutableArray array];
+
+        for (NSDictionary *theSongDictionary in [inResult objectForKey:@"list"])
+            {
+            CSong *theSong = [[[CSong alloc] initWithParameters:theSongDictionary] autorelease];
+            [theSongs addObject:theSong];
+            }
+        
+        self.songQueue = theSongs;
+        NSLog(@"%@", self.songQueue);
+
+        if (inHandler)
+            {
+            inHandler();
+            }
+        }];
+    }
+
 
 - (BOOL)playing
 {

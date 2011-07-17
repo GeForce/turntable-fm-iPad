@@ -14,5 +14,6 @@
 @property (readonly, nonatomic, retain) NSString *name;
 @property (readonly, nonatomic, assign) NSInteger avatarID;
 
+- (void)fetchPlaylist;
 
 @end

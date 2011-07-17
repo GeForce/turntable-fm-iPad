@@ -25,4 +25,5 @@
     return([[self.parameters objectForKey:@"avatarid"] integerValue]);
     }
 
+
 @end
