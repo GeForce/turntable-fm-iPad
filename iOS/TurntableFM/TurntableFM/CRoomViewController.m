@@ -101,6 +101,15 @@
 		self.songButton = [[UIBarButtonItem alloc] initWithTitle:@"Songs" style:UIBarButtonItemStyleBordered target:self action:@selector(launchSongPopoverViewController)];
 		[self.navigationItem setRightBarButtonItem:songButton];
 	}
+	
+	/*for (int i = 1; i < 25; i++)
+	{
+		CAvatarLibrary *lib = [[CAvatarLibrary alloc] init];
+		UIImage *image = [lib imageForAvatar:i head:NO front:NO];
+		UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(200, 200 + i * 100, image.size.width, image.size.height)];
+		[avatar setImage:image];
+		[self.view addSubview:avatar];
+	}*/
 }
 
 - (void)viewDidUnload
@@ -114,7 +123,7 @@
 	return YES;
 }
 
-- (void)launchSongPopoverViewController
+- (void)launchSongPopoverController
 {
 	if (songPopoverController == nil) 
 	{
@@ -127,7 +136,7 @@
 	[songPopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
-- (void)launchChatPopoverViewController
+- (void)launchChatPopoverController
 {
 	/*
 	if (chatPopoverController == nil) 
