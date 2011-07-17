@@ -45,7 +45,6 @@
     
     if ([[thePacket substringToIndex:3] isEqualToString:@"~h~"])
         {
-        NSLog(@"Ignoring heartbeat");
         [self writeMessage:[thePacket dataUsingEncoding:NSUTF8StringEncoding]];
         return;
         }

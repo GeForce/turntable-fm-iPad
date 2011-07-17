@@ -22,11 +22,13 @@
 
 @synthesize usersByUserID;
 @synthesize DJs;
+@synthesize chatLog;
 
 - (void)didInitialize
     {
     self.usersByUserID = [NSMutableDictionary dictionary];
     self.DJs = [NSMutableArray array];
+    self.chatLog = [NSMutableArray array];
     
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:self.roomID forKey:@"roomid"];
     [[CTurntableFMModel sharedInstance].socket postMessage:@"room.info" dictionary:theDictionary handler:^(id inResult) {
@@ -85,6 +87,10 @@
                 NSLog(@"DJs: %@", [self.DJs valueForKey:@"name"]);
                 }
             } forCommand:@"rem_dj"];
+
+        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+            [self.chatLog addObject:inParam];
+            } forCommand:@"speak"];
         
         }];
     }
