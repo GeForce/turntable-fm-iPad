@@ -12,23 +12,30 @@
 
 #import <objc/runtime.h>
 
-#import "CChatViewController.h"
+#import "CUsersViewController.h"
 #import "CSongViewController.h"
 #import "CTurntableFMModel.h"
 #import "CUser.h"
 #import "CRoom.h"
 
 @interface CRoomViewController () <UITextFieldDelegate>
+
+@property (nonatomic, retain) UIPopoverController *usersPopoverController;
+@property (nonatomic, retain) UIPopoverController *songPopoverController;
+@property (nonatomic, retain) CUsersViewController *usersViewController;
+@property (nonatomic, retain) CSongViewController *songViewController;
+
 @property (readonly, nonatomic, retain) CRoom *room;
+
 @end
 
 #pragma mark -
 
 @implementation CRoomViewController
 
-@synthesize chatButton, songButton;
-@synthesize chatPopoverController, songPopoverController;
-@synthesize chatViewController, songViewController;
+@synthesize usersButton, songButton;
+@synthesize usersPopoverController, songPopoverController;
+@synthesize usersViewController, songViewController;
 @synthesize chatTextView;
 @synthesize speakTextField;
 
@@ -43,10 +50,10 @@
 
 - (void)dealloc
 {
-	[chatButton release];
-    [chatPopoverController release];
+	[usersButton release];
+    [usersPopoverController release];
 	[songPopoverController release];
-	[chatViewController release];
+	[usersViewController release];
 	[songViewController release];
 	[super dealloc];
 }
@@ -110,6 +117,7 @@
 
 - (void)launchChatPopoverViewController
 {
+	/*
 	if (chatPopoverController == nil) 
 	{
 		[self setChatViewController:[[CChatViewController alloc] initWithStyle:UITableViewStylePlain]];
@@ -119,6 +127,7 @@
 		[chatPopoverController setPopoverContentSize:popOverSize];
 	}
 	[chatPopoverController presentPopoverFromBarButtonItem:chatButton permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+	*/
 }
 
 - (IBAction)voteAwesome
@@ -128,6 +137,17 @@
 - (IBAction)voteLame
     {	
     }
+
+- (void)usersTapped:(id)sender
+{
+	if (self.usersPopoverController == nil) {
+		self.usersViewController = [[[CUsersViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+		self.usersViewController.room = self.room;
+		self.usersPopoverController = [[[UIPopoverController alloc] initWithContentViewController:self.usersViewController] autorelease];
+		self.usersPopoverController.delegate = self;
+	}
+	[self.usersPopoverController presentPopoverFromBarButtonItem:usersButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
 
 #pragma mark -
 

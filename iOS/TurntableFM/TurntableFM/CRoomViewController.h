@@ -8,25 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class CChatViewController;
-@class CSongViewController;
-
 @interface CRoomViewController : UIViewController <UIPopoverControllerDelegate>
 {
-    IBOutlet UIBarButtonItem *chatButton;
-	UIBarButtonItem *songButton;
-	UIPopoverController *chatPopoverController;
-	UIPopoverController *songPopoverController;	
-	CChatViewController *chatViewController;
-	CSongViewController *songViewController;
 }
 
-@property (nonatomic, retain) UIBarButtonItem *chatButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *usersButton;
 @property (nonatomic, retain) UIBarButtonItem *songButton;
-@property (nonatomic, retain) UIPopoverController *chatPopoverController;
-@property (nonatomic, retain) UIPopoverController *songPopoverController;
-@property (nonatomic, retain) CChatViewController *chatViewController;
-@property (nonatomic, retain) CSongViewController *songViewController;
 @property (readwrite, nonatomic, retain) IBOutlet UITextView *chatTextView;
 @property (readwrite, nonatomic, retain) IBOutlet UITextField *speakTextField;
 
@@ -34,5 +21,6 @@
 - (void)launchChatPopoverController;
 - (IBAction)voteAwesome;
 - (IBAction)voteLame;
+- (IBAction)usersTapped:(id)sender;
 
 @end

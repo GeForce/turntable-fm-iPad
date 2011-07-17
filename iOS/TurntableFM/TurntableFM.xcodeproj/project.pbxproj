@@ -357,6 +357,10 @@
 		75B86F4413D23095001280FC /* CChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4213D23095001280FC /* CChatViewController.xib */; };
 		75B86F4913D23124001280FC /* CSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B86F4713D23124001280FC /* CSongViewController.m */; };
 		75B86F4A13D23124001280FC /* CSongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B86F4813D23124001280FC /* CSongViewController.xib */; };
+		970AF76313D2D25000AA9067 /* CSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 970AF76113D2D25000AA9067 /* CSideViewController.m */; };
+		970AF76413D2D25000AA9067 /* CSideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 970AF76213D2D25000AA9067 /* CSideViewController.xib */; };
+		970AF76913D2DC0D00AA9067 /* CUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 970AF76713D2DC0C00AA9067 /* CUsersViewController.m */; };
+		970AF76A13D2DC0D00AA9067 /* CUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 970AF76813D2DC0C00AA9067 /* CUsersViewController.xib */; };
 		979BB81413D28D6500D16D03 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */; };
 		979BB81913D2AC2D00D16D03 /* CFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979BB81713D2AC2C00D16D03 /* CFriendsViewController.m */; };
 		979BB81B13D2AC2D00D16D03 /* CFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979BB81813D2AC2D00D16D03 /* CFriendsViewController.xib */; };
@@ -808,6 +812,12 @@
 		75B86F4613D23124001280FC /* CSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSongViewController.h; sourceTree = "<group>"; };
 		75B86F4713D23124001280FC /* CSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSongViewController.m; sourceTree = "<group>"; };
 		75B86F4813D23124001280FC /* CSongViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSongViewController.xib; sourceTree = "<group>"; };
+		970AF76013D2D25000AA9067 /* CSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSideViewController.h; sourceTree = "<group>"; };
+		970AF76113D2D25000AA9067 /* CSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSideViewController.m; sourceTree = "<group>"; };
+		970AF76213D2D25000AA9067 /* CSideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSideViewController.xib; sourceTree = "<group>"; };
+		970AF76613D2DC0C00AA9067 /* CUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUsersViewController.h; sourceTree = "<group>"; };
+		970AF76713D2DC0C00AA9067 /* CUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUsersViewController.m; sourceTree = "<group>"; };
+		970AF76813D2DC0C00AA9067 /* CUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CUsersViewController.xib; sourceTree = "<group>"; };
 		979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		979BB81613D2AC2C00D16D03 /* CFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFriendsViewController.h; sourceTree = "<group>"; };
 		979BB81713D2AC2C00D16D03 /* CFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFriendsViewController.m; sourceTree = "<group>"; };
@@ -922,6 +932,12 @@
 				45BBC1C113D275C600DA64A6 /* CAvatarLibrary.m */,
 				752937F813D2517700A328B4 /* CAvatar.h */,
 				752937F913D2517700A328B4 /* CAvatar.m */,
+				970AF76013D2D25000AA9067 /* CSideViewController.h */,
+				970AF76113D2D25000AA9067 /* CSideViewController.m */,
+				970AF76213D2D25000AA9067 /* CSideViewController.xib */,
+				970AF76613D2DC0C00AA9067 /* CUsersViewController.h */,
+				970AF76713D2DC0C00AA9067 /* CUsersViewController.m */,
+				970AF76813D2DC0C00AA9067 /* CUsersViewController.xib */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
 			path = TurntableFM;
@@ -1822,6 +1838,8 @@
 				45BBC3D213D2843300DA64A6 /* speaker_rspeaker3.png in Resources */,
 				979BB81413D28D6500D16D03 /* MainWindow_iPhone.xib in Resources */,
 				979BB81B13D2AC2D00D16D03 /* CFriendsViewController.xib in Resources */,
+				970AF76413D2D25000AA9067 /* CSideViewController.xib in Resources */,
+				970AF76A13D2DC0D00AA9067 /* CUsersViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1913,6 +1931,8 @@
 				45BBC1C213D275C600DA64A6 /* CAvatarLibrary.m in Sources */,
 				752937FA13D2517700A328B4 /* CAvatar.m in Sources */,
 				979BB81913D2AC2D00D16D03 /* CFriendsViewController.m in Sources */,
+				970AF76313D2D25000AA9067 /* CSideViewController.m in Sources */,
+				970AF76913D2DC0D00AA9067 /* CUsersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
