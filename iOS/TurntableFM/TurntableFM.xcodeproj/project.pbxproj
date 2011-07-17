@@ -372,6 +372,8 @@
 		97ABD55B13D212010058B68E /* CLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD55913D212010058B68E /* CLobbyViewController.xib */; };
 		97ABD55F13D218310058B68E /* CLobbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD55E13D218310058B68E /* CLobbyTableViewCell.m */; };
 		97ABD56113D218500058B68E /* CLobbyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */; };
+		97F126F513D2E87B00349BC0 /* CQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F126F313D2E87A00349BC0 /* CQueueViewController.m */; };
+		97F126F613D2E87B00349BC0 /* CQueueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F126F413D2E87B00349BC0 /* CQueueViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -839,6 +841,9 @@
 		97ABD55D13D218310058B68E /* CLobbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyTableViewCell.h; sourceTree = "<group>"; };
 		97ABD55E13D218310058B68E /* CLobbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyTableViewCell.m; sourceTree = "<group>"; };
 		97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyTableViewCell.xib; sourceTree = "<group>"; };
+		97F126F213D2E87A00349BC0 /* CQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQueueViewController.h; sourceTree = "<group>"; };
+		97F126F313D2E87A00349BC0 /* CQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQueueViewController.m; sourceTree = "<group>"; };
+		97F126F413D2E87B00349BC0 /* CQueueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQueueViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -936,6 +941,9 @@
 				970AF76613D2DC0C00AA9067 /* CUsersViewController.h */,
 				970AF76713D2DC0C00AA9067 /* CUsersViewController.m */,
 				970AF76813D2DC0C00AA9067 /* CUsersViewController.xib */,
+				97F126F213D2E87A00349BC0 /* CQueueViewController.h */,
+				97F126F313D2E87A00349BC0 /* CQueueViewController.m */,
+				97F126F413D2E87B00349BC0 /* CQueueViewController.xib */,
 				459F844413D2CA0D008A3C6A /* Support */,
 				4506236913D117F800086997 /* Supporting Files */,
 			);
@@ -1879,6 +1887,7 @@
 				979BB81B13D2AC2D00D16D03 /* CFriendsViewController.xib in Resources */,
 				970AF76413D2D25000AA9067 /* CSideViewController.xib in Resources */,
 				970AF76A13D2DC0D00AA9067 /* CUsersViewController.xib in Resources */,
+				97F126F613D2E87B00349BC0 /* CQueueViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,6 +1984,7 @@
 				459F844913D2CFE6008A3C6A /* CSong.m in Sources */,
 				459F844C13D2D3D9008A3C6A /* CMarqueeView.m in Sources */,
 				459F845113D2DD08008A3C6A /* CAAnimation_BlockExtensions.m in Sources */,
+				97F126F513D2E87B00349BC0 /* CQueueViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

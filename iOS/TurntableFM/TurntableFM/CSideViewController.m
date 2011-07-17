@@ -11,6 +11,7 @@
 #import "CRoom.h"
 #import "CChatViewController.h"
 #import "CUsersViewController.h"
+#import "CQueueViewController.h"
 
 typedef enum {
 	CSideViewSegmentChat = 0,
@@ -89,17 +90,23 @@ static NSString *CSideViewControllerSelectedSegment = @"CSideViewControllerSelec
 		case CSideViewSegmentChat:
 		{
 			CChatViewController *cvc = [[[CChatViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+			//cvc.room = self.room;
 			nextViewController = cvc;
 		}
 			break;
 		case CSideViewSegmentUsers:
 		{
 			CUsersViewController *uvc = [[[CUsersViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+			uvc.room = self.room;
 			nextViewController = uvc;
 		}
 			break;
 		case CSideViewSegmentQueue:
-			
+		{
+			CQueueViewController *qvc = [[[CQueueViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+			qvc.room = self.room;
+			nextViewController = qvc;
+		}
 			break;
 		default:
 			break;
