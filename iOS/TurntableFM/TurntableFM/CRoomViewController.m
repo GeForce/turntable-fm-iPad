@@ -13,7 +13,7 @@
 #import <objc/runtime.h>
 
 #import "CUsersViewController.h"
-#import "CSongViewController.h"
+#import "CQueueViewController.h"
 #import "CTurntableFMModel.h"
 #import "CUser.h"
 #import "CRoom.h"
@@ -25,9 +25,11 @@
 @interface CRoomViewController () <UITextFieldDelegate>
 
 @property (nonatomic, retain) UIPopoverController *usersPopoverController;
-@property (nonatomic, retain) UIPopoverController *songPopoverController;
+@property (nonatomic, retain) UIPopoverController *queuePopoverController;
 @property (nonatomic, retain) CUsersViewController *usersViewController;
-@property (nonatomic, retain) CSongViewController *songViewController;
+@property (nonatomic, retain) CQueueViewController *queueViewController;
+
+- (void)launchQueuePopoverController;
 
 @end
 
@@ -39,8 +41,8 @@
 
 @synthesize room;
 @synthesize usersButton, songButton;
-@synthesize usersPopoverController, songPopoverController;
-@synthesize usersViewController, songViewController;
+@synthesize usersPopoverController, queuePopoverController;
+@synthesize usersViewController, queueViewController;
 @synthesize avatarView;
 @synthesize DJView;
 @synthesize chatTextView;
@@ -75,9 +77,9 @@
     room = NULL;
     [usersButton release];
     [usersPopoverController release];
-	[songPopoverController release];
+	[queuePopoverController release];
 	[usersViewController release];
-	[songViewController release];
+	[queueViewController release];
 	[neckOffsets release];
 
 	[super dealloc];
@@ -99,7 +101,7 @@
 
 	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 	
-	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
+	self.neckOffsets = [[[NSMutableArray alloc] initWithObjects:
 						[NSNumber numberWithInt:30],// 1 long brown hair
 						[NSNumber numberWithInt:30],// 2
 						[NSNumber numberWithInt:40],// 3 red fauxhawk pig tails
@@ -125,13 +127,13 @@
 						[NSNumber numberWithInt:0],// 23 gorilla
 						[NSNumber numberWithInt:55],// 24 red mouse
 						[NSNumber numberWithInt:0], // 25 unused
-						[NSNumber numberWithInt:30],nil];
+						[NSNumber numberWithInt:30],nil] autorelease];
 
     self.title = self.room.name;
 	
 	if (songButton == nil)
 	{
-		self.songButton = [[UIBarButtonItem alloc] initWithTitle:@"Songs" style:UIBarButtonItemStyleBordered target:self action:@selector(launchSongPopoverViewController)];
+		self.songButton = [[[UIBarButtonItem alloc] initWithTitle:@"Queue" style:UIBarButtonItemStyleBordered target:self action:@selector(launchQueuePopoverController)] autorelease];
 		[self.navigationItem setRightBarButtonItem:songButton];
 	}
 	
@@ -156,32 +158,15 @@
 	return YES;
 }
 
-- (void)launchSongPopoverController
+- (void)launchQueuePopoverController
 {
-	if (songPopoverController == nil) 
+	if (queuePopoverController == nil) 
 	{
-		[self setSongViewController:[[CSongViewController alloc] initWithStyle:UITableViewStylePlain]];
-		[self setSongPopoverController:[[UIPopoverController alloc] initWithContentViewController:songViewController]];
-		[songPopoverController setDelegate:self];
-		CGSize popOverSize = CGSizeMake(240, 500);
-		[songPopoverController setPopoverContentSize:popOverSize];
+		[self setQueueViewController:[[[CQueueViewController alloc] initWithNibName:nil bundle:nil] autorelease]];
+		[self setQueuePopoverController:[[[UIPopoverController alloc] initWithContentViewController:queueViewController] autorelease]];
+		[queuePopoverController setDelegate:self];
 	}
-	[songPopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-}
-
-- (void)launchChatPopoverController
-{
-	/*
-	if (chatPopoverController == nil) 
-	{
-		[self setChatViewController:[[CChatViewController alloc] initWithStyle:UITableViewStylePlain]];
-		[self setChatPopoverController:[[UIPopoverController alloc] initWithContentViewController:chatViewController]];
-		[chatPopoverController setDelegate:self];
-		CGSize popOverSize = CGSizeMake(240, 500);
-		[chatPopoverController setPopoverContentSize:popOverSize];
-	}
-	[chatPopoverController presentPopoverFromBarButtonItem:chatButton permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-	*/
+	[queuePopoverController presentPopoverFromBarButtonItem:songButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (IBAction)voteAwesome

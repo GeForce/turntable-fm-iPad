@@ -20,4 +20,9 @@
     return([self.parameters valueForKeyPath:@"metadata.song"]);
     }
 
+- (NSString *)artist
+{
+	return [self.parameters valueForKeyPath:@"metadata.artist"];
+}
+
 @end

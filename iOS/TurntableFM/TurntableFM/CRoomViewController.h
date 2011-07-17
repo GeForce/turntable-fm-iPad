@@ -29,8 +29,6 @@
 
 - (id)initWithRoom:(CRoom *)inRoom;
 
-- (void)launchSongPopoverController;
-- (void)launchChatPopoverController;
 - (IBAction)voteAwesome;
 - (IBAction)voteLame;
 - (IBAction)usersTapped:(id)sender;

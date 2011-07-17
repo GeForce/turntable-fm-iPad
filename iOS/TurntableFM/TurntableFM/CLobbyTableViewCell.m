@@ -59,7 +59,20 @@
 		self.roomName.text = [description objectForKey:@"name"];
 		NSDictionary *song = [metadata objectForKey:@"current_song"];
 		metadata = [song objectForKey:@"metadata"];
-		self.songTitle.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:@"song"], [metadata objectForKey:@"artist"]];
+		NSString *songName = [metadata objectForKey:@"song"];
+		NSString *artistName = [metadata objectForKey:@"artist"];
+		if (songName.length != 0 && artistName.length != 0) {
+			self.songTitle.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:@"song"], [metadata objectForKey:@"artist"]];
+		}
+		else if (songName.length == 0 && artistName.length == 0) {
+			self.songTitle.text = @"No song currently playing.";
+		}
+		else if (songName.length != 0) {
+			self.songTitle.text = songName;
+		}
+		else { // artistName.length != 0
+			self.songTitle.text = artistName;
+		}
 		NSString *ca = [metadata objectForKey:@"coverart"];
 		if (ca.length != 0) {
 			self.coverArt = ca;
@@ -88,7 +101,7 @@
 		[coverArt release];
 		coverArt = [ca copy];
 		
-		[self.previewButton setImage:[UIImage imageNamed:@"rspeaker1.png"] forState:UIControlStateNormal];
+		[self.previewButton setImage:[UIImage imageNamed:@"images_record_logo.gif"] forState:UIControlStateNormal];
 		
 		if (coverArt != nil) {
 			NSURL *url = [NSURL URLWithString:coverArt];
