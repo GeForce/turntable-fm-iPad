@@ -85,8 +85,6 @@
 
 - (void)prepareLayer
     {
-    NSLog(@"NEW TEXT: %@", self.text);
-
     [self.scrollingLayer removeFromSuperlayer];
     self.scrollingLayer = NULL;
 
@@ -95,12 +93,10 @@
         return;
         }
 
-    NSLog(@"CHANGING LAYER");
-
     CTFontRef theFont = CTFontCreateWithName((CFStringRef)self.font.fontName, self.font.pointSize, NULL);
 
     NSDictionary *theAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-        objc_unretainedObject(theFont), kCTFontAttributeName,
+        theFont, kCTFontAttributeName,
         NULL];
         
     NSAttributedString *theAttributedString = [[[NSAttributedString alloc] initWithString:self.text attributes:theAttributes] autorelease];    
