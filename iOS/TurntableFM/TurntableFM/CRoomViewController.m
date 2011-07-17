@@ -37,6 +37,7 @@
 @synthesize usersButton, songButton;
 @synthesize usersPopoverController, songPopoverController;
 @synthesize usersViewController, songViewController;
+@synthesize avatarView;
 @synthesize chatTextView;
 @synthesize speakTextField;
 @synthesize marqueeView;
@@ -205,37 +206,35 @@
             thePulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
 
             [theLayer addAnimation:thePulseAnimation forKey:@"pulse"];
-            
-//            [CATransaction begin];
-//            [CATransaction setAnimationDuration:0.5];
-//            [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-//            [CATransaction setCompletionBlock:^(void) {
-//                [theLayer removeFromSuperlayer];
-//                objc_setAssociatedObject(theUser, "layer", NULL, OBJC_ASSOCIATION_RETAIN);
-//                }];
-//            theLayer.position = (CGPoint){ .x = CGRectGetMaxX(theLayer.superlayer.bounds), .y = theLayer.position.y };
-//
-//            [CATransaction commit];
-
-
-
-
             }
         }
     else if ([keyPath isEqualToString:@"room.users"])
         {
         NSMutableArray *theNewLayers = [NSMutableArray array];
 
+        CGRect theBounds = self.avatarView.layer.bounds;
+
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
-            CATextLayer *theLayer = [CATextLayer layer];
-            theLayer.borderColor = [UIColor colorWithHue:(CGFloat)theUser.avatarID / 26.0 saturation:1.0 brightness:1.0 alpha:1.0].CGColor;
-            theLayer.borderWidth = 1.0;
+            CALayer *theLayer = [CALayer layer];
+            theLayer.bounds = (CGRect){ .size = { 130, 130 } };
+            theLayer.position = (CGPoint){ .x = arc4random() % (int)(theBounds.size.width * 3) - theBounds.size.width, .y = arc4random() % (int)theBounds.size.height + theBounds.size.height };
             
-            theLayer.string = theUser.name;
-            theLayer.bounds = (CGRect){ .size = {64, 64 } };
-            theLayer.position = (CGPoint){ .x = arc4random() % (768 * 3) - 768, .y = arc4random() % 768 + 768 };
-            [self.view.layer addSublayer:theLayer];
+            CALayer *theImageLayer = [CALayer layer];
+            theImageLayer.bounds = (CGRect){ .size = { 130, 130 } };
+            NSString *theImageName = [NSString stringWithFormat:@"avatars_%d_fullfront.png", theUser.avatarID];
+            theImageLayer.contents = (id)[UIImage imageNamed:theImageName].CGImage;
+            [theLayer addSublayer:theImageLayer];
+            
+            
+//            CATextLayer *theTextLayer = [CATextLayer layer];
+//            theTextLayer.bounds = (CGRect){ .size = {64, 64 } };
+//            theTextLayer.borderColor = [UIColor colorWithHue:(CGFloat)theUser.avatarID / 26.0 saturation:1.0 brightness:1.0 alpha:1.0].CGColor;
+//            theTextLayer.borderWidth = 1.0;
+//            theTextLayer.string = theUser.name;
+//            [theLayer addSublayer:theTextLayer];
+
+            [self.avatarView.layer addSublayer:theLayer];
             
             objc_setAssociatedObject(theUser, "layer", theLayer, OBJC_ASSOCIATION_RETAIN);
             
@@ -253,7 +252,7 @@
 
                 for (CALayer *theLayer in theNewLayers)
                     {
-                    theLayer.position = (CGPoint){ .x = arc4random() % 768, .y = arc4random() % 768 };
+                    theLayer.position = (CGPoint){ .x = arc4random() % (int)theBounds.size.width, .y = arc4random() % (int)theBounds.size.height };
                     }
 
                 [CATransaction commit];
