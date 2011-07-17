@@ -10,7 +10,11 @@
 
 @interface CLobbyTableViewCell : UITableViewCell
 
-@property(nonatomic, retain) IBOutlet UILabel *number;
+@property(nonatomic, retain) IBOutlet UILabel *listeners;
+@property(nonatomic, retain) IBOutlet UIView *listenersView;
+@property(nonatomic, retain) IBOutlet UILabel *friends;
+@property(nonatomic, retain) IBOutlet UIButton *friendsButton;
+@property(nonatomic, retain) IBOutlet UIView *friendsView;
 @property(nonatomic, retain) IBOutlet UILabel *roomName;
 @property(nonatomic, retain) IBOutlet UILabel *songTitle;
 @property(nonatomic, retain) IBOutlet UIButton *previewButton;

@@ -16,4 +16,6 @@
 @property(nonatomic, retain) IBOutlet UITableView *tableView;
 @property(nonatomic, retain) IBOutlet CLobbyTableViewCell *lobbyCell;
 
+- (IBAction)friends:(id)sender;
+
 @end

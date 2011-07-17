@@ -19,12 +19,16 @@
 
 @implementation CLobbyTableViewCell
 
-@synthesize number;
+@synthesize listeners;
+@synthesize listenersView;
+@synthesize friends;
+@synthesize friendsButton;
+@synthesize friendsView;
 @synthesize roomName;
 @synthesize songTitle;
 @synthesize previewButton;
-@synthesize coverArt;
 @synthesize room;
+@synthesize coverArt;
 @synthesize data;
 
 + (NSString *)reuseIdentifier
@@ -40,7 +44,7 @@
 
 + (CGFloat)cellHeight
 {
-	return 50.0;
+	return 81.0;
 }
 
 - (void)setRoom:(NSArray *)aRoom
@@ -51,7 +55,7 @@
 		
 		NSDictionary *description = [room objectAtIndex:0];
 		NSDictionary *metadata = [description objectForKey:@"metadata"];
-		self.number.text = [[metadata objectForKey:@"listeners"] stringValue];
+		self.listeners.text = [[metadata objectForKey:@"listeners"] stringValue];
 		self.roomName.text = [description objectForKey:@"name"];
 		NSDictionary *song = [metadata objectForKey:@"current_song"];
 		metadata = [song objectForKey:@"metadata"];
@@ -62,6 +66,18 @@
 		}
 		else {
 			self.coverArt = nil;
+		}
+		
+		NSArray *array = [room objectAtIndex:1];
+		NSInteger count = array.count;
+		if (count != 0) {
+			self.friendsView.hidden = NO;
+			self.friends.text = [NSString stringWithFormat:@"%d", count];
+			self.listenersView.transform = CGAffineTransformIdentity;
+		}
+		else {
+			self.friendsView.hidden = YES;
+			self.listenersView.transform = CGAffineTransformMakeTranslation(0, 19);
 		}
 	}
 }
@@ -107,4 +123,9 @@
 	[self.previewButton setImage:image forState:UIControlStateNormal];
 }
 
+- (void)dealloc {
+    [listenersView release];
+    [friendsButton release];
+    [super dealloc];
+}
 @end
