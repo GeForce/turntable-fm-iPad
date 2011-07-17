@@ -14,6 +14,7 @@
 
 @interface CRoom ()
 @property (readwrite, nonatomic, retain) NSMutableDictionary *usersByUserID;
+@property (readwrite, nonatomic, retain) NSMutableArray *users;
 @end
 
 #pragma mark -
@@ -21,12 +22,14 @@
 @implementation CRoom
 
 @synthesize usersByUserID;
+@synthesize users;
 @synthesize DJs;
 @synthesize chatLog;
 
 - (void)didInitialize
     {
     self.usersByUserID = [NSMutableDictionary dictionary];
+    self.users = [NSMutableArray array];
     self.DJs = [NSMutableArray array];
     self.chatLog = [NSMutableArray array];
     
@@ -36,6 +39,11 @@
             {
             CUser *theUser = [[[CUser alloc] initWithParameters:theUserParameters] autorelease];
             [self.usersByUserID setObject:theUser forKey:theUser.userID];
+        
+            NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.users.count];
+            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"users"];
+            [self.users addObject:theUser];
+            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"users"];
             }
             
         for (NSString *theDJUserID in [inResult valueForKeyPath:@"room.metadata.djs"])
@@ -48,6 +56,12 @@
                 {
                 CUser *theUser = [[[CUser alloc] initWithParameters:theUserParameters] autorelease];
                 [self.usersByUserID setObject:theUser forKey:theUser.userID];
+                
+                NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.users.count];
+                [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"users"];
+                [self.users addObject:theUser];
+                [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"users"];
+                
                 }
             } forCommand:@"registered"];
 
@@ -55,7 +69,16 @@
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
-                if ([self.usersByUserID objectForKey:theUserID])
+
+                CUser *theUser = [self.usersByUserID objectForKey:theUserID];
+
+                NSInteger theIndex = [self.users indexOfObject:theUser];
+                NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:theIndex];
+                [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
+                [self.users removeObjectAtIndex:theIndex];
+                [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
+
+                if (theUser)
                     {
                     [self.usersByUserID removeObjectForKey:theUserID];
                     }
@@ -67,6 +90,8 @@
                 {
                 NSString *theUserID = [theUserParameters objectForKey:@"userid"];
                 [self.DJs addObject:[self.usersByUserID objectForKey:theUserID]];
+                
+                
                 }
             } forCommand:@"add_dj"];
 

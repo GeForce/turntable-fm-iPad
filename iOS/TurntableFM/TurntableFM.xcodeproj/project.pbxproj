@@ -353,6 +353,7 @@
 		45BBC3D013D2843300DA64A6 /* speaker_rspeaker1.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BBC2CF13D2843300DA64A6 /* speaker_rspeaker1.png */; };
 		45BBC3D113D2843300DA64A6 /* speaker_rspeaker2.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BBC2D013D2843300DA64A6 /* speaker_rspeaker2.png */; };
 		45BBC3D213D2843300DA64A6 /* speaker_rspeaker3.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BBC2D113D2843300DA64A6 /* speaker_rspeaker3.png */; };
+		45BBC3DC13D2AFDC00DA64A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45BBC3DB13D2AFDC00DA64A6 /* QuartzCore.framework */; };
 		45FD2CDB13D1FEEF00F88C0F /* CSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */; };
 		45FD2CDF13D2085300F88C0F /* CTurntableFMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CDE13D2085300F88C0F /* CTurntableFMSocket.m */; };
 		45FD2CF013D2167E00F88C0F /* CTurntableFMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD2CEF13D2167E00F88C0F /* CTurntableFMModel.m */; };
@@ -806,6 +807,7 @@
 		45BBC2CF13D2843300DA64A6 /* speaker_rspeaker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_rspeaker1.png; sourceTree = "<group>"; };
 		45BBC2D013D2843300DA64A6 /* speaker_rspeaker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_rspeaker2.png; sourceTree = "<group>"; };
 		45BBC2D113D2843300DA64A6 /* speaker_rspeaker3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_rspeaker3.png; sourceTree = "<group>"; };
+		45BBC3DB13D2AFDC00DA64A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		45FD2CD913D1FEEF00F88C0F /* CSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSocketIO.h; sourceTree = "<group>"; };
 		45FD2CDA13D1FEEF00F88C0F /* CSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSocketIO.m; sourceTree = "<group>"; };
 		45FD2CDD13D2085300F88C0F /* CTurntableFMSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurntableFMSocket.h; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45BBC3DC13D2AFDC00DA64A6 /* QuartzCore.framework in Frameworks */,
 				453343EC13D24EE3005AE115 /* CoreMedia.framework in Frameworks */,
 				451D468F13D1340F00530A57 /* CFNetwork.framework in Frameworks */,
 				451D468D13D133F500530A57 /* MobileCoreServices.framework in Frameworks */,
@@ -865,6 +868,7 @@
 		4506235313D117F800086997 = {
 			isa = PBXGroup;
 			children = (
+				45BBC3DB13D2AFDC00DA64A6 /* QuartzCore.framework */,
 				45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */,
 				4506236813D117F800086997 /* TurntableFM */,
 				451D427013D11DCD00530A57 /* Externals */,
