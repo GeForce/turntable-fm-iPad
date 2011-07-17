@@ -193,6 +193,10 @@
 	}
 }
 
+- (IBAction)djTapped:(id)sender {
+	[[CTurntableFMModel sharedInstance] becomeDJ];
+}
+
 #pragma mark -
 
 - (CAvatarLayer *)layerForUser:(CUser *)inUser

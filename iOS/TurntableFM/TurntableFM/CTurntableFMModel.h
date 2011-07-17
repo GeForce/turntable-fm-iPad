@@ -12,6 +12,7 @@
 
 @class CRoom;
 @class CUser;
+@class CSong;
 
 @interface CTurntableFMModel : NSObject
 
@@ -34,6 +35,9 @@
 
 - (void)fanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 - (void)unfanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
+- (void)bootUser:(CUser *)inUser handler:(void (^)(void))inHandler;
+- (void)removeSongFromPlaylist:(NSInteger)inTeger handler:(void (^)(void))inHandler;
+- (void)becomeDJ;
 
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 - (void)stopSong;

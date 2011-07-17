@@ -32,5 +32,6 @@
 - (IBAction)voteAwesome;
 - (IBAction)voteLame;
 - (IBAction)usersTapped:(id)sender;
+- (IBAction)djTapped:(id)sender;
 
 @end
