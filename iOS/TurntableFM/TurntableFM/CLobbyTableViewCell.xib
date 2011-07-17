@@ -37,7 +37,7 @@
 			</object>
 			<object class="IBUITableViewCell" id="80259787">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">290</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="81400423">
@@ -48,7 +48,7 @@
 							<object class="IBUILabel" id="523573524">
 								<reference key="NSNextResponder" ref="81400423"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{58, 2}, {530, 21}}</string>
+								<string key="NSFrame">{{104, 3}, {624, 21}}</string>
 								<reference key="NSSuperview" ref="81400423"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="253305206"/>
@@ -79,10 +79,10 @@
 							<object class="IBUILabel" id="15420367">
 								<reference key="NSNextResponder" ref="81400423"/>
 								<int key="NSvFlags">266</int>
-								<string key="NSFrame">{{58, 26}, {530, 21}}</string>
+								<string key="NSFrame">{{104, 25}, {624, 21}}</string>
 								<reference key="NSSuperview" ref="81400423"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="505735875"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:120</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -110,9 +110,10 @@
 							<object class="IBUIButton" id="505735875">
 								<reference key="NSNextResponder" ref="81400423"/>
 								<int key="NSvFlags">300</int>
-								<string key="NSFrame">{{632, 9}, {31, 32}}</string>
+								<string key="NSFrame">{{58, 6}, {38, 38}}</string>
 								<reference key="NSSuperview" ref="81400423"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="15420367"/>
 								<string key="NSReuseIdentifierKey">_NS:184</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -132,7 +133,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">rspeaker1.png</string>
+									<string key="NSResourceName">images_record_logo.gif</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
@@ -175,11 +176,11 @@
 							</object>
 							<object class="IBUILabel" id="253305206">
 								<reference key="NSNextResponder" ref="81400423"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{8, 27}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="81400423"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="15420367"/>
+								<reference key="NSNextKeyView" ref="505735875"/>
 								<string key="NSReuseIdentifierKey">_NS:120</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -320,11 +321,11 @@
 						<reference key="object" ref="80259787"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="523573524"/>
-							<reference ref="15420367"/>
-							<reference ref="505735875"/>
 							<reference ref="48174020"/>
 							<reference ref="253305206"/>
+							<reference ref="505735875"/>
+							<reference ref="523573524"/>
+							<reference ref="15420367"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Table View Cell - CLobbyTableViewCell</string>
@@ -531,8 +532,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">rspeaker1.png</string>
-			<string key="NS.object.0">{62, 65}</string>
+			<string key="NS.key.0">images_record_logo.gif</string>
+			<string key="NS.object.0">{75, 75}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">884</string>
 	</data>
