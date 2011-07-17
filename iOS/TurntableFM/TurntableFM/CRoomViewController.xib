@@ -103,13 +103,27 @@
 									<string key="NSResourceName">Spotlight-Setup_0001s_0000s_0006_Layer-1.png</string>
 								</object>
 							</object>
+							<object class="IBUIView" id="700182085">
+								<reference key="NSNextResponder" ref="744009980"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{168, 219}, {429, 105}}</string>
+								<reference key="NSSuperview" ref="744009980"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="570703828"/>
+								<string key="NSReuseIdentifierKey">_NS:49</string>
+								<object class="NSColor" key="IBUIBackgroundColor" id="138604110">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+							</object>
 							<object class="IBUIImageView" id="900094567">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{131, 320}, {507, 137}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="570703828"/>
+								<reference key="NSNextKeyView" ref="700182085"/>
 								<string key="NSReuseIdentifierKey">_NS:364</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -126,10 +140,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="414157047"/>
 								<string key="NSReuseIdentifierKey">_NS:49</string>
-								<object class="NSColor" key="IBUIBackgroundColor" id="138604110">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
+								<reference key="IBUIBackgroundColor" ref="138604110"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
@@ -139,7 +150,7 @@
 								<string key="NSFrame">{{94, 540}, {674, 228}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="700182085"/>
+								<reference key="NSNextKeyView" ref="1021596317"/>
 								<string key="NSReuseIdentifierKey">_NS:49</string>
 								<reference key="IBUIBackgroundColor" ref="138604110"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -157,23 +168,6 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">props_gauge.png</string>
 								</object>
-							</object>
-							<object class="IBUIView" id="700182085">
-								<reference key="NSNextResponder" ref="744009980"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{168, 219}, {429, 105}}</string>
-								<reference key="NSSuperview" ref="744009980"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1021596317"/>
-								<string key="NSReuseIdentifierKey">_NS:49</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace">
-										<int key="NSID">2</int>
-									</object>
-								</object>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 						</object>
 						<string key="NSFrameSize">{768, 768}</string>

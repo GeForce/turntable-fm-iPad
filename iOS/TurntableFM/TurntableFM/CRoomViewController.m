@@ -242,10 +242,60 @@
 
 - (void)DJUser:(CUser *)inUser
     {
+    NSLog(@"DJUSER");
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    
+    CGRect theDJViewBounds = self.DJView.layer.bounds;
+    
+    CALayer *theLayer = [self layerForUser:inUser];
+
+    for (CALayer *theSublayer in theLayer.sublayers)
+        {
+        theSublayer.borderWidth = 1.0;
+        theSublayer.borderColor = [UIColor greenColor].CGColor;
+        }
+
+    NSInteger theIndex = [self.room.DJs indexOfObject:inUser];
+    
+    theLayer.position = (CGPoint){ .x = CGRectGetMaxX(theDJViewBounds) * (theIndex / 5.0), .y = CGRectGetMidY(theDJViewBounds) };
+    
+    [self.DJView.layer addSublayer:theLayer];
+    
+    [CATransaction commit];
     }
 
 - (void)UnDJUser:(CUser *)inUser
     {
+    CGRect theDJViewBounds = self.DJView.layer.bounds;
+    CGRect theAvatarViewBounds = self.avatarView.layer.bounds;
+
+
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+
+    for (CUser *theDJ in self.room.DJs)
+        {
+        NSInteger theIndex = [self.room.DJs indexOfObject:theDJ];
+        CALayer *theDJLayer = [self layerForUser:theDJ];
+        theDJLayer.position = (CGPoint){ .x = CGRectGetMaxX(theDJViewBounds) * (theIndex / 5.0), .y = CGRectGetMidY(theDJViewBounds) };
+        }
+
+    CALayer *theLayer = [self layerForUser:inUser];
+
+    for (CALayer *theSublayer in theLayer.sublayers)
+        {
+        theSublayer.borderWidth = 1.0;
+        theSublayer.borderColor = [UIColor redColor].CGColor;
+        }
+
+
+    theLayer.position = (CGPoint){ .x = arc4random() % (int)theAvatarViewBounds.size.width, .y = arc4random() % (int)theAvatarViewBounds.size.height };
+    [self.avatarView.layer addSublayer:theLayer];
+
+    [CATransaction commit];
+
     }
 
 #pragma mark -
@@ -309,19 +359,21 @@
         }
     else if ([keyPath isEqualToString:@"room.users"])
         {
-        NSMutableArray *theNewLayers = [NSMutableArray array];
+        NSMutableArray *theNewUsers = [NSMutableArray array];
 
         CGRect theBounds = self.avatarView.layer.bounds;
 
         for (CUser *theUser in [change objectForKey:NSKeyValueChangeNewKey])
             {
-            CALayer *theLayer = [self layerForUser:theUser];
-            [self.avatarView.layer addSublayer:theLayer];
-            
-            [theNewLayers addObject:theLayer];
+            if ([self.room.DJs containsObject:theUser] == NO)
+                {
+                CALayer *theLayer = [self layerForUser:theUser];
+                [self.avatarView.layer addSublayer:theLayer];
+                [theNewUsers addObject:theUser];
+                }
             }
 
-        if (theNewLayers.count > 0)
+        if (theNewUsers.count > 0)
             {
             double delayInSeconds = 0.1;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
@@ -330,9 +382,13 @@
                 [CATransaction setAnimationDuration:0.5];
                 [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
 
-                for (CALayer *theLayer in theNewLayers)
+                for (CUser *theUser in theNewUsers)
                     {
-                    theLayer.position = (CGPoint){ .x = arc4random() % (int)theBounds.size.width, .y = arc4random() % (int)theBounds.size.height };
+                    if ([self.room.DJs containsObject:theUser] == NO)
+                        {
+                        CALayer *theLayer = [self layerForUser:theUser];
+                        theLayer.position = (CGPoint){ .x = arc4random() % (int)theBounds.size.width, .y = arc4random() % (int)theBounds.size.height };
+                        }
                     }
 
                 [CATransaction commit];
