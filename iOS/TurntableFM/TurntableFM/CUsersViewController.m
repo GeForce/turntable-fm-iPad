@@ -8,8 +8,13 @@
 
 #import "CUsersViewController.h"
 
+#import "CTurntableFMModel.h"
 #import "CRoom.h"
 #import "CUser.h"
+
+@interface CUsersViewController () <UIActionSheetDelegate>
+
+@end
 
 @implementation CUsersViewController
 
@@ -127,6 +132,42 @@
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		// boot user
 	}
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+															 delegate:self
+													cancelButtonTitle:@"Cancel"
+											   destructiveButtonTitle:nil
+													otherButtonTitles:@"Fan", @"Profile", nil];
+	BOOL isPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+	if (isPhone) {
+		[actionSheet showInView:self.view];
+	}
+	else {
+		CGRect rect = [self.tableView rectForRowAtIndexPath:indexPath];
+		[actionSheet showFromRect:rect inView:self.tableView animated:YES];
+	}
+	[actionSheet release];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+		
+	}
+	else if (buttonIndex == actionSheet.firstOtherButtonIndex) {
+		CUser *user = [self.room.users objectAtIndex:indexPath.row];
+		[[CTurntableFMModel sharedInstance] fanUser:user handler:NULL];
+	}
+	else {
+		
+	}
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - KVO
