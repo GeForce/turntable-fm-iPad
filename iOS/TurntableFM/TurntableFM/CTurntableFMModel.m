@@ -202,7 +202,12 @@ static CTurntableFMModel *gSharedInstance = NULL;
     
 - (void)bootUser:(CUser *)inUser handler:(void (^)(void))inHandler
 {
-    NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inUser.userID forKey:@"target_userid"];
+    // NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inUser.userID forKey:@"target_userid"];
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   self.room.roomID, @"roomid",
+                                   inUser.userID, @"target_userid",
+                                   NULL];
+
     [self.socket postMessage:@"room.boot_user" dictionary:theDictionary handler:^(id inResult) {
         if (inHandler)
         {
