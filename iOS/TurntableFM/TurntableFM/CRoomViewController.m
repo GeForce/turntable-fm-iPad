@@ -127,7 +127,15 @@
 						[NSValue valueWithCGPoint:CGPointMake(63, 50)],// 23 gorilla
 						[NSValue valueWithCGPoint:CGPointMake(0, -55)],// 24 red mouse
 						[NSValue valueWithCGPoint:CGPointMake(0, 0)], // 25 unused
-						[NSValue valueWithCGPoint:CGPointMake(0, -30)],nil];
+						[NSValue valueWithCGPoint:CGPointMake(0, -30)], // 26 superuser
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 27 New cosmic avatars
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 28 "
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 29 "
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 30 "
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 "
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 "
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 End new cosmic avatars
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 34 strange little boy
 
     self.title = self.room.name;
 	

@@ -59,8 +59,16 @@ static CAvatarLibrary *gSharedInstance = NULL;
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 22
 							   [NSValue valueWithCGPoint:CGPointMake(0, 40)],// 23 gorilla
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 24 red mouse
-							   [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 25 unused
-							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil];
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 25 unused
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 26 superuser
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 27 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 28 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 29 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 30 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // odd new little boy
 	
 	self.torsoPointOffsets = [[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 1 long brown hair
@@ -88,7 +96,15 @@ static CAvatarLibrary *gSharedInstance = NULL;
 							   [NSValue valueWithCGPoint:CGPointMake(-35, 0)],// 23 gorilla
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 24 red mouse
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 25 unused
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil];
+                               [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 26 superuser
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 27 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 28 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 29 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 30 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
+							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil]; // 34 strange little boy
 	
 	self.rightArmPointOffsets = [[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 1 long brown hair
@@ -116,6 +132,14 @@ static CAvatarLibrary *gSharedInstance = NULL;
 							   [NSValue valueWithCGPoint:CGPointMake(-70, 30)],// 23 gorilla
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 24 red mouse
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)], // 25 unused
+                               [NSValue valueWithCGPoint:CGPointMake(-4, 0)], // 26 superuser
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 27 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 28 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 29 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 30 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],nil];
 	
 	self.legsPointOffsets = [[NSMutableArray alloc] initWithObjects:
@@ -137,14 +161,22 @@ static CAvatarLibrary *gSharedInstance = NULL;
 							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 16 evil queen bear
 							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 17
 							   [NSValue valueWithCGPoint:CGPointMake(-25, -2)],// 18 grey cat
-							   [NSValue valueWithCGPoint:CGPointMake(-25, -2)],// 19 green cat
-							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 20
-							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 21
-							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 22
-							   [NSValue valueWithCGPoint:CGPointMake(-3, -4)],// 23 gorilla
-							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 24 red mouse
-							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)], // 25 unused
-							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],nil];
+                               [NSValue valueWithCGPoint:CGPointMake(-25, -2)],// 19 green cat
+                               [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 20
+                               [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 21
+                               [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 22
+                               [NSValue valueWithCGPoint:CGPointMake(-3, -4)],// 23 gorilla
+                               [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 24 red mouse
+                               [NSValue valueWithCGPoint:CGPointMake(-2, -4)], // 25 unused
+                               [NSValue valueWithCGPoint:CGPointMake(-2, -4)], // 26 superuser
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 27 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 28 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 29 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 30 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 34 strange little boy
     
     return self;
 }
