@@ -196,14 +196,12 @@
 
 - (IBAction)friends:(UIButton *)sender
 {
-	/*
 	UITableViewCell *cell = (UITableViewCell *)[[sender superview] superview];
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	CFriendsViewController *fvc = [[CFriendsViewController alloc] initWithNibName:nil bundle:nil];
 	fvc.room = [[CTurntableFMModel sharedInstance].rooms objectAtIndex:indexPath.row];
 	UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:fvc];
 	[popover presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-	*/
 }
 
 

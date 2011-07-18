@@ -49,6 +49,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (CGSize)contentSizeForViewInPopover
+{
+	CGFloat height = MIN(44.0 * [[self.room objectAtIndex:1] count], 200);
+	return CGSizeMake(320, height);
+}
+
 #pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
