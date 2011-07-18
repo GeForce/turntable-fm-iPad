@@ -200,8 +200,14 @@
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	CFriendsViewController *fvc = [[CFriendsViewController alloc] initWithNibName:nil bundle:nil];
 	fvc.room = [[CTurntableFMModel sharedInstance].rooms objectAtIndex:indexPath.row];
-	UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:fvc];
-	[popover presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:fvc];
+		[popover presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+	else {
+		[self.navigationController pushViewController:fvc animated:YES];
+	}
+	[fvc release];
 }
 
 
