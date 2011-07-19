@@ -96,7 +96,7 @@
 							<object class="IBUIImageView" id="28933194">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{768, 324}</string>
+								<string key="NSFrameSize">{768, 367}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1027973771"/>
@@ -113,7 +113,7 @@
 								<string key="NSFrame">{{195, 200}, {465, 105}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="243300165"/>
+								<reference key="NSNextKeyView" ref="186249039"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="138604110">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -200,7 +200,7 @@
 								<string key="NSFrame">{{494, 241}, {148, 110}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="238643276"/>
+								<reference key="NSNextKeyView" ref="944317293"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<reference key="IBUIImage" ref="934136955"/>
@@ -227,10 +227,10 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<reference key="IBUIImage" ref="934136955"/>
 							</object>
-							<object class="IBUIImageView" id="243300165">
+							<object class="IBUIImageView" id="186249039">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 332}, {105, 168}}</string>
+								<string key="NSFrame">{{-6, 332}, {105, 168}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="900094567"/>
@@ -242,10 +242,10 @@
 									<string key="NSResourceName">props_left_speaker.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="238643276">
+							<object class="IBUIImageView" id="944317293">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{643, 332}, {105, 168}}</string>
+								<string key="NSFrame">{{670, 332}, {105, 168}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="414157047"/>
@@ -458,10 +458,10 @@
 							<reference ref="609467676"/>
 							<reference ref="103273336"/>
 							<reference ref="469121563"/>
-							<reference ref="243300165"/>
-							<reference ref="238643276"/>
 							<reference ref="570703828"/>
 							<reference ref="900094567"/>
+							<reference ref="186249039"/>
+							<reference ref="944317293"/>
 						</object>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -546,12 +546,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">66</int>
-						<reference key="object" ref="243300165"/>
+						<reference key="object" ref="186249039"/>
 						<reference key="parent" ref="744009980"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">67</int>
-						<reference key="object" ref="238643276"/>
+						<reference key="object" ref="944317293"/>
 						<reference key="parent" ref="744009980"/>
 					</object>
 				</object>
