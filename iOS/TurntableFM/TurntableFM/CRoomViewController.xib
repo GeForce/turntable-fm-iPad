@@ -135,7 +135,7 @@
 									<string key="NSResourceName">Spotlight-Setup_0001s_0000s_0000_Layer-2.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="1049079541">
+							<object class="IBUIImageView" id="733140641">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{-6, 332}, {105, 168}}</string>
@@ -153,7 +153,7 @@
 									<string key="NSResourceName">props_left_speaker.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="286439724">
+							<object class="IBUIImageView" id="796851489">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{670, 332}, {105, 168}}</string>
@@ -188,7 +188,7 @@
 								<string key="NSFrame">{{31, 491}, {698, 277}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="286439724"/>
+								<reference key="NSNextKeyView" ref="796851489"/>
 								<reference key="IBUIBackgroundColor" ref="138604110"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
@@ -198,7 +198,7 @@
 								<string key="NSFrame">{{356, 549}, {406, 219}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="579233127"/>
+								<reference key="NSNextKeyView" ref="771510514"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -206,7 +206,7 @@
 									<string key="NSResourceName">props_gauge.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="675534336">
+							<object class="IBUIButton" id="450008620">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{600, 710}, {140, 58}}</string>
@@ -226,7 +226,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="459123656">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="816306596">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
@@ -238,23 +238,23 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">props_vote_btn_awesome.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="226458244">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="664214652">
 									<int key="type">1</int>
 									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="52319783">
+								<object class="NSFont" key="IBUIFont" id="684484473">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIButton" id="579233127">
+							<object class="IBUIButton" id="771510514">
 								<reference key="NSNextResponder" ref="744009980"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{379, 710}, {140, 58}}</string>
 								<reference key="NSSuperview" ref="744009980"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="675534336"/>
+								<reference key="NSNextKeyView" ref="450008620"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUIContentMode">4</int>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -265,7 +265,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="459123656"/>
+								<reference key="IBUINormalTitleShadowColor" ref="816306596"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">props_vote_btn_lame_pressed.png</string>
@@ -274,8 +274,8 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">props_vote_btn_lame.png</string>
 								</object>
-								<reference key="IBUIFontDescription" ref="226458244"/>
-								<reference key="IBUIFont" ref="52319783"/>
+								<reference key="IBUIFontDescription" ref="664214652"/>
+								<reference key="IBUIFont" ref="684484473"/>
 							</object>
 							<object class="IBUIImageView" id="609467676">
 								<reference key="NSNextResponder" ref="744009980"/>
@@ -335,11 +335,27 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<reference key="IBUIImage" ref="934136955"/>
 							</object>
+							<object class="IBUIImageView" id="365861578">
+								<reference key="NSNextResponder" ref="744009980"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{551, 591}, {16, 77}}</string>
+								<reference key="NSSuperview" ref="744009980"/>
+								<reference key="NSWindow"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">props_needle.png</string>
+								</object>
+							</object>
 						</object>
 						<string key="NSFrameSize">{768, 768}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1049079541"/>
+						<reference key="NSNextKeyView" ref="733140641"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
@@ -458,7 +474,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">voteAwesome</string>
-						<reference key="source" ref="675534336"/>
+						<reference key="source" ref="450008620"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -467,7 +483,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">voteLame</string>
-						<reference key="source" ref="579233127"/>
+						<reference key="source" ref="771510514"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -552,11 +568,12 @@
 							<reference ref="469121563"/>
 							<reference ref="570703828"/>
 							<reference ref="900094567"/>
-							<reference ref="1049079541"/>
-							<reference ref="286439724"/>
+							<reference ref="733140641"/>
+							<reference ref="796851489"/>
 							<reference ref="414157047"/>
-							<reference ref="675534336"/>
-							<reference ref="579233127"/>
+							<reference ref="450008620"/>
+							<reference ref="771510514"/>
+							<reference ref="365861578"/>
 						</object>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -636,27 +653,32 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">67</int>
-						<reference key="object" ref="286439724"/>
+						<reference key="object" ref="796851489"/>
+						<reference key="parent" ref="744009980"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">66</int>
+						<reference key="object" ref="733140641"/>
+						<reference key="parent" ref="744009980"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">78</int>
+						<reference key="object" ref="365861578"/>
 						<reference key="parent" ref="744009980"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">74</int>
-						<reference key="object" ref="579233127"/>
+						<reference key="object" ref="771510514"/>
 						<reference key="parent" ref="744009980"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">72</int>
-						<reference key="object" ref="675534336"/>
+						<reference key="object" ref="450008620"/>
 						<reference key="parent" ref="744009980"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
 						<reference key="object" ref="1021596317"/>
-						<reference key="parent" ref="744009980"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">66</int>
-						<reference key="object" ref="1049079541"/>
 						<reference key="parent" ref="744009980"/>
 					</object>
 				</object>
@@ -695,6 +717,7 @@
 					<string>74.IBPluginDependency</string>
 					<string>74.IBUIButtonInspectorSelectedEdgeInsetMetadataKey</string>
 					<string>74.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
+					<string>78.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -732,6 +755,7 @@
 					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -746,7 +770,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">78</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -897,6 +921,7 @@
 				<string>Spotlight-Setup_ComputerwithglowMac_0000_Layer-6.png</string>
 				<string>props_gauge.png</string>
 				<string>props_left_speaker.png</string>
+				<string>props_needle.png</string>
 				<string>props_right_speaker.png</string>
 				<string>props_vote_btn_awesome.png</string>
 				<string>props_vote_btn_awesome_pressed.png</string>
@@ -911,6 +936,7 @@
 				<string>{148, 110}</string>
 				<string>{406, 219}</string>
 				<string>{85, 155}</string>
+				<string>{16, 77}</string>
 				<string>{85, 155}</string>
 				<string>{126, 43}</string>
 				<string>{126, 43}</string>
