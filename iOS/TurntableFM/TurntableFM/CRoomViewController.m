@@ -71,6 +71,7 @@
     [self removeObserver:self forKeyPath:@"room.currentSong"];
     [self removeObserver:self forKeyPath:@"room.chatLog"];
     [self removeObserver:self forKeyPath:@"room.users"];
+    [self removeObserver:self forKeyPath:@"room.DJs"];
 
     [room unsubscribe];
     [room release];
@@ -178,13 +179,11 @@
 
 - (IBAction)voteAwesome
     {	
-        NSLog(@"voteAwesome called");
         [[CTurntableFMModel sharedInstance] voteAwesome];
     }
 
 - (IBAction)voteLame
     {	
-        NSLog(@"voteLame called");
         [[CTurntableFMModel sharedInstance] voteLame];
     }
 
