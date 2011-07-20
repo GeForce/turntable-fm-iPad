@@ -88,7 +88,7 @@
         NSArray *theVotelog = [inResult valueForKeyPath:@"room.metadata.votelog"];
         [self handleVoteLog:theVotelog];
 
-        
+        // USER REGISTER ######################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
@@ -105,7 +105,7 @@
 
         } forCommand:@"registered"];
 
-        // USER DEREGISTRER ####################################################
+        // USER DEREGISTER ####################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             for (NSDictionary *theUserParameters in [inParam objectForKey:@"user"])
                 {
@@ -175,9 +175,21 @@
                 }
             } forCommand:@"newsong"];
 
-//        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
-//            // We're ignoring this...
-//            } forCommand:@"update_user"];
+        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+            // We're ignoring this... mostly.
+            NSDictionary *updateParameters = inParam;
+            NSString *userID = [updateParameters valueForKey:@"userid"];
+            NSNumber *fanAdjustment = [updateParameters valueForKey:@"fans"];
+            NSNumber *newAvatarID = [updateParameters valueForKey:@"avatarid"];
+            if (fanAdjustment != nil) {
+                NSLog(@"Found fan update: %@ %@ fans", userID, fanAdjustment);
+                // TODO: Once we actually display fan totals somewhere, update that total here
+            }
+            if (newAvatarID != nil) {
+                NSLog(@"Found avatar update: %@ -> avatar ID %@", userID, newAvatarID); 
+            }
+            // NSLog(@"%@", [updateParameters description]);
+            } forCommand:@"update_user"];
 
         // #####################################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
