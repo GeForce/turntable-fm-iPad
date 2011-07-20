@@ -239,6 +239,46 @@ static CTurntableFMModel *gSharedInstance = NULL;
     }];
 }
 
+/*
+    12:35:03 Preparing message {
+    "api":"room.vote",
+    "roomid":"4e01710f14169c1c4400241f",
+    "val":"up", // or 'down'
+    "vh":"748f7a7b619660cb50032c9e1990af3dde54e8a8", // roomId . "down" or "up" . songId);
+    "th":"2ea6e750f9858652e05cebfeaad08fbfea8ed655", // $.sha1( Math.random() + "" )
+    "ph":"fbca6cfe770a2ca103bcfaf9f0a182c8f83db42d", // $.sha1( Math.random() + "" )
+    "msgid":131,"clientid":"1311095821595-0.068511001765728","userid":"4df032194fe7d063190425ca","userauth":"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b"} 
+*/
+
+- (void)vote:(NSString *)upOrDown 
+{
+   // NSString *vh = [[[[NSString stringWithFormat:@"%@%@%@", self.room.roomID, upOrDown, self.room.currentSong.songID] dataUsingEncoding:NSUTF8StringEncoding] SHA1Digest] hexString];
+    // NSLog(@"Vote called for %@", upOrDown);
+    // NSLog(@"Current song artist / name / ID: %@ / %@ / %@", self.room.currentSong.artist, self.room.currentSong.name, self.room.currentSong.songID);
+    // NSLog(@"Room ID + up/down + current song ID: %@", [[[[NSString stringWithFormat:@"%@%@%@", self.room.roomID, upOrDown, self.room.currentSong.songID] dataUsingEncoding:NSUTF8StringEncoding] SHA1Digest] hexString]);
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   self.room.roomID, @"roomid",
+                                   upOrDown, @"val",
+                                   [[[[NSString stringWithFormat:@"%@%@%@", self.room.roomID, upOrDown, self.room.currentSong.songID] dataUsingEncoding:NSUTF8StringEncoding] SHA1Digest] hexString], @"vh",
+                                   [[[[NSString stringWithFormat:@"%d", arc4random()] dataUsingEncoding:NSUTF8StringEncoding] SHA1Digest] hexString], @"th",
+                                   [[[[NSString stringWithFormat:@"%d", arc4random()] dataUsingEncoding:NSUTF8StringEncoding] SHA1Digest] hexString], @"ph",                                   
+                                   NULL];
+    [self.socket postMessage:@"room.vote" dictionary:theDictionary handler:^(id inResult) {
+    }];
+    
+}
+
+- (void)voteLame
+{
+    [self vote:@"down"];
+}
+
+- (void)voteAwesome
+{
+    [self vote:@"up"];
+}
+
+
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {
 

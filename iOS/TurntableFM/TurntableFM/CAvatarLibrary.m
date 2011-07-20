@@ -68,8 +68,10 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
-							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // odd new little boy
-	
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)], // odd new little boy
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
+
+                                
 	self.torsoPointOffsets = [[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 1 long brown hair
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 2
@@ -104,7 +106,8 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
-							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil]; // 34 strange little boy
+                              [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 34 strange little boy
+                              [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil]; // 35 Daft Punk II
 	
 	self.rightArmPointOffsets = [[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 1 long brown hair
@@ -140,7 +143,8 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
-							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],nil];
+							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
 	
 	self.legsPointOffsets = [[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 1 long brown hair
@@ -176,7 +180,8 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
-							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 34 strange little boy
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 34 strange little boy
+							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
     
     return self;
 }

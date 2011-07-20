@@ -37,6 +37,9 @@
 - (void)unfanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 - (void)bootUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 - (void)removeSongFromPlaylist:(NSInteger)inTeger handler:(void (^)(void))inHandler;
+- (void)vote:(NSString *)upOrDown;
+- (void)voteAwesome;
+- (void)voteLame;
 - (void)becomeDJ;
 
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;

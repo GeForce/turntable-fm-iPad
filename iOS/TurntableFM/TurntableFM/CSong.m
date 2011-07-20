@@ -12,7 +12,8 @@
 
 - (NSString *)songID
     {
-    return([self.parameters objectForKey:@"songID"]);
+        return([self.parameters valueForKeyPath:@"_id"]);
+    // return([self.parameters objectForKey:@"songID"]);
     }
 
 - (NSString *)name
@@ -21,8 +22,24 @@
     }
 
 - (NSString *)artist
-{
+    {
 	return [self.parameters valueForKeyPath:@"metadata.artist"];
-}
+    }
+
+- (NSString *)album
+    {
+    return([self.parameters valueForKeyPath:@"metadata.album"]);
+    }
+
+- (NSString *)length
+    {
+    return([self.parameters valueForKeyPath:@"metadata.length"]);
+    }
+
+- (NSURL *)coverartURL
+    {
+    return([NSURL URLWithString:[self.parameters valueForKeyPath:@"metadata.album"]]);
+    }
+
 
 @end

@@ -13,6 +13,8 @@
 @property (readonly, nonatomic, retain) NSString *songID;
 @property (readonly, nonatomic, retain) NSString *name;
 @property (readonly, nonatomic, retain) NSString *artist;
-
+@property (readonly, nonatomic, retain) NSString *album;
+@property (readonly, nonatomic, retain) NSString *length;
+@property (readonly, nonatomic, retain) NSURL *coverartURL;
 
 @end

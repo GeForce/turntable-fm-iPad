@@ -135,7 +135,8 @@
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 "
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 "
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 End new cosmic avatars
-                        [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 34 strange little boy
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 34 strange little boy
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
 
     self.title = self.room.name;
 	
@@ -177,10 +178,14 @@
 
 - (IBAction)voteAwesome
     {	
+        NSLog(@"voteAwesome called");
+        [[CTurntableFMModel sharedInstance] voteAwesome];
     }
 
 - (IBAction)voteLame
     {	
+        NSLog(@"voteLame called");
+        [[CTurntableFMModel sharedInstance] voteLame];
     }
 
 - (void)usersTapped:(id)sender
@@ -345,6 +350,7 @@
         {
         for (NSDictionary *theSpeakDictionary in [change objectForKey:@"new"])
             {
+            // TODO: add "/me emotes" handling
             self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@: %@\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary objectForKey:@"text"]];
             [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
 
