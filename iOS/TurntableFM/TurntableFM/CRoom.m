@@ -113,16 +113,24 @@
                 CUser *theUser = [self.usersByUserID objectForKey:theUserID];
 
                 NSInteger theIndex = [self.users indexOfObject:theUser];
-                NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:theIndex];
+                    /* 2011-07-20 18:41:08.291 TurntableFM[49326:207] *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[NSIndexSet initWithIndexesInRange:]: Range {2147483647, 1} exceeds maximum index value of NSNotFound - 1'
+                        ...occurs when ttfm sends to dereg statements for the same user.  I have not seen a double-dereg event since I put the following if() in, unfortunately.
+                    */
+                    if (theIndex != NSNotFound) 
+                        {
+                        NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:theIndex];
 
-                [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
-                [self.users removeObjectAtIndex:theIndex];
-                [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
+                        [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
+                        [self.users removeObjectAtIndex:theIndex];
+                        [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:theIndexes forKey:@"users"];
 
-                if (theUser)
-                    {
-                    [self.usersByUserID removeObjectForKey:theUserID];
-                    }
+                        if (theUser)
+                            {
+                            [self.usersByUserID removeObjectForKey:theUserID];
+                            }
+                        } else { 
+                            NSLog(@"Caught deregister event for non-existent user %@", theUserID); 
+                            }
                 }
             } forCommand:@"deregistered"];
 
