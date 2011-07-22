@@ -31,6 +31,9 @@
 
 - (void)launchQueuePopoverController;
 
+- (void)keyboardWillShowNotification:(NSNotification *)notification;
+- (void)keyboardWillHideNotification:(NSNotification *)notification;
+
 @end
 
 #pragma mark -
@@ -48,7 +51,9 @@
 @synthesize chatTextView;
 @synthesize speakTextField;
 @synthesize marqueeView;
+@synthesize chatView;
 @synthesize neckOffsets;
+@synthesize toolBar;
 
 - (id)initWithRoom:(CRoom *)inRoom;
     {
@@ -61,6 +66,9 @@
         [self addObserver:self forKeyPath:@"room.chatLog" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"room.users" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
         [self addObserver:self forKeyPath:@"room.DJs" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL]            ;
+			
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
         }
     return self;
     }
@@ -72,6 +80,8 @@
     [self removeObserver:self forKeyPath:@"room.chatLog"];
     [self removeObserver:self forKeyPath:@"room.users"];
     [self removeObserver:self forKeyPath:@"room.DJs"];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
     [room unsubscribe];
     [room release];
@@ -83,6 +93,8 @@
 	[queueViewController release];
 	[neckOffsets release];
 
+	[chatView release];
+	[toolBar release];
 	[super dealloc];
     }
 
@@ -102,7 +114,7 @@
 
 	self.marqueeView.font = [UIFont fontWithName:@"DS Dots" size:40.0];
 	
-	self.neckOffsets = [[NSMutableArray alloc] initWithObjects:
+	self.neckOffsets = [[[NSMutableArray alloc] initWithObjects:
 						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 1 long brown hair
 						[NSValue valueWithCGPoint:CGPointMake(0, -30)],// 2
 						[NSValue valueWithCGPoint:CGPointMake(0, -50)],// 3 red fauxhawk pig tails
@@ -137,7 +149,9 @@
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 "
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 End new cosmic avatars
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 34 strange little boy
-                        [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
+                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 35 Daft Punk II
+						 nil]
+						autorelease]; 
 
     self.title = self.room.name;
 	
@@ -150,6 +164,8 @@
 
 - (void)viewDidUnload
     {
+		[self setChatView:nil];
+		[self setToolBar:nil];
     [super viewDidUnload];
     }
 
@@ -312,14 +328,34 @@
 
 - (void)keyboardWillShowNotification:(NSNotification *)inNotification
     {
-    self.speakTextField.inputAccessoryView = self.speakTextField;
-    
+    //self.speakTextField.inputAccessoryView = self.speakTextField;
+		if (CGAffineTransformIsIdentity(self.chatView.transform)) {
+			[UIView animateWithDuration:0.3 animations:^(void) {
+				self.chatView.transform = CGAffineTransformMakeTranslation(0, -264 + self.toolBar.bounds.size.height);
+			}];
+		}
     }
 
+- (void)keyboardWillHideNotification:(NSNotification *)notification
+{
+	[UIView animateWithDuration:0.3 animations:^(void) {
+		self.chatView.transform = CGAffineTransformIdentity;
+	}];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
-    {
-    return(YES);
-    }
+{
+	// send message here!
+	
+	textField.text = nil;
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+	textField.text = nil; // clear the textfield
+	return YES;
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
     {
