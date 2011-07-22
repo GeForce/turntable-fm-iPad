@@ -196,8 +196,9 @@
 
 - (IBAction)friends:(UIButton *)sender
 {
-	UITableViewCell *cell = (UITableViewCell *)[[sender superview] superview];
+	UITableViewCell *cell = (UITableViewCell *)[[[sender superview] superview] superview];
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSLog(@"Index path: %@", [indexPath description]);
 	CFriendsViewController *fvc = [[CFriendsViewController alloc] initWithNibName:nil bundle:nil];
 	fvc.room = [[CTurntableFMModel sharedInstance].rooms objectAtIndex:indexPath.row];
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

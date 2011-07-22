@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050C6F2013D767C4003E5E60 /* avatars_35_headback.png in Resources */ = {isa = PBXBuildFile; fileRef = 050C6F1E13D767C4003E5E60 /* avatars_35_headback.png */; };
 		050C6F2113D767C4003E5E60 /* avatars_35_headfront.png in Resources */ = {isa = PBXBuildFile; fileRef = 050C6F1F13D767C4003E5E60 /* avatars_35_headfront.png */; };
+		050C6F2C13D930D5003E5E60 /* AdHocEntitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 050C6F2B13D930D4003E5E60 /* AdHocEntitlements.entitlements */; };
 		052BC3F513D5D6E0007B8DF1 /* avatars_27_bodyback.png in Resources */ = {isa = PBXBuildFile; fileRef = 052BC3D513D5D6E0007B8DF1 /* avatars_27_bodyback.png */; };
 		052BC3F613D5D6E0007B8DF1 /* avatars_27_bodyfront.png in Resources */ = {isa = PBXBuildFile; fileRef = 052BC3D613D5D6E0007B8DF1 /* avatars_27_bodyfront.png */; };
 		052BC3F713D5D6E0007B8DF1 /* avatars_27_headback.png in Resources */ = {isa = PBXBuildFile; fileRef = 052BC3D713D5D6E0007B8DF1 /* avatars_27_headback.png */; };
@@ -445,6 +446,8 @@
 /* Begin PBXFileReference section */
 		050C6F1E13D767C4003E5E60 /* avatars_35_headback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_35_headback.png; sourceTree = "<group>"; };
 		050C6F1F13D767C4003E5E60 /* avatars_35_headfront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_35_headfront.png; sourceTree = "<group>"; };
+		050C6F2813D8C39B003E5E60 /* TurntableFM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TurntableFM.entitlements; sourceTree = "<group>"; };
+		050C6F2B13D930D4003E5E60 /* AdHocEntitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdHocEntitlements.entitlements; sourceTree = "<group>"; };
 		052BC3D513D5D6E0007B8DF1 /* avatars_27_bodyback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_27_bodyback.png; sourceTree = "<group>"; };
 		052BC3D613D5D6E0007B8DF1 /* avatars_27_bodyfront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_27_bodyfront.png; sourceTree = "<group>"; };
 		052BC3D713D5D6E0007B8DF1 /* avatars_27_headback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_27_headback.png; sourceTree = "<group>"; };
@@ -1040,6 +1043,8 @@
 		4506236813D117F800086997 /* TurntableFM */ = {
 			isa = PBXGroup;
 			children = (
+				050C6F2B13D930D4003E5E60 /* AdHocEntitlements.entitlements */,
+				050C6F2813D8C39B003E5E60 /* TurntableFM.entitlements */,
 				4506237113D117F800086997 /* CApplicationController.h */,
 				4506237213D117F800086997 /* CApplicationController.m */,
 				459F844613D2CA34008A3C6A /* Model */,
@@ -2174,6 +2179,7 @@
 				052BC41D13D5E87F007B8DF1 /* props_vote_btn_lame.png in Resources */,
 				050C6F2013D767C4003E5E60 /* avatars_35_headback.png in Resources */,
 				050C6F2113D767C4003E5E60 /* avatars_35_headfront.png in Resources */,
+				050C6F2C13D930D5003E5E60 /* AdHocEntitlements.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2296,6 +2302,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		050C6F2913D8C3AD003E5E60 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		050C6F2A13D8C3AD003E5E60 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = TurntableFM/AdHocEntitlements.entitlements;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				INFOPLIST_FILE = "TurntableFM/TurntableFM-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
 		4506239A13D117F800086997 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2347,6 +2393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = TurntableFM/TurntableFM.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -2365,6 +2412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = TurntableFM/TurntableFM.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TurntableFM/TurntableFM-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -2387,6 +2435,7 @@
 			buildConfigurations = (
 				4506239A13D117F800086997 /* Debug */,
 				4506239B13D117F800086997 /* Release */,
+				050C6F2913D8C3AD003E5E60 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2396,6 +2445,7 @@
 			buildConfigurations = (
 				4506239D13D117F800086997 /* Debug */,
 				4506239E13D117F800086997 /* Release */,
+				050C6F2A13D8C3AD003E5E60 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
