@@ -185,15 +185,18 @@
 	[spinnerBarItem release];
 	
 	// hack - actually refresh the list in the future
-	double delayInSeconds = 2.0;
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-		UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
+    [[CTurntableFMModel sharedInstance] refreshRoomListWithOffset:0 handler:^(void) {
+        UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
 		self.navigationItem.rightBarButtonItem = refresh;
 		[refresh release];
-	});
+    }];
 }
 
+     //	double delayInSeconds = 2.0;
+     //	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+     //	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+     
 - (IBAction)friends:(UIButton *)sender
 {
 	UITableViewCell *cell = (UITableViewCell *)[[[sender superview] superview] superview];

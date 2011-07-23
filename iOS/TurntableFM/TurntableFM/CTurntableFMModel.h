@@ -33,6 +33,7 @@
 
 - (NSURL *)URLForSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
 
+- (void)refreshRoomListWithOffset:(NSInteger)offset handler:(void (^)(void))inHandler;
 - (void)fanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 - (void)unfanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 - (void)bootUser:(CUser *)inUser handler:(void (^)(void))inHandler;

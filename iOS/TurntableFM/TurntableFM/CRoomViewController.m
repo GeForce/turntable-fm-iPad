@@ -352,8 +352,9 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-	textField.text = nil; // clear the textfield
-	return YES;
+    // I posit that half-finished chat should not vanish if you go to vote on a song.
+	// textField.text = nil; 	
+    return YES;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;

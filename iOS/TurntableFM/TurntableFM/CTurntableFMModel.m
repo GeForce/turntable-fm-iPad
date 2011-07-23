@@ -98,10 +98,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
                     self.userInfo = inResult;
                     }];
                 
-                
-                [self.socket postMessage:@"room.list_rooms" dictionary:NULL handler:^(id inResult) {
-                    self.rooms = [inResult objectForKey:@"rooms"];
-                    }];
+                [self refreshRoomListWithOffset:0 handler:NULL];
                 }];
             };
         
@@ -176,6 +173,20 @@ static CTurntableFMModel *gSharedInstance = NULL;
         theURL = [NSURL URLWithString:theURLString];
         }
     return(theURL);
+    }
+
+- (void)refreshRoomListWithOffset:(NSInteger)offset handler:(void (^)(void))inHandler
+    {
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInteger:offset], @"offset", NULL                                       
+                                 ];
+    [self.socket postMessage:@"room.list_rooms" dictionary:theDictionary handler:^(id inResult) {
+        self.rooms = [inResult objectForKey:@"rooms"];
+         if (inHandler)
+         {
+         inHandler();
+         }
+    }];
     }
 
 - (void)fanUser:(CUser *)inUser handler:(void (^)(void))inHandler
