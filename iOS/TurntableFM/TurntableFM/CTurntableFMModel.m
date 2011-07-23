@@ -263,9 +263,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
                                    [[[[NSString stringWithFormat:@"%d", arc4random()] dataUsingEncoding:NSUTF8StringEncoding] SHA1Digest] hexString], @"th",
                                    [[[[NSString stringWithFormat:@"%d", arc4random()] dataUsingEncoding:NSUTF8StringEncoding] SHA1Digest] hexString], @"ph",                                   
                                    NULL];
-    [self.socket postMessage:@"room.vote" dictionary:theDictionary handler:^(id inResult) {
-    }];
-    
+    [self.socket postMessage:@"room.vote" dictionary:theDictionary handler:^(id inResult) {}];
 }
 
 - (void)voteLame
@@ -278,6 +276,16 @@ static CTurntableFMModel *gSharedInstance = NULL;
     [self vote:@"up"];
 }
 
+- (void)speak:(NSString *)chatText
+{
+    // 16:08:49 Preparing message {"api":"room.speak","roomid":"4e01710f14169c1c4400241f","text":"*autofalsettotune* *swoon* *pitchfork*","msgid":390,"clientid":"1311343074596-0.18572328938171268","userid":"4df032194fe7d063190425ca","userauth":"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b"}
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   self.room.roomID, @"roomid",
+                                   chatText, @"text",
+                                   NULL];
+    NSLog(@"%@", theDictionary);
+    [self.socket postMessage:@"room.speak" dictionary:theDictionary handler:^(id inResult) {}];
+}
 
 - (void)playSong:(NSDictionary *)inSong preview:(BOOL)inPreview;
     {

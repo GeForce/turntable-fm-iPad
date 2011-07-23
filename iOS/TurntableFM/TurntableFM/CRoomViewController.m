@@ -345,8 +345,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	// send message here!
-	
+    [[CTurntableFMModel sharedInstance] speak:textField.text];
 	textField.text = nil;
     return YES;
 }

@@ -10,6 +10,7 @@
 		050C6F2013D767C4003E5E60 /* avatars_35_headback.png in Resources */ = {isa = PBXBuildFile; fileRef = 050C6F1E13D767C4003E5E60 /* avatars_35_headback.png */; };
 		050C6F2113D767C4003E5E60 /* avatars_35_headfront.png in Resources */ = {isa = PBXBuildFile; fileRef = 050C6F1F13D767C4003E5E60 /* avatars_35_headfront.png */; };
 		050C6F2C13D930D5003E5E60 /* AdHocEntitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 050C6F2B13D930D4003E5E60 /* AdHocEntitlements.entitlements */; };
+		05213D2913DA52530036C6DE /* iPad_iCon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05213D2813DA52530036C6DE /* iPad_iCon.png */; };
 		052BC3F513D5D6E0007B8DF1 /* avatars_27_bodyback.png in Resources */ = {isa = PBXBuildFile; fileRef = 052BC3D513D5D6E0007B8DF1 /* avatars_27_bodyback.png */; };
 		052BC3F613D5D6E0007B8DF1 /* avatars_27_bodyfront.png in Resources */ = {isa = PBXBuildFile; fileRef = 052BC3D613D5D6E0007B8DF1 /* avatars_27_bodyfront.png */; };
 		052BC3F713D5D6E0007B8DF1 /* avatars_27_headback.png in Resources */ = {isa = PBXBuildFile; fileRef = 052BC3D713D5D6E0007B8DF1 /* avatars_27_headback.png */; };
@@ -448,6 +449,7 @@
 		050C6F1F13D767C4003E5E60 /* avatars_35_headfront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_35_headfront.png; sourceTree = "<group>"; };
 		050C6F2813D8C39B003E5E60 /* TurntableFM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TurntableFM.entitlements; sourceTree = "<group>"; };
 		050C6F2B13D930D4003E5E60 /* AdHocEntitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdHocEntitlements.entitlements; sourceTree = "<group>"; };
+		05213D2813DA52530036C6DE /* iPad_iCon.png */ = {isa = PBXFileReference; name = iPad_iCon.png; path = ../iPad_iCon.png; sourceTree = "<group>"; };
 		052BC3D513D5D6E0007B8DF1 /* avatars_27_bodyback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_27_bodyback.png; sourceTree = "<group>"; };
 		052BC3D613D5D6E0007B8DF1 /* avatars_27_bodyfront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_27_bodyfront.png; sourceTree = "<group>"; };
 		052BC3D713D5D6E0007B8DF1 /* avatars_27_headback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_27_headback.png; sourceTree = "<group>"; };
@@ -1483,6 +1485,7 @@
 		45BBC1CC13D2843300DA64A6 /* TurntableFMStaticAssets */ = {
 			isa = PBXGroup;
 			children = (
+				05213D2813DA52530036C6DE /* iPad_iCon.png */,
 				052BC3D513D5D6E0007B8DF1 /* avatars_27_bodyback.png */,
 				052BC3D613D5D6E0007B8DF1 /* avatars_27_bodyfront.png */,
 				052BC3D713D5D6E0007B8DF1 /* avatars_27_headback.png */,
@@ -2180,6 +2183,7 @@
 				050C6F2013D767C4003E5E60 /* avatars_35_headback.png in Resources */,
 				050C6F2113D767C4003E5E60 /* avatars_35_headfront.png in Resources */,
 				050C6F2C13D930D5003E5E60 /* AdHocEntitlements.entitlements in Resources */,
+				05213D2913DA52530036C6DE /* iPad_iCon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2338,6 +2342,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
@@ -2404,6 +2409,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2423,6 +2429,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

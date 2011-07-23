@@ -33,9 +33,9 @@
         CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
         theAnimation.speed = 0.4;
         theAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        theAnimation.fromValue = [NSNumber numberWithDouble:-15 * 0.0174532925];
-        theAnimation.toValue = [NSNumber numberWithDouble:15 * 0.0174532925];
-        theAnimation.repeatCount = 10000000;
+        theAnimation.fromValue = [NSNumber numberWithDouble:-14 * 0.0174532925];
+        theAnimation.toValue = [NSNumber numberWithDouble:14 * 0.0174532925];
+        theAnimation.repeatCount = HUGE_VALF;
         theAnimation.autoreverses = YES;
         [self.headLayer addAnimation:theAnimation forKey:@"bobbing"];
         }
