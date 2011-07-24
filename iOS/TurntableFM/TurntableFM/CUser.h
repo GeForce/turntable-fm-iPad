@@ -14,5 +14,6 @@
 @property (readonly, nonatomic, retain) NSString *name;
 @property (readonly, nonatomic, assign) NSInteger avatarID;
 @property (readwrite, nonatomic, assign) BOOL bobbing;
+@property (readwrite, nonatomic, assign) BOOL DJing;
 
 @end

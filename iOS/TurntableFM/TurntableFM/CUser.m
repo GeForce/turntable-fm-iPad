@@ -16,6 +16,7 @@
 @implementation CUser
 
 @synthesize bobbing;
+@synthesize DJing;
 
 - (NSString *)userID
     {
@@ -39,5 +40,14 @@
     CAvatarLayer *theLayer = objc_getAssociatedObject(self, "layer");
     theLayer.bobbing = inBobbing;
     }
+
+// I wonder if DJing should just be a type of bobbing; an argument to it.
+- (void)setDJing:(BOOL)inDJing
+{
+    DJing = inDJing;
+    CAvatarLayer *theLayer = objc_getAssociatedObject(self, "layer");
+    theLayer.DJing = DJing;
+}
+
 
 @end
