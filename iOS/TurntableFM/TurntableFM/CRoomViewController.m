@@ -386,22 +386,38 @@
         for (NSDictionary *theSpeakDictionary in [change objectForKey:@"new"])
             {
             // TODO: add "/me emotes" handling
-            self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@: %@\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary objectForKey:@"text"]];
-            [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
+            if ([[theSpeakDictionary objectForKey:@"type"] isEqualToString:@"chat"])
+                {
+                self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@: %@\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary objectForKey:@"text"]];
+                [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
 
-            NSString *theUserID = [theSpeakDictionary objectForKey:@"userid"];
-            
-            CUser *theUser = [self.room.usersByUserID objectForKey:theUserID];
-            
-            CALayer *theLayer = [self layerForUser:theUser];
+                NSString *theUserID = [theSpeakDictionary objectForKey:@"userid"];
+                
+                CUser *theUser = [self.room.usersByUserID objectForKey:theUserID];
+                
+                CALayer *theLayer = [self layerForUser:theUser];
 
-            CABasicAnimation *thePulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-            thePulseAnimation.duration = 0.2;
-            thePulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-            thePulseAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-            thePulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
+                CABasicAnimation *thePulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+                thePulseAnimation.duration = 0.2;
+                thePulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+                thePulseAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+                thePulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
 
-            [theLayer addAnimation:thePulseAnimation forKey:@"pulse"];
+                [theLayer addAnimation:thePulseAnimation forKey:@"pulse"];
+                }
+            else if ([[theSpeakDictionary objectForKey:@"type"] isEqualToString:@"boot"]) 
+                {
+                self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@ was booted from the room.\n", [theSpeakDictionary objectForKey:@"name"]];
+                [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
+                }
+            else if ([theSpeakDictionary objectForKey:@"type"] == nil)
+                {
+                NSLog(@"Null chatlog event type!"); 
+                }
+            else
+                {
+                NSLog(@"Unknown chatlog event type: %@", [theSpeakDictionary objectForKey:@"type"]);
+                }
             }
         }
     else if ([keyPath isEqualToString:@"room.users"])

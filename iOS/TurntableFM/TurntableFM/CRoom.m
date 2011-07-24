@@ -231,11 +231,32 @@
         // #####################################################################
         [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
             NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.chatLog.count];
+            NSMutableDictionary *chatParameters = [NSMutableDictionary dictionaryWithDictionary:inParam];
+            [chatParameters setObject:@"chat" forKey:@"type"]; // Really not sure this is the right/best way. 
             [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
-            [self.chatLog addObject:inParam];
+            [self.chatLog addObject:chatParameters];
             [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
+            NSLog(@"Chat parameters: %@", chatParameters);
             } forCommand:@"speak"];
         
+        // #####################################################################
+        // 20:11:40 Received: {"command": "booted_user", "reason": null, "userid": "4e0ce2704fe7d076b216d117", "success": true}
+        // TODO: The more I think about this, the more I think that handling this through chat - while obvious at first, due to the main purpose being to log it in chat, but there's much more to do - going to refactor this once it's working.  
+        [[CTurntableFMModel sharedInstance].socket addHandler:^(id inParam) {
+            // Boot messages come in as 'success'ful even when that user isn't in the room anymore.
+            CUser *theUser = [self.usersByUserID objectForKey:[inParam objectForKey:@"userid"]];
+            if (theUser == NULL) { NSLog(@"Boot message received for user not in room"); return; };
+            NSLog(@"Booted user: %@", theUser);
+            NSMutableDictionary *bootParameters = [NSMutableDictionary dictionaryWithDictionary:inParam];
+            [bootParameters setObject:@"boot" forKey:@"type"]; // Still not sure this is the right/best way.
+            [bootParameters setObject:[theUser name] forKey:@"name"];
+            NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.chatLog.count];
+            [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
+            [self.chatLog addObject:bootParameters];
+            [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
+            NSLog(@"Boot parameters: %@", bootParameters);
+        } forCommand:@"booted_user"];
+
         }];
     }
 
