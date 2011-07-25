@@ -96,7 +96,7 @@
 		cell.indentationLevel = 3;
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 		button.tag = 1;
-		[button setImage:[UIImage imageNamed:@"playlist_top_arrow.png"] forState:UIControlStateNormal];
+		[button setImage:[UIImage imageNamed:@"images_playlist_go-top-green.png"] forState:UIControlStateNormal];
 		[button addTarget:self action:@selector(moveToTop:) forControlEvents:UIControlEventTouchUpInside];
 		[cell addSubview:button];
 		button.frame = CGRectMake(5.0, 7.0, 30.0, 30.0);
@@ -141,6 +141,7 @@
 	UITableViewCell *cell = (UITableViewCell *)[sender superview];
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	CSong *song = [self.songs objectAtIndex:indexPath.row];
+    // TODO: Handle actual move-to-top event
 	NSIndexPath *top = [NSIndexPath indexPathForRow:0 inSection:0];
 	[self.songs removeObjectAtIndex:indexPath.row];
 	[self.songs insertObject:song atIndex:top.row];

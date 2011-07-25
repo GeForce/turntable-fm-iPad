@@ -410,6 +410,11 @@
                 self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@ was booted from the room.\n", [theSpeakDictionary objectForKey:@"name"]];
                 [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
                 }
+            else if ([[theSpeakDictionary objectForKey:@"type"] isEqualToString:@"newsong"]) 
+            { NSLog(@"%@", [theSpeakDictionary description]);
+                self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@ started playing \"%@\" by %@.\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary valueForKeyPath:@"metadata.song"], [theSpeakDictionary valueForKeyPath:@"metadata.artist"]];
+                [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
+                }
             else if ([theSpeakDictionary objectForKey:@"type"] == nil)
                 {
                 NSLog(@"Null chatlog event type!"); 

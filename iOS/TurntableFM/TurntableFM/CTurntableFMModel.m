@@ -294,7 +294,6 @@ static CTurntableFMModel *gSharedInstance = NULL;
                                    self.room.roomID, @"roomid",
                                    chatText, @"text",
                                    NULL];
-    NSLog(@"%@", theDictionary);
     [self.socket postMessage:@"room.speak" dictionary:theDictionary handler:^(id inResult) {}];
 }
 

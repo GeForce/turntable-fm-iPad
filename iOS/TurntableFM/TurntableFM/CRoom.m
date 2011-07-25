@@ -185,6 +185,18 @@
                     }
                 CUser *theDJ = [self.usersByUserID objectForKey:[self.parameters valueForKeyPath:@"metadata.current_dj"]];
                 theDJ.DJing = YES;
+
+                NSMutableDictionary *songInfoParameters = [NSMutableDictionary dictionaryWithDictionary:theSongParameters];
+                [songInfoParameters setObject:@"newsong" forKey:@"type"]; // Making me cringe every time.
+                [songInfoParameters setObject:[theDJ name] forKey:@"name"];
+                NSIndexSet *theIndexes = [NSIndexSet indexSetWithIndex:self.chatLog.count];
+                [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
+                [self.chatLog addObject:songInfoParameters];
+                [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:theIndexes forKey:@"chatLog"];
+                }
+            else
+                {
+                NSLog(@"Newsong received, but no song parameters found!");
                 }
             } forCommand:@"newsong"];
 

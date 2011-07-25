@@ -103,6 +103,7 @@
 			cell.accessoryView = nil;
 			self.roomDescription = nil;
 			[model stopSong];
+            [model refreshRoomListWithOffset:0 handler:NULL];
 		}];
 	}
 }
@@ -184,7 +185,6 @@
 	self.navigationItem.rightBarButtonItem = spinnerBarItem;
 	[spinnerBarItem release];
 	
-	// hack - actually refresh the list in the future
     [[CTurntableFMModel sharedInstance] refreshRoomListWithOffset:0 handler:^(void) {
         UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
 		self.navigationItem.rightBarButtonItem = refresh;
@@ -201,7 +201,6 @@
 {
 	UITableViewCell *cell = (UITableViewCell *)[[[sender superview] superview] superview];
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    NSLog(@"Index path: %@", [indexPath description]);
 	CFriendsViewController *fvc = [[CFriendsViewController alloc] initWithNibName:nil bundle:nil];
 	fvc.room = [[CTurntableFMModel sharedInstance].rooms objectAtIndex:indexPath.row];
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
