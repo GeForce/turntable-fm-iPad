@@ -94,6 +94,7 @@ static CApplicationController *gSharedInstance = NULL;
 
 - (void)applicationWillTerminate:(UIApplication *)application
     {
+        NSLog(@"Entered applicationWillTerminate:");
     }
 
 #pragma mark -

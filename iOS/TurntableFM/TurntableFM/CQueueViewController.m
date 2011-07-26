@@ -129,7 +129,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		[[CTurntableFMModel sharedInstance] removeSongFromPlaylist:indexPath.row handler:^(void) {
+		[[CTurntableFMModel sharedInstance] removeSongAtIndex:indexPath.row fromPlaylist:@"default" handler:^(void) {
 			[self.songs removeObjectAtIndex:indexPath.row];
 			[self.tableView reloadData];
 		}];
@@ -141,7 +141,9 @@
 	UITableViewCell *cell = (UITableViewCell *)[sender superview];
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	CSong *song = [self.songs objectAtIndex:indexPath.row];
-    // TODO: Handle actual move-to-top event
+
+    [[CTurntableFMModel sharedInstance] moveSongFromIndex:indexPath.row toIndex:0 inPlaylist:@"default" handler:NULL];
+
 	NSIndexPath *top = [NSIndexPath indexPathForRow:0 inSection:0];
 	[self.songs removeObjectAtIndex:indexPath.row];
 	[self.songs insertObject:song atIndex:top.row];

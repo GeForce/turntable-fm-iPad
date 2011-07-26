@@ -411,8 +411,8 @@
                 [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
                 }
             else if ([[theSpeakDictionary objectForKey:@"type"] isEqualToString:@"newsong"]) 
-            { NSLog(@"%@", [theSpeakDictionary description]);
-                self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"%@ started playing \"%@\" by %@.\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary valueForKeyPath:@"metadata.song"], [theSpeakDictionary valueForKeyPath:@"metadata.artist"]];
+                {
+                self.chatTextView.text = [self.chatTextView.text stringByAppendingFormat:@"♫♪ %@ started playing \"%@\" by %@ ♪♫\n", [theSpeakDictionary objectForKey:@"name"], [theSpeakDictionary valueForKeyPath:@"metadata.song"], [theSpeakDictionary valueForKeyPath:@"metadata.artist"]];
                 [self.chatTextView scrollRangeToVisible:(NSRange){ .location = self.chatTextView.text.length }];
                 }
             else if ([theSpeakDictionary objectForKey:@"type"] == nil)

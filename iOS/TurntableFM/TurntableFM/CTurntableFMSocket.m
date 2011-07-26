@@ -33,7 +33,10 @@
         NSString *theClientID = [[NSUserDefaults standardUserDefaults] objectForKey:@"TurntableFMClientID"];
         if (theClientID == NULL)
             {
-            theClientID = [NSString stringWithFormat:@"%d", arc4random()];
+            theClientID = [ NSString stringWithFormat:@"%@-%d",
+                           [NSString stringWithFormat:@"%d", (long)[[NSDate date] timeIntervalSince1970]], 
+                           abs(arc4random())
+                          ];
             [[NSUserDefaults standardUserDefaults] setObject:theClientID forKey:@"TurntableFMClientID"];
             }
         clientID = [theClientID retain];

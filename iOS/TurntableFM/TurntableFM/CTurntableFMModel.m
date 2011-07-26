@@ -157,7 +157,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
     else
         {
         NSString *theRoomID = self.room.roomID;
-        NSString *theRandom = [NSString stringWithFormat:@"%d", arc4random()];
+        NSString *theRandom = [NSString stringWithFormat:@"0.%d", abs(arc4random())]; // negative rands seemed to have a negative effect
         NSData *theData = [[NSString stringWithFormat:@"%@%@", theRoomID, theSongID] dataUsingEncoding:NSUTF8StringEncoding];
         NSString *theDownloadKey = [[theData SHA1Digest] hexString];
         
@@ -171,6 +171,7 @@ static CTurntableFMModel *gSharedInstance = NULL;
             [self.userInfo objectForKey:@"userid"]];
             
         theURL = [NSURL URLWithString:theURLString];
+    // NSLog(@"URL for song: %@", theURL);
         }
     return(theURL);
     }
@@ -228,14 +229,31 @@ static CTurntableFMModel *gSharedInstance = NULL;
 }
 
 // Below really should be removeSong:fromPlaylist: or similar when they do multiple playlists
-- (void)removeSongFromPlaylist:(NSInteger)inTeger handler:(void (^)(void))inHandler
+- (void)removeSongAtIndex:(NSInteger)inDex fromPlaylist:(NSString *)inPlaylist handler:(void (^)(void))inHandler
 {
    // NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inTeger forKey:@"index"];
     NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"default", @"playlist_name",
-                                   [NSNumber numberWithInteger:inTeger], @"index",
+                                   inPlaylist, @"playlist_name",
+                                   [NSNumber numberWithInteger:inDex], @"index",
                                    NULL];
     [self.socket postMessage:@"playlist.remove" dictionary:theDictionary handler:^(id inResult) {
+        if (inHandler)
+        {
+            inHandler();
+        }
+    }];
+}
+
+- (void)moveSongFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex inPlaylist:(NSString *)inPlaylist handler:(void (^)(void))inHandler
+{
+    // 19:28:16 Preparing message {"api":"playlist.reorder","playlist_name":"default","index_from":1,"index_to":0,"msgid":55,"clientid":"1311557792020-0.6296895369887352","userid":"4df032194fe7d063190425ca","userauth":"auth+live+ca822c8cb67e74722e3c350cfc0cbfea8a27c43b"}
+
+    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   inPlaylist, @"playlist_name",
+                                   [NSNumber numberWithInteger:fromIndex], @"index_from",
+                                   [NSNumber numberWithInteger:toIndex], @"index_to",
+                                   NULL];
+    [self.socket postMessage:@"playlist.reorder" dictionary:theDictionary handler:^(id inResult) {
         if (inHandler)
         {
             inHandler();

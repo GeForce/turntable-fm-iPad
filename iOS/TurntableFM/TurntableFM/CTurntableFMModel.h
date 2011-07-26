@@ -37,7 +37,8 @@
 - (void)fanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 - (void)unfanUser:(CUser *)inUser handler:(void (^)(void))inHandler;
 - (void)bootUser:(CUser *)inUser handler:(void (^)(void))inHandler;
-- (void)removeSongFromPlaylist:(NSInteger)inTeger handler:(void (^)(void))inHandler;
+- (void)removeSongAtIndex:(NSInteger)inDex fromPlaylist:(NSString *)inPlaylist handler:(void (^)(void))inHandler;
+- (void)moveSongFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex inPlaylist:(NSString *)inPlaylist handler:(void (^)(void))inHandler;
 - (void)vote:(NSString *)upOrDown;
 - (void)speak:(NSString *)chatText;
 - (void)voteAwesome;
