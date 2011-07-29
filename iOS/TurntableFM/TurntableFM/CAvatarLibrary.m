@@ -34,7 +34,7 @@ static CAvatarLibrary *gSharedInstance = NULL;
         // Initialization code here.
     }
 	
-	self.leftArmPointOffsets = [[NSMutableArray alloc] initWithObjects:
+	self.leftArmPointOffsets = [[[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 1 long brown hair
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 2
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],// 3 red fauxhawk pig tails
@@ -69,10 +69,13 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)], // odd new little boy
-                               [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 35 Daft Punk II
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 36 He-Monkey
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 37 She-Monkey
+                                nil] autorelease]; 
 
                                 
-	self.torsoPointOffsets = [[NSMutableArray alloc] initWithObjects:
+	self.torsoPointOffsets = [[[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 1 long brown hair
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 2
 							   [NSValue valueWithCGPoint:CGPointMake(-2, 0)],// 3 red fauxhawk pig tails
@@ -106,10 +109,13 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 31 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
-                              [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 34 strange little boy
-                              [NSValue valueWithCGPoint:CGPointMake(-2, 0)],nil]; // 35 Daft Punk II
+                               [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 34 strange little boy
+                               [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 35 Daft Punk II
+                               [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 36 He-Monkey
+                               [NSValue valueWithCGPoint:CGPointMake(-2, 0)], // 37 She-Monkey
+                                nil] autorelease]; 
 	
-	self.rightArmPointOffsets = [[NSMutableArray alloc] initWithObjects:
+	self.rightArmPointOffsets = [[[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 1 long brown hair
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 2
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],// 3 red fauxhawk pig tails
@@ -144,9 +150,12 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
 							   [NSValue valueWithCGPoint:CGPointMake(-4, 0)],
-                               [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
-	
-	self.legsPointOffsets = [[NSMutableArray alloc] initWithObjects:
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 35 Daft Punk II
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 36 He-Monkey
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 37 She-Monkey
+                                nil] autorelease];
+                                 
+	self.legsPointOffsets = [[[NSMutableArray alloc] initWithObjects:
 							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 1 long brown hair
 							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 2
 							   [NSValue valueWithCGPoint:CGPointMake(-2, -4)],// 3 red fauxhawk pig tails
@@ -181,7 +190,10 @@ static CAvatarLibrary *gSharedInstance = NULL;
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 32 new cosmic avatar
                                [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 last cosmic
 							   [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 34 strange little boy
-							   [NSValue valueWithCGPoint:CGPointMake(0, 0)],nil]; // 35 Daft Punk II
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 35 Daft Punk II
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 36 He-Monkey
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 37 She-Monkey
+                                nil] autorelease];
     
     return self;
 }
@@ -207,8 +219,6 @@ static CAvatarLibrary *gSharedInstance = NULL;
 	CGPoint legsOffset = [[legsPointOffsets objectAtIndex:inID - 1] CGPointValue];
 
 	
-	BOOL exists;
-	
 	if (inHead)
 	{
 		if (inFront)
@@ -222,8 +232,11 @@ static CAvatarLibrary *gSharedInstance = NULL;
 	{		
 		if (inFront)
 		{
-			// Load torso image
-			if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"fronttorso.png"]])	
+			// Load body / torso image
+            if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"bodyfront.png"]])	
+				// torsoImage = [UIImage imageNamed:[fileName stringByAppendingString:@"bodyfront.png"]];
+                return [UIImage imageNamed:[fileName stringByAppendingString:@"bodyfront.png"]];
+			else if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"fronttorso.png"]])	
 				torsoImage = [UIImage imageNamed:[fileName stringByAppendingString:@"fronttorso.png"]];
 			else
 				torsoImage = [UIImage imageNamed:[fileName stringByAppendingString:@"torso.png"]];
@@ -255,10 +268,11 @@ static CAvatarLibrary *gSharedInstance = NULL;
 		}
 		else
 		{
-			// Load torso image
-			exists = [[NSFileManager defaultManager] fileExistsAtPath:[resourcePath stringByAppendingString:@"backtorso.png"]];
-			
-			if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"backtorso.png"]])
+			// Load body / torso image
+			if ([[NSFileManager defaultManager] fileExistsAtPath:[resourcePath stringByAppendingString:@"bodyback.png"]])
+                // torsoImage = [UIImage imageNamed:[fileName stringByAppendingString:@"bodyback.png"]];
+                return [UIImage imageNamed:[fileName stringByAppendingString:@"bodyback.png"]];
+			else if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"backtorso.png"]])
 				torsoImage = [UIImage imageNamed:[fileName stringByAppendingString:@"backtorso.png"]];
 			else
 				torsoImage = [UIImage imageNamed:[fileName stringByAppendingString:@"torso.png"]];
@@ -276,8 +290,8 @@ static CAvatarLibrary *gSharedInstance = NULL;
 				leftArmImage = [UIImage imageNamed:[fileName stringByAppendingString:@"leftarm.png"]];
 				rightArmImage = [UIImage imageNamed:[fileName stringByAppendingString:@"rightarm.png"]];
 			}
-			
-			imageSize.width += leftArmImage.size.width + leftArmOffset.x + rightArmImage.size.width + rightArmOffset.y;
+			if (leftArmImage != nil && rightArmImage != nil)
+                imageSize.width += leftArmImage.size.width + leftArmOffset.x + rightArmImage.size.width + rightArmOffset.y;
 			
 			// Load leg images if they exist
 			if ([[NSFileManager defaultManager] fileExistsAtPath:[filePath stringByAppendingString:@"backlegs.png"]])
@@ -290,13 +304,19 @@ static CAvatarLibrary *gSharedInstance = NULL;
 		}
 		
 		UIGraphicsBeginImageContext(imageSize);
-		[leftArmImage drawAtPoint:CGPointMake(leftArmOffset.x, leftArmOffset.y)];
-		[rightArmImage drawAtPoint:CGPointMake(leftArmImage.size.width + torsoImage.size.width + torsoOffset.x + rightArmOffset.x, rightArmOffset.y)];
+        if (leftArmImage != nil) 
+            [leftArmImage drawAtPoint:CGPointMake(leftArmOffset.x, leftArmOffset.y)];
+		
+        if (rightArmImage != nil)
+            [rightArmImage drawAtPoint:CGPointMake(leftArmImage.size.width + torsoImage.size.width + torsoOffset.x + rightArmOffset.x, rightArmOffset.y)];
 		
 		if (legsImage != nil)
 			[legsImage drawAtPoint:CGPointMake(imageSize.width / 2 - torsoImage.size.width / 2 + legsOffset.x, torsoImage.size.height + legsOffset.y)];
-		
-		[torsoImage drawAtPoint:CGPointMake(leftArmImage.size.width + torsoOffset.x, torsoOffset.y)];
+
+		if (leftArmImage != nil) 
+            [torsoImage drawAtPoint:CGPointMake(leftArmImage.size.width + torsoOffset.x, torsoOffset.y)];
+        else
+            [torsoImage drawAtPoint:CGPointMake(torsoOffset.x, torsoOffset.y)];
 		
 		returnImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
