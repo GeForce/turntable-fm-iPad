@@ -150,9 +150,8 @@
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 33 End new cosmic avatars
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 34 strange little boy
                         [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 35 Daft Punk II
-                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 36 He-Monkey
-                        [NSValue valueWithCGPoint:CGPointMake(0, 0)], // 37 She-Monkey
-						nil] autorelease]; 
+						 nil]
+						autorelease]; 
 
     self.title = self.room.name;
 	
