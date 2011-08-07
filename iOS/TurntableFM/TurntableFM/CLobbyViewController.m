@@ -12,10 +12,12 @@
 #import "CLobbyTableViewCell.h"
 #import "CRoomViewController.h"
 #import "CFriendsViewController.h"
+#import "CLobbyBackView.h"
 
-@interface CLobbyViewController ()
+@interface CLobbyViewController () <CLobbyTableViewCellDelegate>
 
 @property(nonatomic, retain) NSDictionary *roomDescription;
+@property(nonatomic, retain) CLobbyBackView *backView;
 
 - (void)setUp;
 - (void)refresh:(id)sender;
@@ -28,6 +30,7 @@
 @synthesize tableView;
 @synthesize lobbyCell;
 @synthesize roomDescription;
+@synthesize backView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,6 +61,7 @@
 	
 	self.searchBar = nil;
 	self.tableView = nil;
+	self.backView = nil;
 	
 	[super dealloc];
 }
@@ -117,7 +121,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [CTurntableFMModel sharedInstance].rooms.count;
+	NSInteger roomCount = [CLobbyTableViewCell roomCount];
+	NSInteger count = [CTurntableFMModel sharedInstance].rooms.count;
+	NSInteger rows = count / roomCount;
+	if (count % roomCount != 0) {
+		rows++;
+	}
+	return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,11 +142,15 @@
 		[nib instantiateWithOwner:self options:nil];
 		cell = self.lobbyCell;
 		self.lobbyCell = nil;
+		cell.delegate = self;
 	}
 	
 	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
-	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
-	cell.room = room;
+	NSInteger roomCount = [CLobbyTableViewCell roomCount];
+	NSInteger location = indexPath.row * roomCount;
+	NSInteger length = MIN(model.rooms.count-location, roomCount);
+	NSArray *rooms = [model.rooms subarrayWithRange:NSMakeRange(location, length)];
+	cell.rooms = rooms;
 	
 	return cell;
 }
@@ -148,31 +162,35 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (self.roomDescription == nil) {
-		return indexPath;
-	}
-	else {
-		return nil;
-	}
+	return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-    {
-	CTurntableFMModel *model = [CTurntableFMModel sharedInstance];
-	NSArray *room = [model.rooms objectAtIndex:indexPath.row];
+#pragma mark - CLobbyTableViewCellDelegate
+
+- (void)lobbyCell:(CLobbyTableViewCell *)cell didSelectRoom:(NSArray *)room
+{
+	if (self.backView == nil) {
+		NSArray *array = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([CLobbyBackView class]) owner:nil options:nil];
+		self.backView = [array objectAtIndex:0];
+	}
+	
+	UIImageView *artwork = [cell.artworks objectAtIndex:[cell.rooms indexOfObject:room]];
+	
+	self.backView.room = room;
+	self.backView.fromView = artwork;
+	self.backView.frame = self.view.bounds;
+	[self.view addSubview:self.backView];
+	[self.backView show];
+	
+	/*
 	self.roomDescription = [room objectAtIndex:0];
-		
-		UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-		[spinner startAnimating];
-		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-		cell.accessoryView = spinner;
-		[spinner release];
-		[[CTurntableFMModel sharedInstance] registerWithRoom:self.roomDescription handler:^(CRoom *inRoom) {
-			CRoomViewController *rvc = [[CRoomViewController alloc] initWithRoom:inRoom];
-			[self.navigationController pushViewController:rvc animated:YES];
-			[rvc release];
-		}];
-    }
+	[[CTurntableFMModel sharedInstance] registerWithRoom:self.roomDescription handler:^(CRoom *inRoom) {
+		CRoomViewController *rvc = [[CRoomViewController alloc] initWithRoom:inRoom];
+		[self.navigationController pushViewController:rvc animated:YES];
+		[rvc release];
+	}];
+	*/
+}
 
 #pragma mark - Private
 

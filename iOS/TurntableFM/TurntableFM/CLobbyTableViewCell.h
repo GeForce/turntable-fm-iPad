@@ -8,22 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CLobbyTableViewCellDelegate;
+
 @interface CLobbyTableViewCell : UITableViewCell
 
-@property(nonatomic, retain) IBOutlet UILabel *listeners;
-@property(nonatomic, retain) IBOutlet UIView *listenersView;
-@property(nonatomic, retain) IBOutlet UILabel *friends;
-@property(nonatomic, retain) IBOutlet UIButton *friendsButton;
-@property(nonatomic, retain) IBOutlet UIView *friendsView;
-@property(nonatomic, retain) IBOutlet UILabel *roomName;
-@property(nonatomic, retain) IBOutlet UILabel *songTitle;
-@property(nonatomic, retain) IBOutlet UIButton *previewButton;
+@property (retain, nonatomic) IBOutletCollection(UIImageView) NSArray *artworks;
+@property (retain, nonatomic) IBOutletCollection(UILabel) NSArray *names;
 
-@property(nonatomic, retain) NSArray *room;
+@property(nonatomic, copy) NSArray *rooms;
+@property(nonatomic, assign) id<CLobbyTableViewCellDelegate> delegate;
 
 + (NSString *)reuseIdentifier;
 + (CGFloat)cellHeight;
++ (NSInteger)roomCount;
 
-- (IBAction)preview:(id)sender;
+- (IBAction)artworkTapped:(UIGestureRecognizer *)sender;
+
+@end
+
+@protocol CLobbyTableViewCellDelegate <NSObject>
+
+- (void)lobbyCell:(CLobbyTableViewCell *)cell didSelectRoom:(NSArray *)room;
 
 @end

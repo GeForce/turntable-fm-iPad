@@ -451,6 +451,8 @@
 		970AF76413D2D25000AA9067 /* CSideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 970AF76213D2D25000AA9067 /* CSideViewController.xib */; };
 		970AF76913D2DC0D00AA9067 /* CUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 970AF76713D2DC0C00AA9067 /* CUsersViewController.m */; };
 		970AF76A13D2DC0D00AA9067 /* CUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 970AF76813D2DC0C00AA9067 /* CUsersViewController.xib */; };
+		9724CE3C13EE3C7F009A9459 /* CLobbyBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9724CE3B13EE3C7E009A9459 /* CLobbyBackView.m */; };
+		9724CE3E13EE3C99009A9459 /* CLobbyBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9724CE3D13EE3C99009A9459 /* CLobbyBackView.xib */; };
 		979BB81413D28D6500D16D03 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */; };
 		979BB81913D2AC2D00D16D03 /* CFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979BB81713D2AC2C00D16D03 /* CFriendsViewController.m */; };
 		979BB81B13D2AC2D00D16D03 /* CFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979BB81813D2AC2D00D16D03 /* CFriendsViewController.xib */; };
@@ -1006,6 +1008,9 @@
 		970AF76613D2DC0C00AA9067 /* CUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUsersViewController.h; sourceTree = "<group>"; };
 		970AF76713D2DC0C00AA9067 /* CUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUsersViewController.m; sourceTree = "<group>"; };
 		970AF76813D2DC0C00AA9067 /* CUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CUsersViewController.xib; sourceTree = "<group>"; };
+		9724CE3A13EE3C7E009A9459 /* CLobbyBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLobbyBackView.h; sourceTree = "<group>"; };
+		9724CE3B13EE3C7E009A9459 /* CLobbyBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLobbyBackView.m; sourceTree = "<group>"; };
+		9724CE3D13EE3C99009A9459 /* CLobbyBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLobbyBackView.xib; sourceTree = "<group>"; };
 		979BB81313D28D6500D16D03 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		979BB81613D2AC2C00D16D03 /* CFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFriendsViewController.h; sourceTree = "<group>"; };
 		979BB81713D2AC2C00D16D03 /* CFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFriendsViewController.m; sourceTree = "<group>"; };
@@ -1105,6 +1110,9 @@
 				97ABD55D13D218310058B68E /* CLobbyTableViewCell.h */,
 				97ABD55E13D218310058B68E /* CLobbyTableViewCell.m */,
 				97ABD56013D2184F0058B68E /* CLobbyTableViewCell.xib */,
+				9724CE3A13EE3C7E009A9459 /* CLobbyBackView.h */,
+				9724CE3B13EE3C7E009A9459 /* CLobbyBackView.m */,
+				9724CE3D13EE3C99009A9459 /* CLobbyBackView.xib */,
 				979BB81613D2AC2C00D16D03 /* CFriendsViewController.h */,
 				979BB81713D2AC2C00D16D03 /* CFriendsViewController.m */,
 				979BB81813D2AC2D00D16D03 /* CFriendsViewController.xib */,
@@ -1882,6 +1890,7 @@
 		4506235513D117F800086997 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = toxicsoftware.com;
 			};
 			buildConfigurationList = 4506235813D117F800086997 /* Build configuration list for PBXProject "TurntableFM" */;
@@ -2264,6 +2273,7 @@
 				05E9650413E2950C00BBC92B /* avatars_37_fullfront.png in Resources */,
 				05E9650513E2950C00BBC92B /* avatars_37_headback.png in Resources */,
 				05E9650613E2950C00BBC92B /* avatars_37_headfront.png in Resources */,
+				9724CE3E13EE3C99009A9459 /* CLobbyBackView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2361,6 +2371,7 @@
 				459F845113D2DD08008A3C6A /* CAAnimation_BlockExtensions.m in Sources */,
 				97F126F513D2E87B00349BC0 /* CQueueViewController.m in Sources */,
 				457C003E13D397C1000D2EAC /* CAvatarLayer.m in Sources */,
+				9724CE3C13EE3C7F009A9459 /* CLobbyBackView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
