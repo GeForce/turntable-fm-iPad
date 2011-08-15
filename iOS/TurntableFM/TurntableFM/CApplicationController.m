@@ -65,7 +65,7 @@ static CApplicationController *gSharedInstance = NULL;
         
         [[CTurntableFMModel sharedInstance] loginWithFacebookAccessToken:self.facebookAccessToken];
         }
-
+        application.idleTimerDisabled = YES;
     return(YES);
     }
 
