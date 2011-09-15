@@ -1,0 +1,9 @@
+This code was written for iOSDevCamp 2011's hackathon.
+
+See https://plus.google.com/107337313990587082676/posts/Me7kaF2e77h for more information.
+
+The code was reverse engineered from the API used by the turntable.fm web application.
+Also the code was written during a 48 hour hackathon and is therefore an example of VERY bad code.
+Finally, because this is not supported by turntable.fm in any way shape or form the code may very well break at a moment's notice.
+
+You have been warned.
